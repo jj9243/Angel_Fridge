@@ -14,7 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import com.namjongbin.fridge_angel.DBHelper;
+import com.namjongbin.fridge_angel.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,17 +25,37 @@ public class VoiceRecognizer extends Activity {
     Intent intent;
     SpeechRecognizer mRecognizer;
     TextView textView;
-    TextView dbText;
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
     String item;
     Date date;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.speech_to_text);
 
-        setContentView(R.layout.activity_main);
+        intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        mRecognizer.setRecognitionListener(recognitionListener);
+        textView = (TextView) findViewById(R.id.date);
+        Button button = (Button) findViewById(R.id.start);
+        Button close_btn = (Button)findViewById(R.id.btn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRecognizer.startListening(intent);
+            }
+        });
+
+        close_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -49,23 +70,6 @@ public class VoiceRecognizer extends Activity {
             }
         }
 
-        intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
-
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        mRecognizer.setRecognitionListener(recognitionListener);
-
-
-        textView = (TextView) findViewById(R.id.date);
-        //dbText = (TextView)findViewById(R.id.dbText);
-        Button button = (Button) findViewById(R.id.start);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecognizer.startListening(intent);
-            }
-        });
     }
 
     private RecognitionListener recognitionListener = new RecognitionListener() {

@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+           app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -31,7 +31,7 @@
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/plus"
         app:pressedTranslationZ="12dp"/>
-    <!--press on-->
+<!--press on-->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_look"
         android:layout_width="wrap_content"

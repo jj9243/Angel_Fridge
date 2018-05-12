@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dip"
     android:layout_height="200dip"
@@ -7,35 +7,40 @@
     android:layout_centerInParent="true">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/start"
-        android:layout_marginStart="14dp"
+        android:layout_marginTop="20dp"
         android:text="품목과 유통기한을 말해주세요" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-        android:layout_below="@+id/textView"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="19dp"
+        android:layout_gravity="center"
+        android:layout_alignStart="@+id/textView_voice"
+        android:layout_below="@+id/textView_voice"
+        android:layout_margin="20dp"
         android:text="text" />
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="닫기"/>
+
 
     <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn"
         android:text="음성인식" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="닫기"/>
+
+</LinearLayout>
