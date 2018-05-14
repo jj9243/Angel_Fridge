@@ -9,19 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
     @Nullable
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         container.removeAllViews();
         TableLayout table = (TableLayout) rootView.findViewById(R.id.table);
         table.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getActivity(),"네모가 클릭되었어요",Toast.LENGTH_LONG).show();
             }
         });
 
