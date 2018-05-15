@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 //    MainActivity main;
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
 
     @Nullable
     @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -47,6 +49,7 @@ public class HomeFragment extends Fragment {
                 manager.beginTransaction().replace(R.id.frame_fragment, listFragment, listFragment.getTag()).commit();
             }
         });
+
 
         return rootView;
     }
