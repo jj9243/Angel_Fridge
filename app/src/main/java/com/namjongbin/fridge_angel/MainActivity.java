@@ -1,5 +1,6 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         look_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),VoiceRecognizer.class);
+                Intent intent = new Intent(getApplicationContext(),RecognizerFragment.class);
                 startActivity(intent);
             }
         });
@@ -142,7 +143,8 @@ public class MainActivity extends AppCompatActivity
             }
             main_fab.hide();
         } else if (id == R.id.our) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new UsFragment()).commit();
+            main_fab.hide();
         } else if (id == R.id.license) {
 
         }
@@ -150,4 +152,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

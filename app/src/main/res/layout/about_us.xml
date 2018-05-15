@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TableRow
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+    <ImageView
+        android:id="@+id/ourimg1"
+        android:layout_width="111dp"
+        android:layout_height="123dp"
+        app:srcCompat="@drawable/tt" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="김종건"
+        android:textSize="32sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="디자인"
+        />
+</TableRow>
+
+    <TableRow
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+    <ImageView
+        android:id="@+id/ourimg2"
+        android:layout_width="111dp"
+        android:layout_height="123dp"
+        app:srcCompat="@drawable/tt" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="남강우"
+        android:textSize="32sp"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="데이터베이스"
+            />
+</TableRow>
+
+    <TableRow
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+        <ImageView
+            android:id="@+id/ourimg3"
+            android:layout_width="111dp"
+            android:layout_height="123dp"
+            app:srcCompat="@drawable/tt" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="임석빈"
+            android:textSize="32sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="음성인식"
+            />
+    </TableRow>
+
+</TableLayout>

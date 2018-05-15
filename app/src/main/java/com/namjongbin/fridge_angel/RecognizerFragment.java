@@ -9,19 +9,16 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import com.namjongbin.fridge_angel.DBHelper;
-import com.namjongbin.fridge_angel.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class VoiceRecognizer extends Activity {
+public class RecognizerFragment extends Activity{
     Intent intent;
     SpeechRecognizer mRecognizer;
     TextView textView;
@@ -32,7 +29,7 @@ public class VoiceRecognizer extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.speech_to_text);
+        setContentView(R.layout.voice_recognizer);
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
