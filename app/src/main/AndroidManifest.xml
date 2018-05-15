@@ -34,8 +34,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RecognizerFragment" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"></activity>
-
     </application>
 
 </manifest>
