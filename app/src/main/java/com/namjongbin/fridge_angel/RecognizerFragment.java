@@ -1,4 +1,5 @@
 package com.namjongbin.fridge_angel;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,10 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+
 
 public class RecognizerFragment extends Activity{
     Intent intent;
@@ -24,7 +26,7 @@ public class RecognizerFragment extends Activity{
     TextView textView;
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
     String item;
-    Date date;
+    int year,month,day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,9 @@ public class RecognizerFragment extends Activity{
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
         mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mRecognizer.setRecognitionListener(recognitionListener);
-        textView = (TextView) findViewById(R.id.date);
-        Button button = (Button) findViewById(R.id.start);
-        Button close_btn = (Button)findViewById(R.id.btn);
+        textView = findViewById(R.id.date);
+        Button button = findViewById(R.id.start);
+        Button close_btn = findViewById(R.id.btn);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,19 +108,16 @@ public class RecognizerFragment extends Activity{
 
             String[] rs = new String[mResult.size()];
             mResult.toArray(rs);
-            item = rs[0].substring(0,rs[0].indexOf("년")-4);
-            String d = rs[0].substring(rs[0].indexOf("년")-4);
+            if(rs[0].contains("년") && rs[0].contains("월") && rs[0].contains("일")) {
+                parseVoice(rs[0]);
+                textView.setText("아이템: " + item + year + "년 " + month + "월 " + day + "일 ");
+            }
+            else
+                textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
             //textView.setText(rs[0]);
 
-            try {
-                date = new SimpleDateFormat("yyyy년 MM월 dd일").parse(d);
-                newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-            }catch(ParseException e){
-                textView.setText("날짜 형식을 00년 00월 00일로 말해주세요");
-                e.printStackTrace();
-            }
-            textView.setText(item+" " + newDate);
-            dbHelper.insert(item,newDate);
+
+            //dbHelper.insert(item,newDate);
         }
 
         @Override
@@ -130,4 +129,28 @@ public class RecognizerFragment extends Activity{
 
         }
     };
+    int num;
+    public void parseVoice(String voice){
+
+        Date today = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
+        String d = date.format(today).toString();
+
+        if(voice.contains("년")) {
+            year = Integer.parseInt(voice.substring(voice.indexOf('년') - 4, voice.indexOf('년')));
+            item = voice.substring(0,voice.indexOf("년")-4);
+        }
+        else
+            year = Integer.parseInt(d.substring(d.indexOf('년')-4,d.indexOf('년')));
+        if(voice.contains("월"))
+            month = Integer.parseInt(voice.substring(voice.indexOf('월')-2,voice.indexOf('월')).trim());
+        else
+            month = Integer.parseInt(d.substring(d.indexOf('월')-2,d.indexOf('월')));
+        if(voice.contains("일"))
+            day = Integer.parseInt(voice.substring(voice.indexOf('일')-2,voice.indexOf('일')).trim());
+        else
+            day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
+
+    }
 }
+
