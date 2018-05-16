@@ -30,15 +30,15 @@
 
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
-        </activity>
-<<<<<<< Updated upstream
 
-=======
+        </activity>
         <activity
             android:name=".RecognizerFragment"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
         <activity android:name=".ListActivity"></activity>
->>>>>>> Stashed changes
+        <activity android:name=".CalendarViewer"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+        <receiver android:name=".Alarmer"></receiver>
     </application>
 
 </manifest>

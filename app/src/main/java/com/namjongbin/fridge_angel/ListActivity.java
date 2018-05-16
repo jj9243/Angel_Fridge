@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class ListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter;
-    private int[] img = {R.drawable.tt,R.drawable.tom,R.drawable.wonkim};
+    private int[] img = {R.drawable.tt ,R.drawable.tom,R.drawable.wonkim};
     private String[] Title = {"타노스","스파이더맨","김원교수님"};
     private String[] Context = {"외계인","피터파커","원킴"};
     @Override

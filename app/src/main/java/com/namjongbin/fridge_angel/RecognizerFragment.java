@@ -39,10 +39,11 @@ public class RecognizerFragment extends Activity{
         mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mRecognizer.setRecognitionListener(recognitionListener);
         textView = findViewById(R.id.date);
-        Button button = findViewById(R.id.start);
-        Button close_btn = findViewById(R.id.btn);
+        Button voice_button = findViewById(R.id.start);
+        Button close_btn = findViewById(R.id.end);
+        Button calendar_btn=findViewById(R.id.calendar);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mRecognizer.startListening(intent);
@@ -68,6 +69,17 @@ public class RecognizerFragment extends Activity{
                 );
             }
         }
+
+
+
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
