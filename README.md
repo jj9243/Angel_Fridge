@@ -3,9 +3,9 @@
 Refer to wiki
 #
 
-18.05.04 create wire frame https://invis.io/PEIITDXVG59
+18.Aptil create wire frame https://invis.io/PEIITDXVG59
 
-18.05.12 Create new repository (this)
+18.May.12 Create new repository (this)
 (Previous repository(2018 March~ ) : https://github.com/jj9243/Fridge_Angel )
 
-18.05.18 complete frame?
+18.May complete frame?
