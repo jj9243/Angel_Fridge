@@ -10,19 +10,17 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.zagum.speechrecognitionview.RecognitionProgressView;
-import com.github.zagum.speechrecognitionview.adapters.RecognitionListenerAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+
 
 public class RecognizerFragment extends Activity{
     Intent intent;
@@ -36,7 +34,6 @@ public class RecognizerFragment extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.voice_recognizer);
 
         //animation set
@@ -48,21 +45,23 @@ public class RecognizerFragment extends Activity{
                 ContextCompat.getColor(this, R.color.color5)
         };
 
-//        int[] heights = { 20, 24, 18, 23, 16 };
+        int[] heights = { 20, 24, 18, 23, 16 };
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);    //speech recognizer
-        mRecognizer.setRecognitionListener(recognitionListener);
-
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(this); //speech recognizer
+      //warning
         recognitionProgressView = (RecognitionProgressView) findViewById(R.id.recognition_view);
         recognitionProgressView.setSpeechRecognizer(mRecognizer);
+        recognitionProgressView.setRecognitionListener(recognitionListener);
+//        mRecognizer.setRecognitionListener(recognitionListener);
+
 //        recognitionProgressView.setRecognitionListener(new RecognitionListenerAdapter() {
 //        });
 
         recognitionProgressView.setColors(colors);
-//        recognitionProgressView.setBarMaxHeightsInDp(heights);
+        recognitionProgressView.setBarMaxHeightsInDp(heights);
         recognitionProgressView.setCircleRadiusInDp(2);
         recognitionProgressView.setSpacingInDp(2);
         recognitionProgressView.setIdleStateAmplitudeInDp(2);
@@ -70,13 +69,13 @@ public class RecognizerFragment extends Activity{
         recognitionProgressView.play();
 
         textView = findViewById(R.id.date);
+        Button voice_button = findViewById(R.id.start);
         Button close_btn = findViewById(R.id.end);
         Button calendar_btn=findViewById(R.id.calendar);
 
-        recognitionProgressView.setOnClickListener(new View.OnClickListener() {
+        voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startRecognition();
                 mRecognizer.startListening(intent);
             }
         });
@@ -87,6 +86,7 @@ public class RecognizerFragment extends Activity{
                 finish();
             }
         });
+
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -150,12 +150,12 @@ public class RecognizerFragment extends Activity{
             mResult.toArray(rs);
             if(rs[0].contains("년") && rs[0].contains("월") && rs[0].contains("일")) {
                 parseVoice(rs[0]);
-                recognitionProgressView.stop();
-                recognitionProgressView.play();
                 textView.setText("아이템: " + item + year + "년 " + month + "월 " + day + "일 ");
             }
             else
                 textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
+
+//            recognitionProgressView.stop();
             //textView.setText(rs[0]);
 
             //dbHelper.insert(item,newDate);
@@ -170,14 +170,6 @@ public class RecognizerFragment extends Activity{
 
         }
     };
-
-    private void startRecognition() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mRecognizer.startListening(intent);
-    }
-
     int num;
     public void parseVoice(String voice){
 
@@ -202,4 +194,3 @@ public class RecognizerFragment extends Activity{
 
     }
 }
-
