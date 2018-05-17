@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.felipecsl:gifimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'com.github.zagum:SpeechRecognitionView:1.2.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

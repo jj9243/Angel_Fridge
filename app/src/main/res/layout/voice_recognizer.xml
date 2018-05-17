@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="300dip"
-    android:layout_height="200dip"
+    android:layout_width="280dip"
+    android:layout_height="210dip"
     android:background="#ffffff"
     android:layout_centerInParent="true">
 
@@ -26,24 +27,24 @@
         android:layout_margin="20dp"
         android:text="text" />
 
+    <com.github.zagum.speechrecognitionview.RecognitionProgressView
+        android:id="@+id/recognition_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btn"
-            android:text="음성인식" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/gray"
             android:text="달력"/>
 
         <Button
@@ -51,6 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/gray"
             android:text="닫기"/>
     </LinearLayout>
 

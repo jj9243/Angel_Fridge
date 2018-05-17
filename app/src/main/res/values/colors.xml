@@ -8,5 +8,10 @@
     <color name="black">#333333</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#48626262</color>
-    <color name="highLight">#ef0f0f</color>
+    <color name="highLight">#d2214d</color>
+    <color name="color1">#44d9f7</color>
+    <color name="color2">#44caf7</color>
+    <color name="color3">#44acf7</color>
+    <color name="color4">#449bf7</color>
+    <color name="color5">#448ff7</color>
 </resources>

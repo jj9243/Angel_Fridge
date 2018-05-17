@@ -16,6 +16,7 @@ public class SettingsScreen extends PreferenceFragment{
 
         SwitchPreference switchSet=(SwitchPreference)findPreference("switch");
         switchSet.setEnabled(true);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
