@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.github.zagum.speechrecognitionview.RecognitionProgressView;
@@ -69,7 +70,7 @@ public class RecognizerFragment extends Activity{
         recognitionProgressView.play();
 
         textView = findViewById(R.id.date);
-        Button voice_button = findViewById(R.id.start);
+        ImageButton voice_button = findViewById(R.id.start);
         Button close_btn = findViewById(R.id.end);
         Button calendar_btn=findViewById(R.id.calendar);
 

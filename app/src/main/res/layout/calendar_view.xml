@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@xml/corner"
     android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,26 +15,31 @@
         android:layout_height="wrap_content"
         app:mcv_selectionColor="@color/colorAccent"
         app:mcv_showOtherDates="all" />
-    <Button
-        android:id="@+id/alarmsetbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/calendarView"
-        android:background="@color/white"
-        android:textColor="@color/gray"
-        android:text="알람설정해!" />
 
-    <Button
-        android:id="@+id/youtubebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_toRightOf="@id/alarmsetbtn"
-        android:layout_below="@+id/calendarView"
-        android:background="@color/white"
-        android:textColor="@color/gray"
-        android:text="유투브로!" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/alarmsetbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:text="알람설정해!"
+            android:textColor="@color/gray"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+            android:id="@+id/youtubebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_toRightOf="@id/alarmsetbtn"
+            android:background="@color/white"
+            android:text="유투브로!"
+            android:textColor="@color/gray"
+            style="?android:attr/borderlessButtonStyle"/>
+    </RelativeLayout>
+</LinearLayout>
