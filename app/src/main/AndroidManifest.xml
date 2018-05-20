@@ -30,15 +30,19 @@
 
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".RecognizerFragment"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <activity android:name=".ListActivity"></activity>
-        <activity android:name=".CalendarViewer"
+        <activity android:name=".ListActivity" />
+        <activity
+            android:name=".CalendarViewer"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <receiver android:name=".Alarmer"></receiver>
+
+        <receiver android:name=".Alarmer" />
+
+        <activity android:name=".AddActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" ></activity>
     </application>
 
 </manifest>

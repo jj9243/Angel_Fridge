@@ -11,6 +11,7 @@ import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -107,6 +108,7 @@ public class RecognizerFragment extends Activity{
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
                 startActivity(intent);
+                finish();
             }
         });
 

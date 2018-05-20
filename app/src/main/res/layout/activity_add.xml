@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dip"
+    android:layout_height="360dip"
+    android:background="@xml/corner"
+    android:layout_margin="16dp"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:id="@+id/addItemView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Food"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/addItemEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addItemView"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name" />
+
+    <TextView
+        android:id="@+id/addDateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addItemEdit"
+        android:text="Date"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/addDateEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addDateView"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/addCatView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addDateEdit"
+        android:text="Category"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/addCatEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addCatView"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Category" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|right">
+
+        <Button
+            android:id="@+id/addBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="확인"
+            android:textColor="@color/gray" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="닫기"
+            android:textColor="@color/gray" />
+    </LinearLayout>
+</RelativeLayout>
