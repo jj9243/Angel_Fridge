@@ -35,7 +35,7 @@ public class Alarmer extends BroadcastReceiver {
         } else {
             mbuilder = new NotificationCompat.Builder(context);
         }
-        mbuilder.setSmallIcon(R.drawable.wonkim)
+        mbuilder.setSmallIcon(R.mipmap.ic_beta_round)
                 .setContentTitle("유통기한 알림")
                 .setContentText("유통기한이 3일 남았습니다.")
                 .setDefaults(Notification.DEFAULT_SOUND)

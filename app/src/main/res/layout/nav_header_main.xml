@@ -12,16 +12,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="93dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/nav_header_desc"
-        android:scaleType="fitStart"
-        app:srcCompat="@drawable/wonkim" />
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/profileImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/face"
+        app:civ_border_color="#EEEEEE"
+        app:civ_border_width="2dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10"
+        app:civ_shadow_color="#7eb5ef"/>
 
     <TextView
+        android:id="@+id/userNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"

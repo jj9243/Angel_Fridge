@@ -42,7 +42,7 @@
         <receiver android:name=".Alarmer" />
 
         <activity android:name=".AddActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" ></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
     </application>
 
 </manifest>

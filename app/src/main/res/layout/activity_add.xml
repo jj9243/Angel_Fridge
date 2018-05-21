@@ -67,7 +67,7 @@
         android:layout_gravity="bottom|right">
 
         <Button
-            android:id="@+id/addBtn"
+            android:id="@+id/registBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

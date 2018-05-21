@@ -11,7 +11,7 @@
         android:id="@+id/ourimg1"
         android:layout_width="111dp"
         android:layout_height="123dp"
-        app:srcCompat="@drawable/tt" />
+        app:srcCompat="@drawable/face" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:id="@+id/ourimg2"
         android:layout_width="111dp"
         android:layout_height="123dp"
-        app:srcCompat="@drawable/tt" />
+        app:srcCompat="@drawable/face" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             android:id="@+id/ourimg3"
             android:layout_width="111dp"
             android:layout_height="123dp"
-            app:srcCompat="@drawable/tt" />
+            app:srcCompat="@drawable/face" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

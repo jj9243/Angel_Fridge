@@ -1,6 +1,9 @@
 package com.namjongbin.fridge_angel;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -26,12 +30,15 @@ public class MainActivity extends AppCompatActivity
     //objects
     private DrawerLayout drawer;
     FloatingActionButton main_fab,look_fab,non_fab;
+
+
     //variable
     boolean openClose=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,6 +97,15 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        non_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),AddActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
