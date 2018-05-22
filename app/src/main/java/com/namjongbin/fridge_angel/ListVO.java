@@ -10,15 +10,15 @@ public class ListVO {
     private Drawable img;
     private String Title;
     private String context;
+    private boolean checked = false;
 
-    public Drawable getImg() {
-        return img;
+    public boolean isChecked() {
+        return checked;
     }
 
-    public void setImg(Drawable img) {
-        this.img = img;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
-
     public String getTitle() {
         return Title;
     }

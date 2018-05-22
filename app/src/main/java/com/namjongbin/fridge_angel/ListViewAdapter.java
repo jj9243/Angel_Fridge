@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+//http://yoo-hyeok.tistory.com/53
 
 public class ListViewAdapter extends BaseAdapter {
 
@@ -36,15 +39,16 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
 
-        ImageView image = (ImageView) convertView.findViewById(R.id.img) ;
+//        ImageButton img=convertView.findViewById(R.id.deleteBtn);
+        CheckBox check = (CheckBox) convertView.findViewById(R.id.checkItem) ;
         TextView title = (TextView) convertView.findViewById(R.id.title) ;
         TextView Context = (TextView) convertView.findViewById(R.id.context) ;
-
 
         ListVO listViewItem = listVO.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        image.setImageDrawable(listViewItem.getImg());
+        check.setVisibility(View.INVISIBLE);
+                //.setImageDrawable(listViewItem.getImg());
         title.setText(listViewItem.getTitle());
         Context.setText(listViewItem.getContext());
 
@@ -74,10 +78,10 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     // 데이터값 넣어줌
-    public void addVO(Drawable icon, String title, String desc) {
+    public void addVO(Boolean value, String title, String desc) {
         ListVO item = new ListVO();
 
-        item.setImg(icon);
+        item.setChecked(value);
         item.setTitle(title);
         item.setContext(desc);
 
