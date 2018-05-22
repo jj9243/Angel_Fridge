@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,10 +14,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter;
+    ImageButton imgBtn;
     private int[] img = {R.drawable.sd_eat ,R.drawable.sd_tired,R.drawable.sd_angry};
 
     int year,month,day;
@@ -34,6 +37,15 @@ public class ListActivity extends AppCompatActivity {
         //변수 초기화
         adapter = new ListViewAdapter();
         listview = (ListView) findViewById(R.id.listView);
+        imgBtn=findViewById(R.id.deleteBtn);
+
+        //listview set
+        final ListView listView=findViewById(R.id.listView);
+//https://www.dev2qa.com/android-custom-listview-with-checkbox-example/
+
+        //data init
+        //final List<ListVO> initItemVO=this.get
+       // ListViewItemDTO listDTO = (ListViewItemDTO)itemObject;
 
         //어뎁터 할당
         listview.setAdapter(adapter);
@@ -44,9 +56,8 @@ public class ListActivity extends AppCompatActivity {
             Title[i] = str[0].replaceAll("[0-9]", "");
             Context[i] = str[1];
             //adapter를 통한 값 전달
-            adapter.addVO(ContextCompat.getDrawable(this,img[i%3]),Title[i],Context[i]);
+            adapter.addVO(false,Title[i],Context[i]);
         }
-
 
     }
 }
