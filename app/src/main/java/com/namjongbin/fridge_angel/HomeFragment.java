@@ -8,15 +8,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
-
+    TextView itemText,ddayText,dateText;
+    String Title="" ;
+    String Context="";
+    int dday,count = 0;
 
     @Nullable
     @Override
@@ -27,6 +36,15 @@ public class HomeFragment extends Fragment {
 
         TableLayout table = (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button)rootView.findViewById(R.id.recipeBtn);
+
+        itemText = (TextView)rootView.findViewById(R.id.item);
+        dateText = (TextView)rootView.findViewById(R.id.date);
+        ddayText = (TextView)rootView.findViewById(R.id.dday);
+
+        parseDate();
+        ddayText.setText("D-"+ dday);
+        itemText.setText(Title);
+        dateText.setText(Context);
 
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -51,5 +69,47 @@ public class HomeFragment extends Fragment {
             }
         });
         return rootView;
+    }
+    public void parseDate(){
+        final DBHelper db = new DBHelper(getActivity(),"ITEM.db",null,2);
+        System.out.println(db.getResult());
+
+        String[] foodItem = db.getResult().split("\n");
+        String[] str = new String[2];
+        for(int i = 0 ; i < 1; i++) {
+            String temp="";
+            str = foodItem[i].split(":");
+            Title = str[0].replaceAll("[0-9]", "");
+            Context = str[1];
+        }
+
+        int year = Integer.parseInt(Context.substring(Context.indexOf("년")-4,Context.indexOf("년")));
+        int month = Integer.parseInt(Context.substring(Context.indexOf("월")-2,Context.indexOf("월")).trim());
+        int day = Integer.parseInt(Context.substring(Context.indexOf("일")-2,Context.indexOf("일")).trim());
+
+         dday = countdday(year,month,day);
+    }
+    public int countdday(int myear, int mmonth, int mday) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Calendar todaCal = Calendar.getInstance(); //오늘날자 가져오기
+            Calendar ddayCal = Calendar.getInstance(); //오늘날자를 가져와 변경시킴
+
+            mmonth -= 1; // 받아온날자에서 -1을 해줘야함.
+            ddayCal.set(myear,mmonth,mday);// D-day의 날짜를 입력
+            Log.e("테스트",simpleDateFormat.format(todaCal.getTime()) + "");
+            Log.e("테스트",simpleDateFormat.format(ddayCal.getTime()) + "");
+
+            long today = todaCal.getTimeInMillis()/86400000; //->(24 * 60 * 60 * 1000) 24시간 60분 60초 * (ms초->초 변환 1000)
+            long dday = ddayCal.getTimeInMillis()/86400000;
+            long count = dday - today; // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
+            return (int) count;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
