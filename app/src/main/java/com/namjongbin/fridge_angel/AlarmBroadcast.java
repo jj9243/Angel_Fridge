@@ -17,7 +17,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 
 
-public class Alarmer extends BroadcastReceiver {
+public class AlarmBroadcast extends BroadcastReceiver {
 
     String INTENT_ACTION = Intent.ACTION_BOOT_COMPLETED;
 

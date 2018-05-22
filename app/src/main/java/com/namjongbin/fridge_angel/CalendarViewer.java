@@ -7,10 +7,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.Window;
@@ -30,14 +28,13 @@ import java.util.Date;
 
 public class CalendarViewer extends Activity {
     private static int ONE_MINUTE = 5626;
+
     Button alarmSetButton;
-    Button youtubeButton;
+    Calendar calendar = Calendar.getInstance();
 
     int y = -1;
     int m = -1;
     int d = -1;
-
-    Calendar calendar = Calendar.getInstance();
 
     String sfName="myFile";
 
@@ -48,10 +45,10 @@ public class CalendarViewer extends Activity {
         setContentView(R.layout.calendar_view);
 
 //쉐어드프리퍼런스 테스트
-        SharedPreferences sf=getSharedPreferences(sfName,0);
-        Toast.makeText(getApplicationContext(),"저장되있던 것"+sf.getString("name",""),Toast.LENGTH_LONG).show();
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
+        //SharedPreferences sf=getSharedPreferences(sfName,0);
+        //Toast.makeText(getApplicationContext(),"저장되있던 것"+sf.getString("name",""),Toast.LENGTH_LONG).show();
+        //long now = System.currentTimeMillis();
+        //Date date = new Date(now);
 
         MaterialCalendarView materialCalendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
 
@@ -85,68 +82,21 @@ public class CalendarViewer extends Activity {
                 if (y == -1 || m == -1 || d == -1)
                     Toast.makeText(getApplicationContext(), "날짜를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 else {
-                    new AlarmHATT(getApplicationContext()).Alarm();
+                    new Alarm(getApplicationContext(),y,m,d).Alarm();
                 }
             }
         });
-
-        youtubeButton=(Button)findViewById(R.id.youtubebtn);
-
-        youtubeButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEARCH);
-                intent.setPackage("com.google.android.youtube");
-
-                intent.putExtra("query", "석빈");
-
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                }
-            }
-        });
-
     }
 
     //쉐어드프리퍼런스 테스트
     protected void onStop() {
         super.onStop();
 
-        SharedPreferences sf=getSharedPreferences(sfName,0);
-        SharedPreferences.Editor editor=sf.edit();
-        String str=Integer.toString(y)+"년 "+Integer.toString(m)+"월 "+Integer.toString(d)+"일 알람예정입니다.";
-        editor.putString("name",str);
-        editor.commit();
-    }
-
-
-    public class AlarmHATT {
-        private Context context;
-
-        public AlarmHATT(Context context) {
-            this.context = context;
-        }
-
-        public void Alarm() {
-            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(CalendarViewer.this, Alarmer.class);
-
-            PendingIntent sender = PendingIntent.getBroadcast(CalendarViewer.this, 0, intent, 0);
-
-
-            //알람시간 calendar에 set해주기
-
-            calendar.set(Calendar.YEAR, y);
-            calendar.set(Calendar.MONTH, m);
-            calendar.set(Calendar.DAY_OF_MONTH, d);
-            calendar.set(Calendar.HOUR_OF_DAY, 18);
-            calendar.set(Calendar.MINUTE, 19);
-            calendar.set(Calendar.SECOND, 0);
-
-            //알람 예약
-            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
-            Toast.makeText(getApplicationContext(), "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
-        }
+       // SharedPreferences sf=getSharedPreferences(sfName,0);
+        //SharedPreferences.Editor editor=sf.edit();
+        //String str=Integer.toString(y)+"년 "+Integer.toString(m)+"월 "+Integer.toString(d)+"일 알람예정입니다.";
+        //editor.putString("name",str);
+        //editor.commit();
     }
 
 

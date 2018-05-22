@@ -1,5 +1,6 @@
 package com.namjongbin.fridge_angel;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,15 +27,16 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     //ani
-    Animation openFab,closeFab;
+    Animation openFab, closeFab;
 
     //objects
     private DrawerLayout drawer;
-    FloatingActionButton main_fab,look_fab,non_fab;
+    FloatingActionButton main_fab, look_fab, non_fab;
 
-
+    Button youtubeButton;
     //variable
-    boolean openClose=false;
+    boolean openClose = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,47 +56,45 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState==null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
         //nav bar
 
         //fab
-        main_fab=(FloatingActionButton)findViewById(R.id.fab);
-        look_fab=(FloatingActionButton)findViewById(R.id.fab_look);
-        non_fab=(FloatingActionButton)findViewById(R.id.fab_non);
+        main_fab = (FloatingActionButton) findViewById(R.id.fab);
+        look_fab = (FloatingActionButton) findViewById(R.id.fab_look);
+        non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
 
-        openFab= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.open_fab);
-        closeFab= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.close_fab);
+        openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
+        closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
 
         main_fab.setClickable(true);
-        main_fab.setOnClickListener(new View.OnClickListener(){
+        main_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(openClose)
-                {
+                if (openClose) {
                     non_fab.startAnimation(closeFab);
                     look_fab.startAnimation(closeFab);
                     look_fab.setClickable(false);
                     non_fab.setClickable(false);
-                    openClose=false;
-                }
-                else//open
+                    openClose = false;
+                } else//open
                 {
                     look_fab.startAnimation(openFab);
                     non_fab.startAnimation(openFab);
                     look_fab.setClickable(true);
                     non_fab.setClickable(true);
-                    openClose=true;
+                    openClose = true;
                 }
-                Toast.makeText(getApplication(),"눌렀어?",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "눌렀어?", Toast.LENGTH_SHORT).show();
             }
         });
         look_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),RecognizerFragment.class);
+                Intent intent = new Intent(getApplicationContext(), RecognizerFragment.class);
                 startActivity(intent);
             }
         });
@@ -101,11 +102,10 @@ public class MainActivity extends AppCompatActivity
         non_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AddActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -148,14 +148,13 @@ public class MainActivity extends AppCompatActivity
             main_fab.show();
         } else if (id == R.id.nav_settings) {
 
-            getFragmentManager().beginTransaction().replace(R.id.frame_fragment,new SettingsScreen()).commit();
-            if(openClose==true)
-            {
+            getFragmentManager().beginTransaction().replace(R.id.frame_fragment, new SettingsScreen()).commit();
+            if (openClose == true) {
                 non_fab.startAnimation(closeFab);
                 look_fab.startAnimation(closeFab);
                 look_fab.setClickable(false);
                 non_fab.setClickable(false);
-                openClose=false;
+                openClose = false;
             }
             main_fab.hide();
         } else if (id == R.id.our) {
