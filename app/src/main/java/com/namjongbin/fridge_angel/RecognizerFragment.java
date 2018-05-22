@@ -31,6 +31,7 @@ public class RecognizerFragment extends Activity{
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
     RecognitionProgressView recognitionProgressView;
     String item;
+    int failCount = 0;
     int year,month,day;
 
     @Override
@@ -138,15 +139,24 @@ public class RecognizerFragment extends Activity{
         @Override
         public void onError(int i) {
             textView.setText("너무 늦게 말하면 오류뜹니다");
+            failCount++;
+            System.out.println("오류 카운트" + failCount);
+            if(failCount == 2){
+                Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
+                startActivity(intent);
+            }
 
         }
 
         @Override
         public void onResults(Bundle bundle) {
-            final DBHelper dbHelper = new DBHelper(getApplicationContext(),"ITEM.db",null,1);
+
+            final DBHelper dbHelper = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
+            dbHelper.setIndex();
             String newDate="";
             String key = "";
             key = SpeechRecognizer.RESULTS_RECOGNITION;
+
             ArrayList<String> mResult = bundle.getStringArrayList(key);
 
             String[] rs = new String[mResult.size()];
@@ -154,14 +164,42 @@ public class RecognizerFragment extends Activity{
             if(rs[0].contains("년") && rs[0].contains("월") && rs[0].contains("일")) {
                 parseVoice(rs[0]);
                 textView.setText("아이템: " + item + year + "년 " + month + "월 " + day + "일 ");
+                Intent intent = new Intent(getApplicationContext(),AddActivity.class);
+                intent.putExtra("item",item.trim());
+                intent.putExtra("year",year);
+                intent.putExtra("month",month);
+                intent.putExtra("day",day);
+                startActivity(intent);
             }
-            else
+            else {
                 textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
+                failCount++;
+                System.out.println("오류 카운트" + failCount);
+                if(failCount == 2){
+                    Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
+                    startActivity(intent);
+                }
+            }
 
 //            recognitionProgressView.stop();
             //textView.setText(rs[0]);
 
-            //dbHelper.insert(item,newDate);
+            /*
+            dbHelper.insert(item.trim(),year,month,day);
+
+
+            System.out.println("**********전체 출력*********** \n"+dbHelper.getResult());
+            System.out.println("id 출력"+dbHelper.getId(item.trim(),year,month,day));
+            System.out.println("아이템 출력"+dbHelper.getItem(dbHelper.getId(item.trim(),year,month,day)));
+
+            int[] date = new int[3];
+            date = dbHelper.getDate(dbHelper.getId(item.trim(),year,month,day));
+            System.out.print("유통기한 ");
+            for(int i = 0 ; i < 3 ; i++){
+                System.out.print(date[i] + " ");
+            }
+            System.out.println();
+            */
         }
 
         @Override
