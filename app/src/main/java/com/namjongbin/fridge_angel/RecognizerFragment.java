@@ -109,7 +109,6 @@ public class RecognizerFragment extends Activity{
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
                 startActivity(intent);
-                finish();
             }
         });
 

@@ -30,13 +30,14 @@ public class CalendarViewer extends Activity {
     private static int ONE_MINUTE = 5626;
 
     Button alarmSetButton;
+    Button closeButton;
     Calendar calendar = Calendar.getInstance();
 
     int y = -1;
     int m = -1;
     int d = -1;
 
-    String sfName="myFile";
+    String sfName = "myFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +76,28 @@ public class CalendarViewer extends Activity {
         });
 
         alarmSetButton = (Button) findViewById(R.id.alarmsetbtn);
-
+        closeButton = (Button) findViewById(R.id.close_Btn);
         alarmSetButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 if (y == -1 || m == -1 || d == -1)
                     Toast.makeText(getApplicationContext(), "날짜를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 else {
-                    new Alarm(getApplicationContext(),y,m,d).Alarm();
+                    //new Alarm(getApplicationContext(), y, m, d).Alarm();
+                    Intent intent=new Intent(getApplicationContext(),AddActivity.class);
+                    intent.putExtra("year",y);
+                    intent.putExtra("month",m+1);
+                    intent.putExtra("day",d);
+                    startActivity(intent);
+                    finish();
                 }
+            }
+        });
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -92,7 +106,7 @@ public class CalendarViewer extends Activity {
     protected void onStop() {
         super.onStop();
 
-       // SharedPreferences sf=getSharedPreferences(sfName,0);
+        // SharedPreferences sf=getSharedPreferences(sfName,0);
         //SharedPreferences.Editor editor=sf.edit();
         //String str=Integer.toString(y)+"년 "+Integer.toString(m)+"월 "+Integer.toString(d)+"일 알람예정입니다.";
         //editor.putString("name",str);

@@ -16,20 +16,29 @@
         app:mcv_selectionColor="@color/colorAccent"
         app:mcv_showOtherDates="all" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
         <Button
             android:id="@+id/alarmsetbtn"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:background="@color/white"
             android:text="선택"
-            android:textColor="@color/gray"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:textColor="@color/gray" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/close_Btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="닫기"
+            android:textColor="@color/gray" />
+    </LinearLayout>
+
 </LinearLayout>

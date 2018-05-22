@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     FloatingActionButton main_fab, look_fab, non_fab;
 
-    Button youtubeButton;
     //variable
     boolean openClose = false;
 
@@ -106,6 +105,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
     }
 
     @Override

@@ -40,33 +40,9 @@ public class AddActivity extends Activity {
         okBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                final DBHelper dbHelper = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
-                //dbHelper.insert(item.trim(),year,month,day);
-                dbHelper.delete(10);
-                dbHelper.delete(11);
-                dbHelper.delete(12);
-                dbHelper.delete(13);
-                dbHelper.delete(14);
-                dbHelper.delete(15);
-                dbHelper.delete(16);
-                dbHelper.delete(17);
-                dbHelper.delete(18);
-                dbHelper.delete(19);
-                /*
-                System.out.println("**********전체 출력*********** \n"+dbHelper.getResult());
-                System.out.println("id 출력"+dbHelper.getId(item.trim(),year,month,day));
-                System.out.println("아이템 출력"+dbHelper.getItem(dbHelper.getId(item.trim(),year,month,day)));
-
-                int[] date = new int[3];
-                date = dbHelper.getDate(dbHelper.getId(item.trim(),year,month,day));
-                System.out.print("유통기한 ");
-                for(int i = 0 ; i < 3 ; i++){
-                    System.out.print(date[i] + " ");
-                }
-                System.out.println();
-                */
+                final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
+                db.insert(item.trim(),year,month,day);
                 Intent intent = new Intent(getApplicationContext(),ListActivity.class);
-                startActivity(intent);
 
             }
         });
