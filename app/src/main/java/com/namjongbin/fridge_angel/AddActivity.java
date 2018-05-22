@@ -4,14 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddActivity extends Activity {
 
-    EditText dateditText;
+    TextView dateText;
     EditText itemText;
     Button closeBtn, okBtn;
     String item;
@@ -23,7 +25,7 @@ public class AddActivity extends Activity {
         setContentView(R.layout.activity_add);
        // requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        dateditText=findViewById(R.id.addDateEdit);
+        dateText=findViewById(R.id.addDateEdit);
         itemText = (EditText)findViewById(R.id.addItemEdit);
 
         Intent intent = getIntent();
@@ -32,7 +34,7 @@ public class AddActivity extends Activity {
         month = intent.getIntExtra("month",6);
         day = intent.getIntExtra("day",1);
         itemText.setText(item);
-        dateditText.setText(year +"년 "+month +"월 "+day+"일");
+        dateText.setText(year +"년 "+month +"월 "+day+"일");
 
         closeBtn=findViewById(R.id.cancelBtn);
         okBtn=findViewById(R.id.registBtn);
@@ -49,13 +51,19 @@ public class AddActivity extends Activity {
             }
         });
 
-        dateditText.setOnClickListener(new View.OnClickListener() {
+        dateText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
-                startActivity(intent);
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_DOWN)
+                {
+                    Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
+                    startActivity(intent);
+                    finish();
+                }
+                return true;
             }
         });
+
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
