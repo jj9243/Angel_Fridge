@@ -12,11 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="210dp"
         android:layout_margin="16dp"
-        android:stretchColumns="2,3"
+        android:stretchColumns="3,4,5"
         android:background="@drawable/card">
 
         <TableRow android:paddingTop="12dp">
             <TextView
+                android:id ="@+id/item"
                 android:paddingLeft="12dp"
                 android:text="Food"
                 android:textColor="@color/white"
@@ -27,9 +28,10 @@
         <TableRow android:paddingTop="12dp"
             >
             <TextView
+                android:id="@+id/dday"
                 android:text="D-day"
                 android:textColor="@color/white"
-                android:layout_column="4"
+                android:layout_column="6"
                 android:textSize="54sp"
                 android:textStyle="bold"
                 android:paddingRight="12dp"/>
@@ -37,10 +39,11 @@
 
         <TableRow android:paddingTop="4dp">
             <TextView
+                android:id="@+id/date"
                 android:text="20xx.xx.xx"
                 android:textColor="@color/white"
                 android:layout_column="3"
-                android:layout_span="2"
+                android:layout_span="4"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:gravity="right"
