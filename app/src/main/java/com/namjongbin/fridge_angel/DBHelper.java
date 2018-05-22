@@ -17,35 +17,68 @@ public class DBHelper extends SQLiteOpenHelper {
         // 새로운 테이블 생성
         /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
         item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
-        db.execSQL("CREATE TABLE ITEM (_id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT, date TEXT);");
+        db.execSQL("CREATE TABLE ITEM (_id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT, year INT, month INT, day INT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sql = "DROP TABLE IF EXISTS ITEM";
+        db.execSQL(sql);
+        //db.execSQL("CREATE TABLE ITEM (_id INTEGER PRIMARY KEY AUTOINCREMENT, item TEXT, year INT, month INT, day INT);");
+        onCreate(db);
     }
 
-    public void insert(String item, String date) {
+    public void insert(String item, int year,int month,int day) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO ITEM VALUES(null, '" + item + "', " + "'"+date +"'" + ");");
+        db.execSQL("INSERT INTO ITEM VALUES(null, '" + item + "'," + year +","+ month +","+ day +  ");");
         db.close();
     }
 
-    public void update(String item, String date) {
+    public void update(int id, int year, int month, int day) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행의 가격 정보 수정
-        db.execSQL("UPDATE ITEM SET date=" + date + " WHERE item='" + item + "';");
+        db.execSQL("UPDATE ITEM SET year=" + year + " ,month=" + month + ",day= " + day +  " WHERE _id='" + id + "';");
         db.close();
     }
 
-    public void delete(String item) {
+    public void delete(int id) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM ITEM WHERE item='" + item + "';");
+        db.execSQL("DELETE FROM ITEM WHERE _id=" + id + ";");
         db.close();
+    }
+    public int[] getDate(int id){
+        int[] date = new int[3];
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT year, month, day FROM ITEM WHERE _id = " + id + ";",null);
+        while(cursor.moveToNext()){
+            date[0] = cursor.getInt(0);
+            date[1] = cursor.getInt(1);
+            date[2] = cursor.getInt(2);
+        }
+        return date;
+    }
+
+    public int getId(String item, int year,int month, int day){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id FROM ITEM WHERE item= '" + item + "'and year="+year + " and month ="+month + " and day =" + day+";",null);
+        while(cursor.moveToNext()) {
+            result = cursor.getInt(0);
+        }
+        return result;
+    }
+    public String getItem(int id){
+        String result="";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT item FROM ITEM WHERE _id = " + id + ";",null);
+        while(cursor.moveToNext()) {
+            result = cursor.getString(0);
+        }
+        return result;
     }
 
     public String getResult() {
@@ -61,10 +94,20 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(1)
                     +":"
                     + cursor.getString(2)
+                    + " "
+                    + cursor.getString(3)
+                    + " "
+                    + cursor.getString(4)
                     + "\n";
         }
         System.out.println(result);
         return result;
-
     }
+    public void setIndex(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE SQLITE_SEQUENCE SET seq =1 WHERE name = 'ITEM';");
+        db.close();
+    }
+
+
 }
