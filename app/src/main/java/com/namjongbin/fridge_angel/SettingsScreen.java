@@ -4,12 +4,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.net.InetAddress;
 
 public class SettingsScreen extends PreferenceFragment{
 
@@ -24,32 +27,34 @@ public class SettingsScreen extends PreferenceFragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_screen);
-//
-//        user=(EditTextPreference)findPreference("user");
-//
-//        notyOnOff=(SwitchPreference)findPreference("switch");
-//        notyOnOff.setEnabled(true);
-//
-//        notyLocation=(ListPreference)findPreference("location");
-//
+
+        user=(EditTextPreference)findPreference("user");
+        notyOnOff=(SwitchPreference)findPreference("switch");
+        notyOnOff.setEnabled(true);
+        notyLocation=(ListPreference)findPreference("location");
+
+        user.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                user.setSummary((String)newValue);
+                name=user.getText();
+
+                sharedPreferences();
+                return false;
+                }
+        });
+
 //        if(!spre.getString("location", "").equals("")){
 //            notyLocation.setSummary(spre.getString("location","AnyWhere"));
 //        }
 
     }
 
-    SharedPreferences.OnSharedPreferenceChangeListener spreListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//            if(key.equals("user")){
-//
-//            }
-
-            if(key.equals("location")){
-                notyLocation.setSummary(spre.getString("location", "AnyWhere"));
-            }
-        }
-    };
+    public void sharedPreferences(){
+//        spre=getSharedPrefernces("");
+       //
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
