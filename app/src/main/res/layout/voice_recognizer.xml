@@ -17,6 +17,7 @@
         android:layout_marginTop="20dp"
         android:text="품목과 유통기한을 말해주세요" />
 
+
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -33,41 +34,40 @@
         android:layout_height="64dp"
         android:layout_gravity="center" />
 
-    <ImageButton
-        android:id="@+id/start"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@xml/round"
-        android:padding="2dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/mic"
-        style="?android:attr/borderlessButtonStyle"/>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        >
-        <Button
-            android:id="@+id/calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:textColor="@color/gray"
-            android:text="달력"
-            style="?android:attr/borderlessButtonStyle"/>
+        android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/start"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
-            android:background="@color/white"
-            android:textColor="@color/gray"
-            android:text="닫기"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mic" />
+
+        <ImageButton
+            android:id="@+id/calendar"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/time" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/gray"
+        android:layout_marginTop="8dp"
+        android:text="닫기"
+        style="?android:attr/borderlessButtonStyle"/>
 </LinearLayout>

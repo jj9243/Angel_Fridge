@@ -74,7 +74,7 @@ public class RecognizerFragment extends Activity{
         textView = findViewById(R.id.date);
         ImageButton voice_button = findViewById(R.id.start);
         Button close_btn = findViewById(R.id.end);
-        Button calendar_btn=findViewById(R.id.calendar);
+        ImageButton calendar_btn=findViewById(R.id.calendar);
 
         voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
