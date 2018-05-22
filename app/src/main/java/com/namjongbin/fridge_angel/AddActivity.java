@@ -41,8 +41,10 @@ public class AddActivity extends Activity {
             @Override
             public void onClick(View v){
                 final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
+                item = itemText.getText().toString();
                 db.insert(item.trim(),year,month,day);
                 Intent intent = new Intent(getApplicationContext(),ListActivity.class);
+                startActivity(intent);
 
             }
         });

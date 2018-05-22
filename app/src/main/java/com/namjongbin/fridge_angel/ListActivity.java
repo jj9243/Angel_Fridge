@@ -44,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
             Title[i] = str[0].replaceAll("[0-9]", "");
             Context[i] = str[1];
             //adapter를 통한 값 전달
-            adapter.addVO(ContextCompat.getDrawable(this,img[i]),Title[i],Context[i]);
+            adapter.addVO(ContextCompat.getDrawable(this,img[i%3]),Title[i],Context[i]);
         }
 
 
