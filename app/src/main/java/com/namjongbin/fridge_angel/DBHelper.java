@@ -94,13 +94,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(1)
                     +":"
                     + cursor.getString(2)
-                    + " "
+                    + "년 "
                     + cursor.getString(3)
-                    + " "
+                    + "월 "
                     + cursor.getString(4)
-                    + "\n";
+                    + "일\n";
         }
-        System.out.println(result);
         return result;
     }
     public void setIndex(){
@@ -108,6 +107,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE SQLITE_SEQUENCE SET seq =1 WHERE name = 'ITEM';");
         db.close();
     }
+    public int columnNum(){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM ITEM", null);
+        result = cursor.getCount();
+        System.out.println("아이템이 디비에 몇개 있나" + result);
+        return result;
 
-
+    }
 }
