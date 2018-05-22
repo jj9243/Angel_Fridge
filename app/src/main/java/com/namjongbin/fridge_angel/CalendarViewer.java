@@ -83,11 +83,12 @@ public class CalendarViewer extends Activity {
                 if (y == -1 || m == -1 || d == -1)
                     Toast.makeText(getApplicationContext(), "날짜를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 else {
-                    //new Alarm(getApplicationContext(), y, m, d).Alarm();
+                   // new Alarm(getApplicationContext(), y, m, d).Alarm();
                     Intent intent=new Intent(getApplicationContext(),AddActivity.class);
                     intent.putExtra("year",y);
                     intent.putExtra("month",m+1);
                     intent.putExtra("day",d);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 }

@@ -1,5 +1,6 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 
 
@@ -26,7 +27,9 @@ public class AlarmBroadcast extends BroadcastReceiver {
         //NotificationManager 안드로이드 상태바에 메세지를 던지기위한 서비스 불러오고
         // Bitmap mLargeIconForNoti=BitmapFactory.decodeResource(getResources(),R.drawable.sb);
         NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, new Intent(context, CalendarViewer.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent notiIntent=new Intent(context, MainActivity.class);
+        notiIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, notiIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mbuilder;
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationChannel mChannel = new NotificationChannel("kangwoo", "alarm", NotificationManager.IMPORTANCE_DEFAULT);

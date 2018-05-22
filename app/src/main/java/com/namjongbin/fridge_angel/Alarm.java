@@ -26,8 +26,8 @@ public class Alarm{
     }
 
     public void Alarm() {
-        AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmBroadcast.class);
+            AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, AlarmBroadcast.class);
 
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
@@ -37,13 +37,12 @@ public class Alarm{
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 48);
+        calendar.set(Calendar.HOUR_OF_DAY, 2);
+        calendar.set(Calendar.MINUTE, 10);
         calendar.set(Calendar.SECOND, 0);
 
         //알람 예약
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
-        am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis()+180000,sender);
-        Toast.makeText(context, "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
     }
 }
