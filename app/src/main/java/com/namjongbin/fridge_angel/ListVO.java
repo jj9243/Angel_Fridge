@@ -10,6 +10,7 @@ public class ListVO {
     private Drawable img;
     private String Title;
     private String context;
+    private boolean visible = false;
     private boolean checked = false;
 
     public boolean isChecked() {
@@ -19,6 +20,7 @@ public class ListVO {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
+
     public String getTitle() {
         return Title;
     }
@@ -33,5 +35,9 @@ public class ListVO {
 
     public void setContext(String context) {
         this.context = context;
+    }
+
+    public void setVisible(boolean checked) {
+        this.visible = checked;
     }
 }

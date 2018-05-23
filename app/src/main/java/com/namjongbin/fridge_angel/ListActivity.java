@@ -59,5 +59,15 @@ public class ListActivity extends AppCompatActivity {
             adapter.addVO(false,Title[i],Context[i]);
         }
 
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0;i<db.columnNum();i++)
+                {
+                    adapter.visibleCheck(true);
+                }
+            }
+        });
+
     }
 }

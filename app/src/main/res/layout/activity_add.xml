@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="240dip"
     android:layout_height="320dip"
-    android:background="@xml/corner"
+    android:background="@color/white"
     android:layout_margin="16dp"
     android:layout_centerInParent="true">
 

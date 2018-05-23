@@ -15,7 +15,9 @@ import java.util.ArrayList;
 //http://yoo-hyeok.tistory.com/53
 
 public class ListViewAdapter extends BaseAdapter {
-
+    CheckBox check;
+    TextView title;
+    TextView content;
     private ArrayList<ListVO> listVO = new ArrayList<ListVO>() ;
     public ListViewAdapter() {
 
@@ -40,9 +42,9 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
 //        ImageButton img=convertView.findViewById(R.id.deleteBtn);
-        CheckBox check = (CheckBox) convertView.findViewById(R.id.checkItem) ;
-        TextView title = (TextView) convertView.findViewById(R.id.title) ;
-        TextView Context = (TextView) convertView.findViewById(R.id.context) ;
+        check = (CheckBox) convertView.findViewById(R.id.checkItem) ;
+        title = (TextView) convertView.findViewById(R.id.title) ;
+        content = (TextView) convertView.findViewById(R.id.context) ;
 
         ListVO listViewItem = listVO.get(position);
 
@@ -50,7 +52,7 @@ public class ListViewAdapter extends BaseAdapter {
         check.setVisibility(View.INVISIBLE);
                 //.setImageDrawable(listViewItem.getImg());
         title.setText(listViewItem.getTitle());
-        Context.setText(listViewItem.getContext());
+        content.setText(listViewItem.getContext());
 
 
         //리스트뷰 클릭 이벤트
@@ -86,5 +88,12 @@ public class ListViewAdapter extends BaseAdapter {
         item.setContext(desc);
 
         listVO.add(item);
+    }
+
+    public void visibleCheck(Boolean value){
+        if(value==true)
+            check.setVisibility(View.VISIBLE);
+        else
+            check.setVisibility(View.GONE);
     }
 }

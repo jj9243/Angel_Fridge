@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="280dip"
     android:layout_height="280dip"
-    android:background="@xml/corner"
+    android:background="@color/white"
     android:layout_centerInParent="true">
 
     <TextView
