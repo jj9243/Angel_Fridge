@@ -116,4 +116,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
 
     }
+    public String getExpiredItem(int year,int month,int day) {
+        String result = "";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM ITEM WHERE  year=" + year + " and month =" + month + " and day =" + day + ";", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0)
+                    + " "
+                    + cursor.getString(1)
+                    + ":"
+                    + cursor.getString(2)
+                    + "년 "
+                    + cursor.getString(3)
+                    + "월 "
+                    + cursor.getString(4)
+                    + "일\n";
+        }
+        return result;
+    }
 }

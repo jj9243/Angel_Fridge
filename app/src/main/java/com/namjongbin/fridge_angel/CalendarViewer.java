@@ -32,7 +32,7 @@ public class CalendarViewer extends Activity {
     Button alarmSetButton;
     Button closeButton;
     Calendar calendar = Calendar.getInstance();
-
+    String item="";
     int y = -1;
     int m = -1;
     int d = -1;
@@ -44,6 +44,9 @@ public class CalendarViewer extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.calendar_view);
+
+        Intent intent = getIntent();
+        item = intent.getStringExtra("tempItem");
 
 //쉐어드프리퍼런스 테스트
         //SharedPreferences sf=getSharedPreferences(sfName,0);
@@ -83,8 +86,9 @@ public class CalendarViewer extends Activity {
                 if (y == -1 || m == -1 || d == -1)
                     Toast.makeText(getApplicationContext(), "날짜를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 else {
-                   // new Alarm(getApplicationContext(), y, m, d).Alarm();
+                  //  new Alarm(getApplicationContext(), y, m, d).Alarm();
                     Intent intent=new Intent(getApplicationContext(),AddActivity.class);
+                    intent.putExtra("item",item);
                     intent.putExtra("year",y);
                     intent.putExtra("month",m+1);
                     intent.putExtra("day",d);
@@ -156,4 +160,3 @@ public class CalendarViewer extends Activity {
     }
 
 }
-
