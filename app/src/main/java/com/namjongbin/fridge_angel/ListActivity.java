@@ -1,36 +1,22 @@
 package com.namjongbin.fridge_angel;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter;
     ImageButton imgBtn;
+    Button deleteBtn;
+    Boolean opendelete =false;
     private int[] img = {R.drawable.sd_eat ,R.drawable.sd_tired,R.drawable.sd_angry};
 
     int year,month,day;
@@ -51,6 +37,7 @@ public class ListActivity extends AppCompatActivity {
         adapter = new ListViewAdapter();
         listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
+        deleteBtn=findViewById(R.id.popDeleteBtn);
 
         //어뎁터 할당
         listview.setAdapter(adapter);
@@ -77,6 +64,21 @@ public class ListActivity extends AppCompatActivity {
         }
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!opendelete) {
+                    adapter.toggleCheckBox(true);
+                    deleteBtn.setVisibility(View.VISIBLE);
+                    opendelete =true;
+                }else{
+                    adapter.toggleCheckBox(false);
+                    deleteBtn.setVisibility(View.GONE);
+                    opendelete =false;
+                }
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 int count, checked ;

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.namjongbin.fridge_angel.ListActivity">
 
     <TextView
@@ -32,8 +33,20 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:choiceMode="singleChoice" />
+
+    <Button
+        android:id="@+id/popDeleteBtn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="delete"
+        android:textColor="@color/gray"
+        android:layout_gravity="end"
+        android:layout_marginBottom="32dp"
+        android:visibility="gone"/>
 
 </LinearLayout>

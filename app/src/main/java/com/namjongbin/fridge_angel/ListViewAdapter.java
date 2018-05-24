@@ -19,6 +19,8 @@ public class ListViewAdapter extends BaseAdapter {
     TextView title;
     TextView content;
     private ArrayList<ListVO> listVO = new ArrayList<ListVO>() ;
+    private boolean mClick = false;
+
     public ListViewAdapter() {
 
     }
@@ -41,6 +43,7 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
 
+        check=convertView.findViewById(R.id.checkbox);
         title = (TextView) convertView.findViewById(R.id.title) ;
         content = (TextView) convertView.findViewById(R.id.context) ;
 
@@ -57,6 +60,12 @@ public class ListViewAdapter extends BaseAdapter {
                 Toast.makeText(context, (pos+1)+"번째 리스트가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if(mClick) {
+            check.setVisibility(View.VISIBLE);
+        } else {
+            check.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
@@ -83,4 +92,11 @@ public class ListViewAdapter extends BaseAdapter {
 
         listVO.add(item);
     }
+
+    public void toggleCheckBox(boolean bClick) {
+
+        mClick = bClick;
+        notifyDataSetChanged();
+    }
+
 }

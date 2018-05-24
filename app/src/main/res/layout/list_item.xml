@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:padding="8dp" >
 
     <CheckBox
-        android:id="@+id/radioButton"
+        android:id="@+id/checkbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:checked="false"
+        android:visibility="gone"
         android:layout_weight="1"
         />
 
