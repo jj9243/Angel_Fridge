@@ -41,19 +41,14 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
 
-//        ImageButton img=convertView.findViewById(R.id.deleteBtn);
-        check = (CheckBox) convertView.findViewById(R.id.checkItem) ;
         title = (TextView) convertView.findViewById(R.id.title) ;
         content = (TextView) convertView.findViewById(R.id.context) ;
 
         ListVO listViewItem = listVO.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        check.setVisibility(View.INVISIBLE);
-                //.setImageDrawable(listViewItem.getImg());
         title.setText(listViewItem.getTitle());
         content.setText(listViewItem.getContext());
-
 
         //리스트뷰 클릭 이벤트
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +57,6 @@ public class ListViewAdapter extends BaseAdapter {
                 Toast.makeText(context, (pos+1)+"번째 리스트가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         return convertView;
     }
@@ -83,17 +77,10 @@ public class ListViewAdapter extends BaseAdapter {
     public void addVO(Boolean value, String title, String desc) {
         ListVO item = new ListVO();
 
-        item.setChecked(value);
+//        item.setCheck(value);
         item.setTitle(title);
         item.setContext(desc);
 
         listVO.add(item);
-    }
-
-    public void visibleCheck(Boolean value){
-        if(value==true)
-            check.setVisibility(View.VISIBLE);
-        else
-            check.setVisibility(View.GONE);
     }
 }

@@ -1,14 +1,25 @@
 package com.namjongbin.fridge_angel;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,21 +45,27 @@ public class ListActivity extends AppCompatActivity {
         System.out.println("************************************결과 출력***********************\n"+db.getResult());
         String[] foodItem = db.getResult().split("\n");
 
+        final ArrayList<String> items = new ArrayList<String>() ;
+
         //변수 초기화
         adapter = new ListViewAdapter();
-        listview = (ListView) findViewById(R.id.listView);
+        listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
-
-        //listview set
-        final ListView listView=findViewById(R.id.listView);
-//https://www.dev2qa.com/android-custom-listview-with-checkbox-example/
-
-        //data init
-        //final List<ListVO> initItemVO=this.get
-       // ListViewItemDTO listDTO = (ListViewItemDTO)itemObject;
 
         //어뎁터 할당
         listview.setAdapter(adapter);
+
+
+        // test item long click
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                Toast.makeText(getApplicationContext(), position + " long click", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
         for(int i = 0 ; i < db.columnNum(); i++){
             String[] str = new String[2];
@@ -62,9 +79,23 @@ public class ListActivity extends AppCompatActivity {
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i<db.columnNum();i++)
-                {
-                    adapter.visibleCheck(true);
+                int count, checked ;
+                count = adapter.getCount() ;
+
+                if (count > 0) {
+                    // 현재 선택된 아이템의 position 획득.
+                    checked = listview.getCheckedItemPosition();
+
+                    if (checked > -1 && checked < count) {
+                        // 아이템 삭제
+                        items.remove(checked) ;
+
+                        // listview 선택 초기화.
+                        listview.clearChoices();
+
+                        // listview 갱신.
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             }
         });

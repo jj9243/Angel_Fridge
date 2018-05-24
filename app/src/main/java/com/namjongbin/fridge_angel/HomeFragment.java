@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
         dateText = (TextView)rootView.findViewById(R.id.date);
         ddayText = (TextView)rootView.findViewById(R.id.dday);
 
-//        parseDate();
+        parseDate();
         if(dday==0)
             ddayText.setText("D-DAY");
         else

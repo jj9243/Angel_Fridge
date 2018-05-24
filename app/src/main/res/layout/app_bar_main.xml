@@ -32,6 +32,25 @@
         app:srcCompat="@drawable/plus"
         app:pressedTranslationZ="12dp"/>
 <!--press on-->
+    <RelativeLayout
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="@dimen/fab_margin">
+
+        <TextView
+            android:id="@+id/lookFabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_toStartOf="@+id/fab_look"
+            android:gravity="center"
+            android:text="유통기한 식품"
+            android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_look"
@@ -39,25 +58,41 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="80dp"
-            android:layout_marginRight="@dimen/fab_margin"
+            android:visibility="invisible"
             app:backgroundTint="@color/colorPrimary"
             app:pressedTranslationZ="12dp"
-            app:srcCompat="@drawable/time2"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/view" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="140dp">
+
+    <TextView
+        android:id="@+id/nonFabText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/fab_non"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="신선 식품"
+        android:visibility="gone" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_non"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="140dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         app:backgroundTint="@color/colorPrimary"
         app:pressedTranslationZ="12dp"
-        app:srcCompat="@drawable/fruits"
+        app:srcCompat="@drawable/edit"
         android:visibility="invisible"/>
+    </RelativeLayout>
 
     <include
         layout="@layout/content_main"

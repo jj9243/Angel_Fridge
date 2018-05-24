@@ -21,6 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     //objects
     private DrawerLayout drawer;
     FloatingActionButton main_fab, look_fab, non_fab;
-
+    TextView lfabText,nfabText;
     //variable
     boolean openClose = false;
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity
         main_fab = (FloatingActionButton) findViewById(R.id.fab);
         look_fab = (FloatingActionButton) findViewById(R.id.fab_look);
         non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
+        lfabText=findViewById(R.id.lookFabText);
+        nfabText=findViewById(R.id.nonFabText);
 
         openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
         closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
@@ -79,6 +82,9 @@ public class MainActivity extends AppCompatActivity
                     look_fab.setClickable(false);
                     non_fab.setClickable(false);
                     openClose = false;
+
+                    lfabText.setVisibility(View.GONE);
+                    nfabText.setVisibility(View.GONE);
                 } else//open
                 {
                     look_fab.startAnimation(openFab);
@@ -86,6 +92,9 @@ public class MainActivity extends AppCompatActivity
                     look_fab.setClickable(true);
                     non_fab.setClickable(true);
                     openClose = true;
+
+                    lfabText.setVisibility(View.VISIBLE);
+                    nfabText.setVisibility(View.VISIBLE);
                 }
                 Toast.makeText(getApplication(), "눌렀어?", Toast.LENGTH_SHORT).show();
             }
@@ -155,6 +164,9 @@ public class MainActivity extends AppCompatActivity
                 look_fab.setClickable(false);
                 non_fab.setClickable(false);
                 openClose = false;
+
+                lfabText.setVisibility(View.GONE);
+                nfabText.setVisibility(View.GONE);
             }
             main_fab.hide();
         } else if (id == R.id.our) {
