@@ -35,8 +35,9 @@ public class AlarmBroadcast extends BroadcastReceiver {
         notiIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, notiIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mbuilder;
+
         if (Build.VERSION.SDK_INT >= 26) {
-            NotificationChannel mChannel = new NotificationChannel("kangwoo", "alarm", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel mChannel = new NotificationChannel("Noti", "alarm", NotificationManager.IMPORTANCE_DEFAULT);
             notificationmanager.createNotificationChannel(mChannel);
             mbuilder = new NotificationCompat.Builder(context, mChannel.getId());
         } else {
@@ -44,7 +45,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         }
         mbuilder.setSmallIcon(R.mipmap.ic_beta_round)
                 .setContentTitle("유통기한 알림")
-                .setContentText("품목 : "+item[0])
+                .setContentText(""+item[0]+"의 유통기한이 +"+date[0]+"틀 남았습니다!")
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
@@ -52,6 +53,8 @@ public class AlarmBroadcast extends BroadcastReceiver {
 
         notificationmanager.notify(1, mbuilder.build());
     }
+
+
     public void parseDate(Context context) {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(cal.YEAR);

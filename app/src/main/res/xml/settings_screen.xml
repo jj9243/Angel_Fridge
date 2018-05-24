@@ -3,13 +3,13 @@
     >
 
     <EditTextPreference
-        android:title="냉장고 주인 이름"
+        android:title="User"
         android:key="user"
         android:summary="입력해주세요"
         />
 
     <SwitchPreference
-        android:title="알림을 받는다"
+        android:title="Alarm"
         android:key="switch"
         />
 
@@ -18,12 +18,12 @@
         android:entryValues="@array/notify"
         android:summary="Anywhere"
         android:key="location"
-        android:title="알림 장소"
+        android:title="Location"
         android:defaultValue="Anywhere"
         />
 
     <EditTextPreference
-        android:title="Edit text"
+        android:title="Date / Time"
         android:key="notification"
         android:summary="setting1"
         />
