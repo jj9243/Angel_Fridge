@@ -30,15 +30,15 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorPrimaryDark"
         app:srcCompat="@drawable/plus"
-        app:pressedTranslationZ="12dp"/>
+        app:pressedTranslationZ="0dp"/>
 <!--press on-->
     <RelativeLayout
-        android:layout_width="151dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="75dp"
         android:layout_marginRight="@dimen/fab_margin">
 
         <TextView
@@ -48,50 +48,50 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="8dp"
             android:layout_toStartOf="@+id/fab_look"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="유통기한 식품"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_look"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:visibility="invisible"
             app:backgroundTint="@color/colorPrimary"
-            app:pressedTranslationZ="12dp"
+            app:pressedTranslationZ="8dp"
             app:srcCompat="@drawable/view" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="151dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="140dp">
+        android:layout_marginBottom="145dp"
+        android:layout_marginRight="@dimen/fab_margin">
 
-    <TextView
-        android:id="@+id/nonFabText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/fab_non"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="신선 식품"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/nonFabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_toStartOf="@+id/fab_non"
+            android:layout_gravity="center"
+            android:text="신선 식품"
+            android:visibility="gone" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_non"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:pressedTranslationZ="12dp"
-        app:srcCompat="@drawable/edit"
-        android:visibility="invisible"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_non"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/colorPrimary"
+            app:pressedTranslationZ="8dp"
+            app:srcCompat="@drawable/edit" />
     </RelativeLayout>
 
     <include

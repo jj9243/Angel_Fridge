@@ -18,11 +18,11 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
     TextView itemText,ddayText,dateText;
+    TableLayout table;
     String Title="" ;
     String Context="";
     int dday,count = 0;
@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
 
         container.removeAllViews();
 
-        TableLayout table = (TableLayout) rootView.findViewById(R.id.table);
+        table= (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button)rootView.findViewById(R.id.recipeBtn);
 
         itemText = (TextView)rootView.findViewById(R.id.item);
@@ -42,8 +42,13 @@ public class HomeFragment extends Fragment {
         ddayText = (TextView)rootView.findViewById(R.id.dday);
 
         //parseDate();
-        if(dday==0)
+        if(dday==0) {
             ddayText.setText("D-DAY");
+            table.setBackgroundResource(R.drawable.cardg);
+        }
+        else if(dday<0){
+            table.setBackgroundResource(R.drawable.cardr);
+        }
         else
         ddayText.setText("D-"+ dday);
         itemText.setText(Title);
