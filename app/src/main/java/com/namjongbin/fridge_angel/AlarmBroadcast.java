@@ -37,7 +37,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         NotificationCompat.Builder mbuilder;
 
         if (Build.VERSION.SDK_INT >= 26) {
-            NotificationChannel mChannel = new NotificationChannel("Noti", "alarm", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel mChannel = new NotificationChannel("kangwoo", "alarm", NotificationManager.IMPORTANCE_DEFAULT);
             notificationmanager.createNotificationChannel(mChannel);
             mbuilder = new NotificationCompat.Builder(context, mChannel.getId());
         } else {
@@ -45,7 +45,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         }
         mbuilder.setSmallIcon(R.mipmap.ic_beta_round)
                 .setContentTitle("유통기한 알림")
-                .setContentText(""+item[0]+"의 유통기한이 +"+date[0]+"틀 남았습니다!")
+                .setContentText("품목 : "+item[0])
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)

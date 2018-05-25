@@ -45,6 +45,15 @@ public class AddActivity extends Activity {
             public void onClick(View v) {
                 final DBHelper db = new DBHelper(getApplicationContext(), "ITEM.db", null, 2);
                 item = itemText.getText().toString();
+                /*
+                db.delete(1);
+                db.delete(2);
+                db.delete(3);
+                db.delete(4);
+                db.delete(5);
+                db.delete(6);
+                db.delete(7);
+                 */
 
                 db.insert(item.trim(), year, month, day);
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
