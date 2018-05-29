@@ -16,12 +16,10 @@ import java.net.InetAddress;
 
 public class SettingsScreen extends PreferenceFragment{
 
-    SharedPreferences spre;
     EditTextPreference user;
     SwitchPreference notyOnOff;
     ListPreference notyLocation;
 
-    String name;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,30 +28,31 @@ public class SettingsScreen extends PreferenceFragment{
 
         user=(EditTextPreference)findPreference("user");
         notyOnOff=(SwitchPreference)findPreference("switch");
-        notyOnOff.setEnabled(true);
         notyLocation=(ListPreference)findPreference("location");
+
+        user.setSummary(user.getText().toString());
+        notyLocation.setSummary(notyLocation.getEntry());
 
         user.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                user.setSummary((String)newValue);
-                name=user.getText();
-
-                sharedPreferences();
-                return false;
+                String name=newValue.toString();
+                preference.setSummary(name);
+                return true;
                 }
         });
 
-//        if(!spre.getString("location", "").equals("")){
-//            notyLocation.setSummary(spre.getString("location","AnyWhere"));
-//        }
 
-    }
+        notyLocation.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-    public void sharedPreferences(){
-//        spre=getSharedPrefernces("");
-       //
+                String where=newValue.toString();
+                preference.setSummary(where);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -62,7 +61,6 @@ public class SettingsScreen extends PreferenceFragment{
         view.setBackgroundColor(getResources().getColor(android.R.color.white));
         container.removeAllViews();
         return view;
-
 
     }
 }

@@ -5,12 +5,12 @@
     <EditTextPreference
         android:title="User"
         android:key="user"
-        android:summary="입력해주세요"
         />
 
     <SwitchPreference
-        android:title="Alarm"
+        android:title="Alarm On/Off"
         android:key="switch"
+        android:defaultValue="true"
         />
 
     <ListPreference
@@ -23,9 +23,9 @@
         />
 
     <EditTextPreference
-        android:title="Date / Time"
+        android:title=" Time"
         android:key="notification"
-        android:summary="setting1"
+        android:summary=""
         />
 
 
