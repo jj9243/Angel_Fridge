@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
         dateText = (TextView)rootView.findViewById(R.id.date);
         ddayText = (TextView)rootView.findViewById(R.id.dday);
 
-        //parseDate();
+        parseDate();
         if(dday==0) {
             ddayText.setText("D-DAY");
             table.setBackgroundResource(R.drawable.cardg);
@@ -80,8 +80,8 @@ public class HomeFragment extends Fragment {
     }
     public void parseDate(){
         final DBHelper db = new DBHelper(getActivity(),"ITEM.db",null,2);
-        System.out.println(db.getResult());
-
+        if(db.getResult().equals("") || db.getResult() == null)
+            return;
         String[] foodItem = db.getResult().split("\n");
         String[] str = new String[2];
         for(int i = 0 ; i < 1; i++) {
