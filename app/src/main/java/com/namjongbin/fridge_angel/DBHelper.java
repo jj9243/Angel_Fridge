@@ -37,10 +37,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void update(int id, int year, int month, int day) {
+    public void update(int id, String item, int year, int month, int day) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행의 가격 정보 수정
-        db.execSQL("UPDATE ITEM SET year=" + year + " ,month=" + month + ",day= " + day +  " WHERE _id='" + id + "';");
+        db.execSQL("UPDATE ITEM SET item ='"+ item + "', year=" + year + " ,month=" + month + ",day= " + day + " WHERE _id=" + id + ";");
         db.close();
     }
 
