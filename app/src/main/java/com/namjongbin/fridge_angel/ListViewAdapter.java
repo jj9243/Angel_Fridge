@@ -120,7 +120,7 @@ public class ListViewAdapter extends BaseAdapter {
     public void addVO(Boolean value, String title, String desc) {
         ListVO item = new ListVO();
 
-       item.setChecked(value);
+
         item.setTitle(title);
         item.setContext(desc);
 

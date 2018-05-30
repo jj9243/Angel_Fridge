@@ -1,6 +1,7 @@
 package com.namjongbin.fridge_angel;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.widget.ImageView;

@@ -28,5 +28,12 @@
         android:summary=""
         />
 
-
+    <com.namjongbin.fridge_angel.WifiDialog
+        android:title="Wi-Fi Setting"
+        android:dialogMessage="집의 WiFi를 연결한 후 설정 버튼을 눌러주세요"
+        android:key="wifi"
+        android:summary=""
+        android:negativeButtonText="취소"
+        android:positiveButtonText="설정"
+        />
 </PreferenceScreen>

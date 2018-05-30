@@ -3,6 +3,7 @@ package com.namjongbin.fridge_angel;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -143,6 +144,7 @@ public class RecognizerFragment extends Activity{
             if(failCount == 2){
                 Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
                 startActivity(intent);
+                finish();
             }
 
         }
@@ -169,6 +171,7 @@ public class RecognizerFragment extends Activity{
                 intent.putExtra("month",month);
                 intent.putExtra("day",day);
                 startActivity(intent);
+                finish();
             }
             else {
                 textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
@@ -177,6 +180,7 @@ public class RecognizerFragment extends Activity{
                 if(failCount == 2){
                     Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
                     startActivity(intent);
+                    finish();
                 }
             }
 
