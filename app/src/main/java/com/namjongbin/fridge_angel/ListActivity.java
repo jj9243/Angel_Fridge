@@ -1,6 +1,8 @@
 package com.namjongbin.fridge_angel;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -9,22 +11,30 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
     private ListView listview ;
-    private ListViewAdapter adapter;
+    private ListViewAdapter adapter = new ListViewAdapter();
     ImageButton imgBtn;
     Button deleteBtn;
     Boolean opendelete =false;
     private int[] img = {R.drawable.sd_eat ,R.drawable.sd_tired,R.drawable.sd_angry};
 
-    int year,month,day;
+    int checked,year,month,day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
         final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
+
         db.columnNum();
         String[] Title = new String[db.columnNum()];
         String[] Context = new String[db.columnNum()];
@@ -34,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
         final ArrayList<String> items = new ArrayList<String>() ;
 
         //변수 초기화
-        adapter = new ListViewAdapter();
+        //adapter = new ListViewAdapter();
         listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
@@ -81,26 +91,56 @@ public class ListActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                int count, checked ;
+                int count ;
                 count = adapter.getCount() ;
 
                 if (count > 0) {
                     // 현재 선택된 아이템의 position 획득.
-                    checked = listview.getCheckedItemPosition();
-
                     if (checked > -1 && checked < count) {
                         // 아이템 삭제
-                        items.remove(checked) ;
-
+                        for(int i = 0 ; i < adapter.getCheckArr().size();i++) {
+                            ListVO temp = (ListVO) adapter.getItem(adapter.getCheckArr().get(i));
+                            String deleteItem = temp.getTitle();
+                            String deleteDate = temp.getContext();
+                            parseItem(deleteDate);
+                            db.delete(db.getId(deleteItem.trim(),year,month,day));
+                            Intent intent = new Intent(getApplicationContext(),ListActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
                         // listview 선택 초기화.
                         listview.clearChoices();
 
                         // listview 갱신.
                         adapter.notifyDataSetChanged();
+
                     }
                 }
+
             }
         });
+
+    }
+    public void parseItem(String item){
+
+        Date today = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
+        String d = date.format(today).toString();
+
+        if(item.contains("년")) {
+            year = Integer.parseInt(item.substring(item.indexOf('년') - 4, item.indexOf('년')));
+
+        }
+        else
+            year = Integer.parseInt(d.substring(d.indexOf('년')-4,d.indexOf('년')));
+        if(item.contains("월"))
+            month = Integer.parseInt(item.substring(item.indexOf('월')-2,item.indexOf('월')).trim());
+        else
+            month = Integer.parseInt(d.substring(d.indexOf('월')-2,d.indexOf('월')));
+        if(item.contains("일"))
+            day = Integer.parseInt(item.substring(item.indexOf('일')-2,item.indexOf('일')).trim());
+        else
+            day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
 
     }
 }
