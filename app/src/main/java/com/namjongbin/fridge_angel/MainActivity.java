@@ -42,6 +42,22 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+
         //tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,10 +72,10 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
-        }
+       // }
         //nav bar
 
         //fab
@@ -114,17 +130,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
