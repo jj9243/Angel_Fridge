@@ -36,6 +36,7 @@ public class CalendarViewer extends Activity {
     int y = -1;
     int m = -1;
     int d = -1;
+    int id;
 
     String sfName = "myFile";
 
@@ -47,7 +48,7 @@ public class CalendarViewer extends Activity {
 
         Intent intent = getIntent();
         item = intent.getStringExtra("tempItem");
-
+        id = intent.getIntExtra("item_id",id);
 //쉐어드프리퍼런스 테스트
         //SharedPreferences sf=getSharedPreferences(sfName,0);
         //Toast.makeText(getApplicationContext(),"저장되있던 것"+sf.getString("name",""),Toast.LENGTH_LONG).show();
@@ -87,8 +88,10 @@ public class CalendarViewer extends Activity {
                     Toast.makeText(getApplicationContext(), "날짜를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 else {
                   //  new Alarm(getApplicationContext(), y, m, d).Alarm();
+
                     Intent intent=new Intent(getApplicationContext(),AddActivity.class);
                     intent.putExtra("item",item);
+                    intent.putExtra("item_id",id);
                     intent.putExtra("year",y);
                     intent.putExtra("month",m+1);
                     intent.putExtra("day",d);
