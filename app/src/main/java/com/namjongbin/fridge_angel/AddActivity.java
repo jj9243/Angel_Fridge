@@ -18,7 +18,7 @@ public class AddActivity extends Activity {
     EditText itemText;
     Button closeBtn, okBtn;
     String item;
-    int year, month, day;
+    int year, month, day, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +26,22 @@ public class AddActivity extends Activity {
         setContentView(R.layout.activity_add);
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
         dateText = findViewById(R.id.addDateEdit);
         itemText = (EditText) findViewById(R.id.addItemEdit);
 
         Intent intent = getIntent();
         item = intent.getStringExtra("item");
+        id = intent.getIntExtra("item_id",0);
         year = intent.getIntExtra("year", 2018);
         month = intent.getIntExtra("month", 6);
-        day = intent.getIntExtra("day", 1);
+        day = intent.getIntExtra("day", 11);
+
+
         itemText.setText(item);
         dateText.setText(year + "년 " + month + "월 " + day + "일");
 
@@ -45,19 +53,13 @@ public class AddActivity extends Activity {
             public void onClick(View v) {
                 final DBHelper db = new DBHelper(getApplicationContext(), "ITEM.db", null, 2);
                 item = itemText.getText().toString();
-                /*
-                db.delete(1);
-                db.delete(2);
-                db.delete(3);
-                db.delete(4);
-                db.delete(5);
-                db.delete(6);
-                db.delete(7);
-                 */
-
-                db.insert(item.trim(), year, month, day);
+                if(id == 0)
+                    db.insert(item.trim(), year, month, day);
+                else
+                    db.update(id, item.trim(), year, month, day);
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
-               // new Alarm(getApplicationContext(), year, month, day).Alarm();
+                // new Alarm(getApplicationContext(), year, month, day).Alarm();
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
@@ -70,6 +72,7 @@ public class AddActivity extends Activity {
                     item = itemText.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
                     intent.putExtra("tempItem",item);
+                    intent.putExtra("item_id",id);
                     startActivity(intent);
                     //finish();
                 }
