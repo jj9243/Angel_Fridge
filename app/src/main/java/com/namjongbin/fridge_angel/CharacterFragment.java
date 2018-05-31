@@ -34,7 +34,7 @@ public class CharacterFragment extends Fragment {
         ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
 
         GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(image);
-        Glide.with(this).load(R.drawable.sd_charging).into(charimg);
+        Glide.with(this).load(R.drawable.choudacry).into(charimg);
 
         return rootView;
     }

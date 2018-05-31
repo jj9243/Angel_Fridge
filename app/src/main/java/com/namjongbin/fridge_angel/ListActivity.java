@@ -21,8 +21,6 @@ public class ListActivity extends AppCompatActivity {
     ImageButton imgBtn;
     Button deleteBtn;
     Boolean opendelete =false;
-    private int[] img = {R.drawable.sd_eat ,R.drawable.sd_tired,R.drawable.sd_angry};
-
     int checked,year,month,day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

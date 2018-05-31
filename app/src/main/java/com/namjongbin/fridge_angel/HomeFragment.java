@@ -13,8 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -76,6 +80,12 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+//        ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
+//
+//        GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(image);
+//        Glide.with(this).load(R.drawable.choudacry).into(charimg);
+
         return rootView;
     }
     public void parseDate(){
