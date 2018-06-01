@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class ListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter = new ListViewAdapter();
     ImageButton imgBtn;
+    ImageView imageView;
     Button deleteBtn;
     Boolean opendelete =false;
     int checked,year,month,day;
@@ -26,8 +28,8 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
     }
+
     @Override
     public void onResume(){
         super.onResume();
@@ -46,6 +48,7 @@ public class ListActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
+        imageView=findViewById(R.id.corner);
 
         //어뎁터 할당
         listview.setAdapter(adapter);

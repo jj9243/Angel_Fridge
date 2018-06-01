@@ -18,5 +18,4 @@ public class UsFragment extends Fragment {
         return rootView;
     }
 
-
 }

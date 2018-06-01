@@ -18,6 +18,7 @@ public class CharacterFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    int healthy;
     // TODO: Rename and change types of parameters
 
 
@@ -30,11 +31,22 @@ public class CharacterFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_character,container,false);
         container.removeAllViews();
-
+        healthy=100;
         ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
 
-        GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(image);
-        Glide.with(this).load(R.drawable.choudacry).into(charimg);
+        final GlideDrawableImageViewTarget cd=new GlideDrawableImageViewTarget(image);
+
+        if(healthy>85) {
+            Glide.with(this).load(R.drawable.cdhappy).into(cd);
+        }
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Glide.with(getContext()).load(R.drawable.cdtouch).into(cd);
+            }
+        });
+
 
         return rootView;
     }

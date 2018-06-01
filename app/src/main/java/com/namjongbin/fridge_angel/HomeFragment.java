@@ -16,12 +16,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
@@ -30,6 +32,7 @@ public class HomeFragment extends Fragment {
     String Title="" ;
     String Context="";
     int dday,count = 0;
+    int year, month, day;
 
     @Nullable
     @Override
@@ -40,6 +43,7 @@ public class HomeFragment extends Fragment {
 
         table= (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button)rootView.findViewById(R.id.recipeBtn);
+        Button eatButton=rootView.findViewById(R.id.eatBtn);
 
         itemText = (TextView)rootView.findViewById(R.id.item);
         dateText = (TextView)rootView.findViewById(R.id.date);
@@ -48,10 +52,10 @@ public class HomeFragment extends Fragment {
         parseDate();
         if(dday==0) {
             ddayText.setText("D-DAY");
-            table.setBackgroundResource(R.drawable.cardg);
+            table.setBackgroundResource(R.drawable.cardr);
         }
         else if(dday<0){
-            table.setBackgroundResource(R.drawable.cardr);
+            table.setBackgroundResource(R.drawable.cardg);
         }
         else
         ddayText.setText("D-"+ dday);
@@ -60,15 +64,26 @@ public class HomeFragment extends Fragment {
 
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
+                String fname=itemText.getText().toString()+" "+"레시피";
+
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
                 intent.setPackage("com.google.android.youtube");
 
-                intent.putExtra("query", "최유정 직캠");
+                intent.putExtra("query", fname);
 
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
                 }
+            }
+        });
+
+        eatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eatFood();
+                Toast.makeText(getActivity(),"Eat: "+Title,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -129,5 +144,40 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public void eatFood(){
+        final DBHelper db = new DBHelper(getActivity(),"ITEM.db",null,2);
+        if(db.getResult().equals("") || db.getResult() == null)
+            return;
+
+        String deleteItem = Title;
+        String deleteDate = Context;
+        parseItem(deleteDate);
+        db.delete(db.getId(deleteItem.trim(),year,month,day));
+
+        Intent intent = new Intent(getActivity(),ListActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    }
+
+    public void parseItem(String item){
+
+        Date today = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
+        String d = date.format(today).toString();
+
+        if(item.contains("년")) {
+            year = Integer.parseInt(item.substring(item.indexOf('년') - 4, item.indexOf('년')));
+        }
+        else
+            year = Integer.parseInt(d.substring(d.indexOf('년')-4,d.indexOf('년')));
+        if(item.contains("월"))
+            month = Integer.parseInt(item.substring(item.indexOf('월')-2,item.indexOf('월')).trim());
+        else
+            month = Integer.parseInt(d.substring(d.indexOf('월')-2,d.indexOf('월')));
+        if(item.contains("일"))
+            day = Integer.parseInt(item.substring(item.indexOf('일')-2,item.indexOf('일')).trim());
+        else
+            day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
     }
 }
