@@ -3,6 +3,5 @@
     <string-array name="notify">
         <item>Anywhere</item>
         <item>In home</item>
-        <item>No notification</item>
     </string-array>
 </resources>

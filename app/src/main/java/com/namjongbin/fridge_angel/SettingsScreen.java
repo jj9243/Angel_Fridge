@@ -1,5 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -12,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.net.InetAddress;
 
@@ -20,7 +28,7 @@ public class SettingsScreen extends PreferenceFragment {
     EditTextPreference user;
     SwitchPreference notyOnOff;
     ListPreference notyLocation;
-SharedPreferences wifiInfo;
+    SharedPreferences wifiInfo;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,20 +38,25 @@ SharedPreferences wifiInfo;
         user = (EditTextPreference) findPreference("user");
         notyOnOff = (SwitchPreference) findPreference("switch");
         notyLocation = (ListPreference) findPreference("location");
-        WifiDialog wifiSetting =(WifiDialog)findPreference("wifi");
+        WifiDialog wifiSetting = (WifiDialog) findPreference("wifi");
 
-        wifiInfo=getActivity().getSharedPreferences("WifiInformation",getActivity().MODE_PRIVATE);
+        Toast.makeText(getActivity().getApplicationContext(), "상태 :" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
+        wifiInfo = getActivity().getSharedPreferences("WifiInformation", getActivity().MODE_PRIVATE);
 
-        if (user.getText() != null && notyLocation.getEntry() != null) {
+        if (user.getText() != null)
             user.setSummary(user.getText().toString());
-            notyLocation.setSummary(notyLocation.getEntry());
+        Log.d("TAGTAG",""+notyLocation.getValue());
+        if(notyLocation.getValue() != null) {
+
+            notyLocation.setSummary(notyLocation.getValue());
+
         }
 
-            Log.d("tt","  "+wifiSetting.getSummary());
-            wifiSetting.setSummary(wifiInfo.getString("wifiName",""));
-            Log.d("tt","asdad");
+        Log.d("tt", "  " + wifiSetting.getSummary());
+        wifiSetting.setSummary(wifiInfo.getString("wifiName", ""));
+        Log.d("tt", "asdad");
 
-            Log.d("tt","zzzzz");
+        Log.d("tt", "zzzzz");
 
         user.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -56,15 +69,67 @@ SharedPreferences wifiInfo;
         });
 
 
+        notyOnOff.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                if (notyOnOff.isChecked())
+                    cancelJob();
+                else {
+                    AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                    Intent intent = new Intent(getActivity(), AlarmBroadcast.class);
+
+                    PendingIntent sender = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+                    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
+                    Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
+
+                    Log.d("TAGTAG",""+notyLocation.getSummary());
+                    if(notyLocation.getSummary().equals("In home")) {
+
+                        scheduleJob();
+                    }
+                }
+                return true;
+            }
+        });
+
         notyLocation.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
 
                 String where = newValue.toString();
                 preference.setSummary(where);
+                preference.setDefaultValue(newValue);
+                if (where.equals("In home")) {
+                    scheduleJob();
+                    Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 시작!", Toast.LENGTH_LONG).show();
+                } else {
+                    cancelJob();
+                    Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 종료!", Toast.LENGTH_LONG).show();
+                }
                 return true;
             }
         });
+    }
+
+    public void scheduleJob() {
+        ComponentName cm = new ComponentName(getActivity(), NetworkService.class);
+        JobInfo info = new JobInfo.Builder(123, cm).setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
+                .setPersisted(true).setPeriodic(60*1500*1000).build();
+
+        JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        int resultCode = scheduler.schedule(info);
+        if (resultCode == JobScheduler.RESULT_SUCCESS) {
+            // Log.d(TAG, "Job scheduled");
+        } else {
+            // Log.d(TAG, "Job scheduling failed");
+        }
+    }
+
+    public void cancelJob() {
+        JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        scheduler.cancel(123);
+        Log.d("TAGTAGTAG", "Job cancelled");
     }
 
     @Override

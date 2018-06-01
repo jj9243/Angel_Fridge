@@ -58,7 +58,7 @@ public class AddActivity extends Activity {
                 else
                     db.update(id, item.trim(), year, month, day);
                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
-                // new Alarm(getApplicationContext(), year, month, day).Alarm();
+                 new Alarm(getApplicationContext(), 2018, 5, 1).Alarm();
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();

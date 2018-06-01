@@ -11,12 +11,13 @@
         android:title="Alarm On/Off"
         android:key="switch"
         android:defaultValue="true"
+        android:switchTextOff="OFF"
+        android:switchTextOn="ON"
         />
 
     <ListPreference
         android:entries="@array/notify"
         android:entryValues="@array/notify"
-        android:summary="Anywhere"
         android:key="location"
         android:title="Location"
         android:defaultValue="Anywhere"

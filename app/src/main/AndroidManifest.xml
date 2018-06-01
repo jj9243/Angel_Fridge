@@ -53,10 +53,11 @@
             </intent-filter>
         </receiver>
 
-
         <activity
             android:name=".AddActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+        <service android:name=".NetworkService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>
 
 </manifest>
