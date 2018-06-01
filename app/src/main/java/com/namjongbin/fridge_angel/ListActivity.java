@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 public class ListActivity extends AppCompatActivity {
     private ListView listview ;
     private ListViewAdapter adapter = new ListViewAdapter();
+    LinearLayout listItem;
     ImageButton imgBtn;
     ImageView imageView;
     Button deleteBtn;
@@ -45,10 +47,11 @@ public class ListActivity extends AppCompatActivity {
 
         //변수 초기화
         //adapter = new ListViewAdapter();
+        listItem=findViewById(R.id.listItem);
         listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
-        imageView=findViewById(R.id.corner);
+        //imageView=findViewById(R.id.corner);
 
         //어뎁터 할당
         listview.setAdapter(adapter);
@@ -114,7 +117,6 @@ public class ListActivity extends AppCompatActivity {
 
                         // listview 갱신.
                         adapter.notifyDataSetChanged();
-
                     }
                 }
 

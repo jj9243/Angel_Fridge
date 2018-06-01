@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -56,8 +56,12 @@
         <activity
             android:name=".AddActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <service android:name=".NetworkService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <service
+            android:name=".NetworkService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity android:name=".FreshActivity"></activity>
     </application>
 
 </manifest>

@@ -8,49 +8,51 @@
     android:background="@color/white"
     android:layout_marginTop="36dp"
     android:layout_marginBottom="48dp"
-    tools:context="com.namjongbin.fridge_angel.ListActivity">
-
+    tools:context="com.namjongbin.fridge_angel.FreshActivity">
+<!--http://developer88.tistory.com/6?category=220429-->
     <TextView
         android:id="@+id/currentInfoText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="16sp"
-        android:text="저장된 식품 :n개"
-        android:paddingTop="24dp"
-        android:textStyle="italic"
+        android:text="신선 식품"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         />
 
-    <TextView
-        android:id="@+id/afterInfoText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingBottom="20dp"
-        android:textSize="16sp"
-        android:text="만료된 식품: n개"
-        android:textStyle="italic"
-        />
+        android:layout_height="wrap_content">
 
         <ImageButton
-        android:id="@+id/deleteBtn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:textColor="@color/gray"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/trash" />
+            android:id="@+id/fruitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/vegeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/meatBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/fishBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingTop="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/backWhite"
+        android:layout_marginTop="8dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:choiceMode="singleChoice" />

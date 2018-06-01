@@ -1,8 +1,6 @@
 package com.namjongbin.fridge_angel;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,7 +26,8 @@ public class MainActivity extends AppCompatActivity
     //objects
     private DrawerLayout drawer;
     FloatingActionButton main_fab, look_fab, non_fab;
-    TextView lfabText,nfabText;
+    TextView lookFabText, nonFabText;
+
     //variable
     boolean openClose = false;
 
@@ -36,8 +35,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
     @Override
@@ -77,8 +74,8 @@ public class MainActivity extends AppCompatActivity
         main_fab = (FloatingActionButton) findViewById(R.id.fab);
         look_fab = (FloatingActionButton) findViewById(R.id.fab_look);
         non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
-        lfabText=findViewById(R.id.lookFabText);
-        nfabText=findViewById(R.id.nonFabText);
+        lookFabText =findViewById(R.id.lookFabText);
+        nonFabText =findViewById(R.id.nonFabText);
 
         openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
         closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
@@ -94,8 +91,8 @@ public class MainActivity extends AppCompatActivity
                     non_fab.setClickable(false);
                     openClose = false;
 
-                    lfabText.setVisibility(View.GONE);
-                    nfabText.setVisibility(View.GONE);
+                    lookFabText.setVisibility(View.GONE);
+                    nonFabText.setVisibility(View.GONE);
                 } else//open
                 {
                     look_fab.startAnimation(openFab);
@@ -104,8 +101,8 @@ public class MainActivity extends AppCompatActivity
                     non_fab.setClickable(true);
                     openClose = true;
 
-                    lfabText.setVisibility(View.VISIBLE);
-                    nfabText.setVisibility(View.VISIBLE);
+                    lookFabText.setVisibility(View.VISIBLE);
+                    nonFabText.setVisibility(View.VISIBLE);
                 }
                 Toast.makeText(getApplication(), "눌렀어?", Toast.LENGTH_SHORT).show();
             }
@@ -165,8 +162,8 @@ public class MainActivity extends AppCompatActivity
                 non_fab.setClickable(false);
                 openClose = false;
 
-                lfabText.setVisibility(View.GONE);
-                nfabText.setVisibility(View.GONE);
+                lookFabText.setVisibility(View.GONE);
+                nonFabText.setVisibility(View.GONE);
             }
             main_fab.hide();
         } else if (id == R.id.our) {

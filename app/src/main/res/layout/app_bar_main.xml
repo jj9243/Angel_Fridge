@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/white"
         app:srcCompat="@drawable/plus"
         app:pressedTranslationZ="0dp"/>
 <!--press on-->
@@ -59,7 +59,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:visibility="invisible"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorPrimaryDark"
             app:pressedTranslationZ="8dp"
             app:srcCompat="@drawable/view" />
     </RelativeLayout>
@@ -89,7 +89,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:visibility="invisible"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorPrimaryDark"
             app:pressedTranslationZ="8dp"
             app:srcCompat="@drawable/edit" />
     </RelativeLayout>

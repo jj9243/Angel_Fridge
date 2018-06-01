@@ -50,17 +50,19 @@ public class HomeFragment extends Fragment {
         ddayText = (TextView)rootView.findViewById(R.id.dday);
 
         parseDate();
-        if(dday==0) {
+        if(dday<0) {
             ddayText.setText("D-DAY");
             table.setBackgroundResource(R.drawable.cardr);
+            eatButton.setText("버렸어요 :(");
+        }else if(dday==0) {
+            ddayText.setText("D-DAY");
         }
-        else if(dday<0){
-            table.setBackgroundResource(R.drawable.cardg);
+        else {
+            ddayText.setText("D-" + dday);
         }
-        else
-        ddayText.setText("D-"+ dday);
+
         itemText.setText(Title);
-        dateText.setText(Context);
+        dateText.setText(Context+" 까지");
 
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
