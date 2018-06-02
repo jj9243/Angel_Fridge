@@ -30,11 +30,7 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-    }
 
-    @Override
-    public void onResume(){
-        super.onResume();
         final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
 
         db.columnNum();
@@ -42,8 +38,6 @@ public class ListActivity extends AppCompatActivity {
         String[] Context = new String[db.columnNum()];
         System.out.println("************************************결과 출력***********************\n"+db.getResult());
         String[] foodItem = db.getResult().split("\n");
-
-        final ArrayList<String> items = new ArrayList<String>() ;
 
         //변수 초기화
         //adapter = new ListViewAdapter();
@@ -64,7 +58,7 @@ public class ListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 Toast.makeText(getApplicationContext(), position + " long click", Toast.LENGTH_SHORT).show();
-                return false;
+                return true;
             }
         });
 
@@ -75,6 +69,7 @@ public class ListActivity extends AppCompatActivity {
             Context[i] = str[1];
             //adapter를 통한 값 전달
             adapter.addVO(false,Title[i],Context[i]);
+
         }
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
@@ -122,8 +117,15 @@ public class ListActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
 
     }
+
     public void parseItem(String item){
 
         Date today = new Date();
