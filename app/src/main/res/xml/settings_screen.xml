@@ -23,10 +23,9 @@
         android:defaultValue="Anywhere"
         />
 
-    <EditTextPreference
-        android:title=" Time"
-        android:key="notification"
-        android:summary=""
+    <com.namjongbin.fridge_angel.TimePreference
+        android:title="Time"
+        android:key="time"
         />
 
     <com.namjongbin.fridge_angel.WifiDialog
@@ -37,4 +36,6 @@
         android:negativeButtonText="취소"
         android:positiveButtonText="설정"
         />
+
+
 </PreferenceScreen>

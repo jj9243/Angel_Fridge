@@ -2,6 +2,7 @@ package com.namjongbin.fridge_angel;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -13,15 +14,18 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.net.InetAddress;
+import java.util.Set;
 
 public class SettingsScreen extends PreferenceFragment {
 
@@ -29,6 +33,8 @@ public class SettingsScreen extends PreferenceFragment {
     SwitchPreference notyOnOff;
     ListPreference notyLocation;
     SharedPreferences wifiInfo;
+    WifiDialog wifiDialog;
+    TimePreference timePreference;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,25 +44,25 @@ public class SettingsScreen extends PreferenceFragment {
         user = (EditTextPreference) findPreference("user");
         notyOnOff = (SwitchPreference) findPreference("switch");
         notyLocation = (ListPreference) findPreference("location");
-        WifiDialog wifiSetting = (WifiDialog) findPreference("wifi");
+        wifiDialog = (WifiDialog) findPreference("wifi");
+        timePreference = (TimePreference) findPreference("time");
 
-        Toast.makeText(getActivity().getApplicationContext(), "상태 :" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
-        wifiInfo = getActivity().getSharedPreferences("WifiInformation", getActivity().MODE_PRIVATE);
+      //  Toast.makeText(getActivity().getApplicationContext(), "상태 :" + wifi, Toast.LENGTH_LONG).show();
 
         if (user.getText() != null)
             user.setSummary(user.getText().toString());
-        Log.d("TAGTAG",""+notyLocation.getValue());
-        if(notyLocation.getValue() != null) {
-
+        Log.d("TAGTAG", "" + notyLocation.getValue());
+        if (notyLocation.getValue() != null) {
             notyLocation.setSummary(notyLocation.getValue());
-
         }
 
-        Log.d("tt", "  " + wifiSetting.getSummary());
-        wifiSetting.setSummary(wifiInfo.getString("wifiName", ""));
-        Log.d("tt", "asdad");
+        wifiInfo = getActivity().getSharedPreferences("WifiInformation", getActivity().MODE_PRIVATE);
+        wifiDialog.setSummary(wifiInfo.getString("wifiName",""));
 
-        Log.d("tt", "zzzzz");
+        timePreference.setSummary(timePreference.getTime());
+        //Toast.makeText(getActivity().getApplicationContext(),"",Toast.LENGTH_LONG).show();
+       //
+
 
         user.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -83,8 +89,8 @@ public class SettingsScreen extends PreferenceFragment {
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
                     Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
 
-                    Log.d("TAGTAG",""+notyLocation.getSummary());
-                    if(notyLocation.getSummary().equals("In home")) {
+                    Log.d("TAGTAG", "" + notyLocation.getSummary());
+                    if (notyLocation.getSummary().equals("In home")) {
 
                         scheduleJob();
                     }
@@ -112,10 +118,11 @@ public class SettingsScreen extends PreferenceFragment {
         });
     }
 
+
     public void scheduleJob() {
         ComponentName cm = new ComponentName(getActivity(), NetworkService.class);
         JobInfo info = new JobInfo.Builder(123, cm).setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPersisted(true).setPeriodic(60*1500*1000).build();
+                .setPersisted(true).setPeriodic(60 * 1000 * 15).build();
 
         JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
         int resultCode = scheduler.schedule(info);
@@ -130,6 +137,7 @@ public class SettingsScreen extends PreferenceFragment {
         JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
         scheduler.cancel(123);
         Log.d("TAGTAGTAG", "Job cancelled");
+
     }
 
     @Override
