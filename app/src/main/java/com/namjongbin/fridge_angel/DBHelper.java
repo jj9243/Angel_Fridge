@@ -61,6 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
             date[1] = cursor.getInt(1);
             date[2] = cursor.getInt(2);
         }
+        db.close();
         return date;
     }
 
@@ -71,6 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             result = cursor.getInt(0);
         }
+        db.close();
         return result;
     }
     public String getItem(int id){
@@ -80,6 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             result = cursor.getString(0);
         }
+        db.close();
         return result;
     }
 
@@ -102,6 +105,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(4)
                     + "일\n";
         }
+        db.close();
         return result;
     }
     public void setIndex(){
@@ -114,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM ITEM", null);
         result = cursor.getCount();
-        System.out.println("아이템이 디비에 몇개 있나" + result);
+        db.close();
         return result;
 
     }
@@ -134,6 +138,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(4)
                     + "일\n";
         }
+        db.close();
         return result;
     }
 }
