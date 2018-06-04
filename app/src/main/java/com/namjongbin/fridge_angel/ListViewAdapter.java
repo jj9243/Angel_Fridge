@@ -48,8 +48,6 @@ public class ListViewAdapter extends BaseAdapter {
         final Context context = parent.getContext();
         final DBHelper db = new DBHelper(parent.getContext(),"ITEM.db",null,2);
 
-
-
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item, parent, false);
@@ -109,7 +107,6 @@ public class ListViewAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position ;
     }
-
 
     @Override
     public Object getItem(int position) {

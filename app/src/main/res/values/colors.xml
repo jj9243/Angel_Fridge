@@ -10,9 +10,9 @@
     <color name="backWhite">#ebeef4</color>
     <color name="transparent">#48626262</color>
     <color name="highLight">#d2214d</color>
-    <color name="color1">#44caf7</color>
-    <color name="color2">#44c4f7</color>
-    <color name="color3">#448cf7</color>
-    <color name="color4">#5088ef</color>
-    <color name="color5">#4471f7</color>
+    <color name="color1">#81D2FF</color>
+    <color name="color2">#65BDFF</color>
+    <color name="color3">#399CF7</color>
+    <color name="color4">#4293f4</color>
+    <color name="color5">#177CFE</color>
 </resources>

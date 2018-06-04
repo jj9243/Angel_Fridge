@@ -26,7 +26,6 @@
         android:layout_marginTop="24dp"
         android:paddingLeft="52dp"
         android:paddingRight="52dp"
-        android:progress="50"
         android:progressDrawable="@drawable/progressbar_custom1" />
 
 </RelativeLayout>
