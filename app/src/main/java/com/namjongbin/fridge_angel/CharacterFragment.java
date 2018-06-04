@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CharacterFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -26,7 +26,9 @@ public class CharacterFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    int dday;
+    int healthy;
+    int year,month,day;
+    int expiredCount = 0;
     Boolean touchflag=false;
     // TODO: Rename and change types of parameters
 
@@ -38,19 +40,29 @@ public class CharacterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_character,container,false);
         container.removeAllViews();
-
-        final DBHelper db = new DBHelper(getActivity(),"ITEM.db",null,2);
-
+        healthy=100;
         ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
         ProgressBar progress=rootView.findViewById(R.id.progressBar);
 
+        int expireCount = this.getExpiredCount(getContext());
+        if(expireCount <= 2){
+            // 슈다 기분 좋음
+        }
+        else if(expireCount > 2 && expireCount <= 6){
+            // 슈다 기분 보통
+        }
+        else{
+            // 슈다 화남
+        }
+
         final GlideDrawableImageViewTarget cd=new GlideDrawableImageViewTarget(image);
 
-//        if(db.) {
-//            Glide.with(this).load(R.drawable.cdhappy).into(cd);
-//        }
+        if(healthy>85) {
+            Glide.with(this).load(R.drawable.cdhappy).into(cd);
+        }
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +70,7 @@ public class CharacterFragment extends Fragment {
                 Glide.with(getContext()).load(R.drawable.cdtouch).into(cd);
             }
         });
+
 //
 //        if(progress !=null){
 //            progress.setVisibility(View.VISIBLE);
@@ -70,27 +83,56 @@ public class CharacterFragment extends Fragment {
         return rootView;
     }
 
-    public int countdday(int myear, int mmonth, int mday) {
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public int getExpiredCount(Context context){
+        int count = 0;
+        Calendar cal = Calendar.getInstance();
+        int yearToday = cal.get(cal.YEAR);
+        int monthToday = cal.get(cal.MONTH) + 1;
+        int dayToday = cal.get(cal.DATE);
+        final DBHelper db = new DBHelper(context,"ITEM.db",null,2);
+        String[] foodItem = db.getResult().split("\n");
+        String[] Title = new String[db.columnNum()];
+        String[] Context = new String[db.columnNum()];
+        for(int i = 0 ; i < db.columnNum(); i++) {
+            String[] str = new String[2];
+            str = foodItem[i].split(":");
+            Title[i] = str[0].replaceAll("[0-9]", "");
+            Context[i] = str[1];
+            parseItem(Context[i]);
 
-            Calendar todaCal = Calendar.getInstance(); //오늘날자 가져오기
-            Calendar ddayCal = Calendar.getInstance(); //오늘날자를 가져와 변경시킴
+            if(year < yearToday)
+                count++;
+            else if(month < monthToday)
+                count++;
+            else if(day < dayToday)
+                count++;
 
-            mmonth -= 1; // 받아온날자에서 -1을 해줘야함.
-            ddayCal.set(myear,mmonth,mday);// D-day의 날짜를 입력
-            Log.e("테스트",simpleDateFormat.format(todaCal.getTime()) + "");
-            Log.e("테스트",simpleDateFormat.format(ddayCal.getTime()) + "");
-
-            long today = todaCal.getTimeInMillis()/86400000; //->(24 * 60 * 60 * 1000) 24시간 60분 60초 * (ms초->초 변환 1000)
-            long dday = ddayCal.getTimeInMillis()/86400000;
-            long count = dday - today; // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
-            return (int) count;
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return -1;
-        }
+
+        return count;
     }
+    public void parseItem(String item){
+
+        Date today = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
+        String d = date.format(today).toString();
+
+        if(item.contains("년")) {
+            year = Integer.parseInt(item.substring(item.indexOf('년') - 4, item.indexOf('년')));
+
+        }
+        else
+            year = Integer.parseInt(d.substring(d.indexOf('년')-4,d.indexOf('년')));
+        if(item.contains("월"))
+            month = Integer.parseInt(item.substring(item.indexOf('월')-2,item.indexOf('월')).trim());
+        else
+            month = Integer.parseInt(d.substring(d.indexOf('월')-2,d.indexOf('월')));
+        if(item.contains("일"))
+            day = Integer.parseInt(item.substring(item.indexOf('일')-2,item.indexOf('일')).trim());
+        else
+            day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
+
+    }
+
+
 }
