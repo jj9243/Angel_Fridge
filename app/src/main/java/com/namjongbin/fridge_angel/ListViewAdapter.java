@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-//http://yoo-hyeok.tistory.com/53
+
 
 public class ListViewAdapter extends BaseAdapter {
     CheckBox check;
@@ -76,6 +76,7 @@ public class ListViewAdapter extends BaseAdapter {
                 intent.putExtra("item_id",db.getId(item.trim(),year,month,day));
                 System.out.println("*************&&&&&&&&&&&&&&&&&&&품목 이름: "+item.trim());
                 intent.putExtra("item",item.trim());
+                intent.putExtra("date",date);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Toast.makeText(context, (pos+1)+"번째 리스트가 클릭되었습니다.", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);

@@ -22,10 +22,10 @@
         <menu>
             <item
                 android:id="@+id/our"
-                android:title="개발자들" />
+                android:title="개발자 정보" />
             <item
                 android:id="@+id/license"
-                android:title="라이센스 정보" />
+                android:title="사용 방법" />
         </menu>
     </item>
 

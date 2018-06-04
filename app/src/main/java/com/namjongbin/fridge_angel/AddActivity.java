@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddActivity extends Activity {
 
@@ -19,6 +20,7 @@ public class AddActivity extends Activity {
     Button closeBtn, okBtn;
     String item;
     int year, month, day, id;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +28,28 @@ public class AddActivity extends Activity {
         setContentView(R.layout.activity_add);
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         dateText = findViewById(R.id.addDateEdit);
         itemText = (EditText) findViewById(R.id.addItemEdit);
 
         Intent intent = getIntent();
         item = intent.getStringExtra("item");
-        id = intent.getIntExtra("item_id",0);
+        id = intent.getIntExtra("item_id", 0);
         year = intent.getIntExtra("year", 2018);
         month = intent.getIntExtra("month", 6);
         day = intent.getIntExtra("day", 11);
-
+        date = intent.getStringExtra("date");
 
         itemText.setText(item);
-        dateText.setText("클릭해주세요");
+       // Toast.makeText(getApplicationContext(), "" + date, Toast.LENGTH_LONG).show();
+        if (date != null)
+            dateText.setText(date);
+        else
+        dateText.setText("" + year + "년 " + month + "월 " + day + "일");
 
         closeBtn = findViewById(R.id.cancelBtn);
         okBtn = findViewById(R.id.registBtn);
@@ -53,7 +59,7 @@ public class AddActivity extends Activity {
             public void onClick(View v) {
                 final DBHelper db = new DBHelper(getApplicationContext(), "ITEM.db", null, 2);
                 item = itemText.getText().toString();
-                if(id == 0)
+                if (id == 0)
                     db.insert(item.trim(), year, month, day);
                 else
                     db.update(id, item.trim(), year, month, day);
@@ -71,8 +77,8 @@ public class AddActivity extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     item = itemText.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
-                    intent.putExtra("tempItem",item);
-                    intent.putExtra("item_id",id);
+                    intent.putExtra("tempItem", item);
+                    intent.putExtra("item_id", id);
                     startActivity(intent);
                     //finish();
                 }
@@ -89,9 +95,9 @@ public class AddActivity extends Activity {
         });
     }
 
-    public void onStop(){
+    public void onStop() {
         super.onStop();
-        Log.d("asdf","zzzzz");
+        Log.d("asdf", "zzzzz");
         finish();
     }
 }
