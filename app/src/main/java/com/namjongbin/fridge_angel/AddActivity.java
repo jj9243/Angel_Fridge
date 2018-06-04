@@ -43,7 +43,7 @@ public class AddActivity extends Activity {
 
 
         itemText.setText(item);
-        dateText.setText(year + "년 " + month + "월 " + day + "일");
+        dateText.setText("클릭해주세요");
 
         closeBtn = findViewById(R.id.cancelBtn);
         okBtn = findViewById(R.id.registBtn);

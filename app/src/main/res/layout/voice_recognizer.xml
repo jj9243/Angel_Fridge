@@ -48,16 +48,6 @@
             android:padding="2dp"
             android:scaleType="fitXY"
             android:src="@drawable/mic" />
-
-        <ImageButton
-            android:id="@+id/calendar"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="16dp"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/time" />
     </LinearLayout>
 
     <Button

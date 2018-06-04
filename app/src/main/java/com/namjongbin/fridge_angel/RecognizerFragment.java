@@ -75,7 +75,6 @@ public class RecognizerFragment extends Activity{
         textView = findViewById(R.id.date);
         ImageButton voice_button = findViewById(R.id.start);
         Button close_btn = findViewById(R.id.end);
-        ImageButton calendar_btn=findViewById(R.id.calendar);
 
         voice_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,14 +103,14 @@ public class RecognizerFragment extends Activity{
                 );
             }
         }
-
-        calendar_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
-                startActivity(intent);
-            }
-        });
+//
+//        calendar_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 

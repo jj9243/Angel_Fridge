@@ -12,6 +12,12 @@
         <!--action bar-->
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="NewDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:background">@color/white</item>
+        <item name="android:buttonTint">@color/colorPrimaryDark</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 
     <style name="ToolBarTheme" parent="AppTheme">
         <item name="colorPrimary">@color/white</item>

@@ -38,11 +38,11 @@
         </activity>
         <activity
             android:name=".RecognizerFragment"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+            android:theme="@style/NewDialogTheme"  />
         <activity android:name=".ListActivity" />
         <activity
             android:name=".CalendarViewer"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+            android:theme="@style/NewDialogTheme" />
 
         <receiver
             android:name=".AlarmBroadcast"
@@ -55,7 +55,7 @@
 
         <activity
             android:name=".AddActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+            android:theme="@style/NewDialogTheme" />
 
         <service
             android:name=".NetworkService"

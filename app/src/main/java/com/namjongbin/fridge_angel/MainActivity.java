@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity
 
     //objects
     private DrawerLayout drawer;
-    FloatingActionButton main_fab, look_fab, non_fab;
-    TextView lookFabText, nonFabText;
+    FloatingActionButton main_fab, look_fab, non_fab, voice_fab;
+    TextView lookFabText, nonFabText, voiceFabText;
 
     //variable
     boolean openClose = false;
@@ -93,9 +93,11 @@ public class MainActivity extends AppCompatActivity
 
         //fab
         main_fab = (FloatingActionButton) findViewById(R.id.fab);
-        look_fab = (FloatingActionButton) findViewById(R.id.fab_look);
+        look_fab = (FloatingActionButton) findViewById(R.id.fab_cal);
+        voice_fab = (FloatingActionButton) findViewById(R.id.fab_voice);
         non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
-        lookFabText = findViewById(R.id.lookFabText);
+        lookFabText = findViewById(R.id.calFabText);
+        voiceFabText = findViewById(R.id.voiceFabText);
         nonFabText = findViewById(R.id.nonFabText);
 
         openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
@@ -108,30 +110,43 @@ public class MainActivity extends AppCompatActivity
                 if (openClose) {
                     non_fab.startAnimation(closeFab);
                     look_fab.startAnimation(closeFab);
+                    voice_fab.startAnimation(closeFab);
+                    voice_fab.setClickable(false);
                     look_fab.setClickable(false);
                     non_fab.setClickable(false);
                     openClose = false;
 
                     lookFabText.setVisibility(View.GONE);
                     nonFabText.setVisibility(View.GONE);
+                    voiceFabText.setVisibility(View.GONE);
                 } else//open
                 {
+                    voice_fab.startAnimation(openFab);
                     look_fab.startAnimation(openFab);
                     non_fab.startAnimation(openFab);
                     look_fab.setClickable(true);
+                    voice_fab.setClickable(true);
                     non_fab.setClickable(true);
                     openClose = true;
 
                     lookFabText.setVisibility(View.VISIBLE);
                     nonFabText.setVisibility(View.VISIBLE);
+                    voiceFabText.setVisibility(View.VISIBLE);
                 }
-                Toast.makeText(getApplication(), "눌렀어?", Toast.LENGTH_SHORT).show();
             }
         });
-        look_fab.setOnClickListener(new View.OnClickListener() {
+        voice_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RecognizerFragment.class);
+                startActivity(intent);
+            }
+        });
+
+        look_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
                 startActivity(intent);
             }
         });
@@ -172,6 +187,19 @@ public class MainActivity extends AppCompatActivity
             main_fab.show();
         } else if (id == R.id.nav_character) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new CharacterFragment()).commit();
+
+            non_fab.startAnimation(closeFab);
+            look_fab.startAnimation(closeFab);
+            voice_fab.startAnimation(closeFab);
+            voice_fab.setClickable(false);
+            look_fab.setClickable(false);
+            non_fab.setClickable(false);
+            openClose = false;
+
+            lookFabText.setVisibility(View.GONE);
+            nonFabText.setVisibility(View.GONE);
+            voiceFabText.setVisibility(View.GONE);
+
             main_fab.show();
         } else if (id == R.id.nav_settings) {
 
@@ -179,12 +207,15 @@ public class MainActivity extends AppCompatActivity
             if (openClose == true) {
                 non_fab.startAnimation(closeFab);
                 look_fab.startAnimation(closeFab);
+                voice_fab.startAnimation(closeFab);
+                voice_fab.setClickable(false);
                 look_fab.setClickable(false);
                 non_fab.setClickable(false);
                 openClose = false;
 
                 lookFabText.setVisibility(View.GONE);
                 nonFabText.setVisibility(View.GONE);
+                voiceFabText.setVisibility(View.GONE);
             }
             main_fab.hide();
         } else if (id == R.id.our) {

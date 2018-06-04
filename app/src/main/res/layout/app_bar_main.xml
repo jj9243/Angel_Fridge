@@ -33,7 +33,7 @@
         app:pressedTranslationZ="0dp"/>
 <!--press on-->
     <RelativeLayout
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="65dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
@@ -42,18 +42,18 @@
         android:layout_marginRight="@dimen/fab_margin">
 
         <TextView
-            android:id="@+id/lookFabText"
+            android:id="@+id/voiceFabText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="8dp"
-            android:layout_toStartOf="@+id/fab_look"
+            android:layout_toStartOf="@+id/fab_voice"
             android:layout_gravity="center"
-            android:text="유통기한 식품"
+            android:text="유통기한 음성 등록"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_look"
+            android:id="@+id/fab_voice"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -61,14 +61,47 @@
             android:visibility="invisible"
             app:backgroundTint="@color/colorPrimaryDark"
             app:pressedTranslationZ="8dp"
-            app:srcCompat="@drawable/view" />
+            app:srcCompat="@drawable/voice" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="65dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="145dp"
+        android:layout_marginRight="@dimen/fab_margin">
+
+        <TextView
+            android:id="@+id/calFabText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_toStartOf="@+id/fab_cal"
+            android:layout_gravity="center"
+            android:text="유통기한 직접 등록"
+            android:visibility="gone" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_cal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:pressedTranslationZ="8dp"
+            app:srcCompat="@drawable/calendar" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="150dp"
         android:layout_height="65dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="145dp"
+        android:layout_marginBottom="215dp"
         android:layout_marginRight="@dimen/fab_margin">
 
         <TextView

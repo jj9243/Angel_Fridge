@@ -52,29 +52,29 @@ public class HomeFragment extends Fragment {
 
         container.removeAllViews();
 
-        MaterialCalendarView materialCalendarView = (MaterialCalendarView)rootView.findViewById(R.id.cal);
+//        MaterialCalendarView materialCalendarView = (MaterialCalendarView)rootView.findViewById(R.id.cal);
 
         //Toast.makeText(getApplicationContext(),""+calendar.get(Calendar.YEAR)+" "+calendar.get(Calendar.MONTH)+" "+calendar.get(Calendar.DAY_OF_MONTH),Toast.LENGTH_LONG).show();
-        materialCalendarView.state().edit()
-                .setFirstDayOfWeek(Calendar.SUNDAY)
-                .setMinimumDate(CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
-                .setMaximumDate(CalendarDay.from(2019, 12, 31))
-                .setCalendarDisplayMode(CalendarMode.MONTHS)
-                .commit();
-
-        materialCalendarView.addDecorators(
-                new HomeFragment.SundayDecorator(),
-                new HomeFragment.SaturdayDecorator());
-
-        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                Toast.makeText(getActivity().getApplicationContext(), "" + date.getYear() + "년 " + (date.getMonth() + 1) + "월 " + date.getDay() + "일 입니다.", Toast.LENGTH_LONG).show();
-                y = date.getYear();
-                m = date.getMonth();
-                d = date.getDay();
-            }
-        });
+//        materialCalendarView.state().edit()
+//                .setFirstDayOfWeek(Calendar.SUNDAY)
+//                .setMinimumDate(CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
+//                .setMaximumDate(CalendarDay.from(2019, 12, 31))
+//                .setCalendarDisplayMode(CalendarMode.MONTHS)
+//                .commit();
+//
+//        materialCalendarView.addDecorators(
+//                new HomeFragment.SundayDecorator(),
+//                new HomeFragment.SaturdayDecorator());
+//
+//        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+//            @Override
+//            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+//                Toast.makeText(getActivity().getApplicationContext(), "" + date.getYear() + "년 " + (date.getMonth() + 1) + "월 " + date.getDay() + "일 입니다.", Toast.LENGTH_LONG).show();
+//                y = date.getYear();
+//                m = date.getMonth();
+//                d = date.getDay();
+//            }
+//        });
 
         table = (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button) rootView.findViewById(R.id.recipeBtn);

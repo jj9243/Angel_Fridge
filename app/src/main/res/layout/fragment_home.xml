@@ -11,14 +11,14 @@
         android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:gravity="center"
         android:background="@drawable/card"
         android:stretchColumns="*">
 
-        <TableRow android:layout_marginTop="12dp">
+        <TableRow android:layout_marginTop="8dp">
             <TextView
                 android:id="@+id/item"
                 android:layout_column="0"
@@ -30,7 +30,7 @@
                 android:textStyle="bold" />
         </TableRow>
 
-        <TableRow android:paddingTop="12dp">
+        <TableRow android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/dday"
@@ -45,7 +45,7 @@
         </TableRow>
 
         <TableRow android:paddingTop="8dp"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:id="@+id/date"
@@ -107,15 +107,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="160dp"
         />
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cal"
-        android:layout_below="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="300sp"
-        app:mcv_selectionColor="@color/colorAccent"
-        app:mcv_showOtherDates="all" />
+    <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/cal"-->
+        <!--android:layout_below="@+id/linear"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300sp"-->
+        <!--app:mcv_selectionColor="@color/colorAccent"-->
+        <!--app:mcv_showOtherDates="all" />-->
 </RelativeLayout>
