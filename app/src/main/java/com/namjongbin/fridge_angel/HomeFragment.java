@@ -36,6 +36,7 @@ import java.util.Date;
 
 public class HomeFragment extends Fragment {
     TextView itemText, ddayText, dateText;
+    ImageView character;
     TableLayout table;
     String Title = "";
     String Context = "";
@@ -80,6 +81,10 @@ public class HomeFragment extends Fragment {
         Button youtubeButton = (Button) rootView.findViewById(R.id.recipeBtn);
         Button eatButton = rootView.findViewById(R.id.eatBtn);
 
+        character=rootView.findViewById(R.id.imageChar);
+        final GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(character);
+
+
         itemText = (TextView) rootView.findViewById(R.id.item);
         dateText = (TextView) rootView.findViewById(R.id.date);
         ddayText = (TextView) rootView.findViewById(R.id.dday);
@@ -119,6 +124,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 eatFood();
+                Glide.with(rootView.getContext()).load(R.drawable.cdeatw).into(charimg);
                 Toast.makeText(getActivity(), "Eat: " + Title, Toast.LENGTH_LONG).show();
             }
         });
@@ -132,10 +138,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
-//
-//        GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(image);
-//        Glide.with(this).load(R.drawable.choudacry).into(charimg);
+        Glide.with(this).load(R.drawable.cdw).into(charimg);
 
         return rootView;
     }
