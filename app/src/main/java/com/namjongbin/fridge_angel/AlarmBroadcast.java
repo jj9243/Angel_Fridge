@@ -94,6 +94,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
 
     }
 
+
     public void parseDate(Context context) {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(cal.YEAR);
@@ -103,11 +104,12 @@ public class AlarmBroadcast extends BroadcastReceiver {
         final DBHelper db = new DBHelper(context, "ITEM.db", null, 2);
 
         String[] foodItem = db.getExpiredItem(year, month, day).split("\n");
-        String[] str = new String[foodItem.length+1];
+        String[] str = new String[foodItem.length];
         date = new String[foodItem.length];
         item = new String[foodItem.length];
         System.out.println("******************************");
         for (int i = 0; i < foodItem.length-1; i++) {
+            String temp = "";
             str = foodItem[i].split(":");
             item[i] = str[0].replaceAll("[0-9]", "");
             date[i] = str[1];

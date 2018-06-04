@@ -64,9 +64,10 @@ public class TimePreference extends DialogPreference {
         if (positiveResult) {
             lastHour = picker.getCurrentHour();
             lastMinute = picker.getCurrentMinute();
+            new Alarm(getContext(), lastHour, lastMinute).Alarm();
             String time;
             if (lastMinute < 10) {
-                time = String.valueOf(lastHour) + ":" + String.valueOf(lastMinute) + "0";
+                time = String.valueOf(lastHour) + ":0" + String.valueOf(lastMinute);
                 setSummary(time);
             } else {
                 time = String.valueOf(lastHour) + ":" + String.valueOf(lastMinute);
@@ -107,7 +108,7 @@ Log.d("asdasd","이니셜밸류");
     public String getTime()
     {
         if(lastMinute<10)
-        return ""+Integer.toString(lastHour)+":"+Integer.toString(lastMinute)+"0";
+        return ""+Integer.toString(lastHour)+":0"+Integer.toString(lastMinute);
         else
             return ""+Integer.toString(lastHour)+":"+Integer.toString(lastMinute);
     }

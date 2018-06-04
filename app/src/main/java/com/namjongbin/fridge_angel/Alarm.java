@@ -16,13 +16,12 @@ public class Alarm{
     private Context context;
     Calendar calendar = Calendar.getInstance();
 
-    int year, month, day;
-    public Alarm(Context context,int y, int m, int d)
+    int hour,minute;
+    public Alarm(Context context,int h, int m)
     {
         this.context = context;
-        year=y;
-        month=m;
-        day=d;
+        hour=h;
+        minute=m;
     }
 
     public void Alarm() {
@@ -34,15 +33,16 @@ public class Alarm{
 
         //알람시간 calendar에 set해주기
 
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.HOUR_OF_DAY, 3);
-        calendar.set(Calendar.MINUTE, 03);
+        calendar.set(Calendar.YEAR,  calendar.get(calendar.YEAR));
+        calendar.set(Calendar.MONTH, calendar.get(calendar.MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
         //알람 예약
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, sender);
         Toast.makeText(context, "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
     }
 }

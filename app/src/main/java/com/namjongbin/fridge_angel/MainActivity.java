@@ -1,14 +1,17 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,15 +42,33 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            //Toast.makeText(getApplicationContext(),"눌림",Toast.LENGTH_LONG).show();
         } else {
-            super.onBackPressed();
+            Fragment fg = getVisibleFragment();
+            if (fg instanceof HomeFragment)
+                super.onBackPressed();
+            else
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
         }
     }
+
+    public Fragment getVisibleFragment() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment.isVisible()) {
+                Log.d("asd", "찾음");
+                return fragment;
+            }
+        }
+        Log.d("asd", "못찾음");
+        return null;
+    }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
         //tool bar
@@ -65,17 +86,17 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         //if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-       // }
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
+        navigationView.setCheckedItem(R.id.nav_home);
+        // }
         //nav bar
 
         //fab
         main_fab = (FloatingActionButton) findViewById(R.id.fab);
         look_fab = (FloatingActionButton) findViewById(R.id.fab_look);
         non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
-        lookFabText =findViewById(R.id.lookFabText);
-        nonFabText =findViewById(R.id.nonFabText);
+        lookFabText = findViewById(R.id.lookFabText);
+        nonFabText = findViewById(R.id.nonFabText);
 
         openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
         closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
@@ -176,4 +197,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
