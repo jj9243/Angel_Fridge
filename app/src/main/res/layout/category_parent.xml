@@ -10,8 +10,9 @@
         android:layout_height="96dp"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:text="Parent TextView"
+        android:text=""
         android:textSize="20dp"
         android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:fontFamily="@font/nanums"/>
 </LinearLayout>

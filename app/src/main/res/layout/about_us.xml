@@ -3,53 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
      android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TableRow
-    android:orientation="horizontal"
-    android:padding="16dp"
-    >
-    <ImageView
-        android:id="@+id/ourimg1"
-        android:layout_width="111dp"
-        android:layout_height="123dp"
-        app:srcCompat="@drawable/face" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="김종건"
-        android:textSize="32sp"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="디자인"
-        />
-</TableRow>
+    <TableRow
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/cdangry"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#7eb5ef"
+            app:civ_shadow_radius="10" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="김종건"
+            android:textSize="32sp"
+            android:fontFamily="@font/nanums"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible"
+            android:text="디자인, 카테고리 분류" />
+    </TableRow>
 
     <TableRow
     android:orientation="horizontal"
     android:padding="16dp"
     >
-    <ImageView
-        android:id="@+id/ourimg2"
-        android:layout_width="111dp"
-        android:layout_height="123dp"
-        app:srcCompat="@drawable/face" />
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/cdcry"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="#7eb5ef"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="남강우"
+        android:text="빛"
         android:textSize="32sp"
+        android:fontFamily="@font/nanums"
         />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="데이터베이스"
+            android:text="알림, 입력, 무선 네트워크"
+            android:visibility="invisible"
             />
 </TableRow>
 
@@ -57,23 +71,30 @@
         android:orientation="horizontal"
         android:padding="16dp"
         >
-        <ImageView
-            android:id="@+id/ourimg3"
-            android:layout_width="111dp"
-            android:layout_height="123dp"
-            app:srcCompat="@drawable/face" />
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileImg3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/cdtired"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="#7eb5ef"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="임석빈"
+            android:text="잠만보"
+            android:fontFamily="@font/nanums"
             android:textSize="32sp"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="음성인식"
+            android:text="음성인식, 데이터베이스"
+            android:visibility="invisible"
             />
     </TableRow>
 

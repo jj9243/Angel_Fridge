@@ -22,16 +22,15 @@ public class NavBarActivity extends PreferenceActivity {
 
         profileImg=findViewById(R.id.profileImg);
 
-        userName=findViewById(R.id.userNameView);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String name=sharedPreferences.getString("user","");
-        if(userName!=null) {
-            Log.d("aaa", "zzz");
-            userName.setText(name);
-        }
-        else
-            Log.d("aaa","wwww");
-
+//        userName=findViewById(R.id.userNameView);
+//
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        String name=sharedPreferences.getString("user","");
+//        if(userName!=null) {
+//            Log.d("aaa", "zzz");
+//            userName.setText(name);
+//        }
+//        else
+//            Log.d("aaa","wwww");
     }
 }

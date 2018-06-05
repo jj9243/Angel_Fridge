@@ -14,39 +14,40 @@
         android:layout_height="wrap_content"
         android:background="@drawable/listback"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/currentInfoText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:layout_marginTop="36dp"
-        android:text="저장된 식품 :n개"
-        android:paddingTop="24dp"
-        android:textColor="@color/white"
-        android:textStyle="italic"
-        />
 
-    <TextView
-        android:id="@+id/afterInfoText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingBottom="4dp"
-        android:textSize="24sp"
-        android:text="만료된 식품: n개"
-        android:textColor="@color/white"
-        android:textStyle="italic"
-        />
+        <TextView
+            android:id="@+id/currentInfoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:text="저장된 식품 :n개"
+            android:fontFamily="@font/nanums"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/afterInfoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="4dp"
+            android:text="만료된 식품: n개"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanums"
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
         <ImageButton
-        android:id="@+id/deleteBtn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="12dp"
-        app:srcCompat="@drawable/trash" />
+            android:id="@+id/deleteBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            app:srcCompat="@drawable/trash" />
     </LinearLayout>
 
     <ListView
@@ -66,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:text="delete"
+        android:text="삭제"
+        android:fontFamily="@font/nanums"
         android:textColor="@color/highLight"
         android:layout_gravity="end"
         android:layout_marginBottom="4dp"

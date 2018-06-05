@@ -49,7 +49,8 @@
             android:layout_marginTop="8dp"
             android:layout_toStartOf="@+id/fab_voice"
             android:layout_gravity="center"
-            android:text="유통기한 음성 등록"
+            android:text="음성 등록"
+            android:fontFamily="@font/nanums"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
@@ -82,7 +83,8 @@
             android:layout_marginTop="8dp"
             android:layout_toStartOf="@+id/fab_cal"
             android:layout_gravity="center"
-            android:text="유통기한 직접 등록"
+            android:text="직접 등록"
+            android:fontFamily="@font/nanums"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
@@ -113,6 +115,7 @@
             android:layout_toStartOf="@+id/fab_non"
             android:layout_gravity="center"
             android:text="신선 식품"
+            android:fontFamily="@font/nanums"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton

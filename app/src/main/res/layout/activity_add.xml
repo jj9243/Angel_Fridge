@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="음식"
+        android:fontFamily="@font/nanums"
         android:layout_marginTop="8dp"/>
 
     <EditText
@@ -23,6 +24,7 @@
         android:layout_below="@+id/addItemView"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/nanums"
         android:hint="이름" />
 
     <TextView
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addItemEdit"
+        android:fontFamily="@font/nanums"
         android:text="날짜"
         android:layout_marginTop="16dp"/>
 
@@ -39,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addDateView"
         android:ems="10"
+        android:fontFamily="@font/nanums"
         android:inputType="date" />
 
     <LinearLayout
@@ -55,6 +59,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="확인"
+            android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
 
         <Button
@@ -64,6 +69,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="닫기"
+            android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
     </LinearLayout>
 </RelativeLayout>

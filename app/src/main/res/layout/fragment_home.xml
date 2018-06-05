@@ -22,9 +22,10 @@
             <TextView
                 android:id="@+id/item"
                 android:layout_column="0"
-                android:layout_span="5"
+                android:layout_span="7"
                 android:paddingLeft="16dp"
                 android:text="Food"
+                android:fontFamily="@font/nanums"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -37,6 +38,7 @@
                 android:layout_column="4"
                 android:layout_span="5"
                 android:text="D-day"
+                android:fontFamily="@font/nanums"
                 android:textColor="@color/white"
                 android:paddingEnd="12dp"
                 android:textSize="54sp"
@@ -54,6 +56,7 @@
                 android:gravity="right"
                 android:paddingEnd="12dp"
                 android:text="20xx.xx.xx"
+                android:fontFamily="@font/nanums"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -77,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:background="@color/white"
-            android:text="Recipe for youtube"
-            android:drawableRight="@drawable/youtube"
+            android:text="레시피 찾기"
+            android:fontFamily="@font/nanums"
             android:paddingRight="24dp"
             android:paddingLeft="24dp"
             android:gravity="center"
@@ -97,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:text="Eat!"
+            android:text="음식 확인"
+            android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
     </LinearLayout>
 
@@ -107,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="90dp"
         />
 
     <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView-->

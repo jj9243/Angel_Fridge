@@ -29,6 +29,7 @@
             android:layout_gravity="center"
             android:background="@color/white"
             android:text="선택"
+            android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
 
         <Button
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="닫기"
+            android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
     </LinearLayout>
 

@@ -20,7 +20,8 @@
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:text="Child TextView"
+        android:text="Child"
+        android:fontFamily="@font/nanums"
         android:textColor="#88000000"/>
 
     <TextView
@@ -33,5 +34,6 @@
         android:gravity="center_vertical"
         android:padding="5dp"
         android:text="Child TextView"
+        android:fontFamily="@font/nanums"
         android:textColor="#88000000" />
 </RelativeLayout>
