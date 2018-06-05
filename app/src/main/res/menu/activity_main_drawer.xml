@@ -16,9 +16,9 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/gear"
             android:title="설정" />
-    </group>
 
-    <item android:title="기타">
+    <item
+        android:title="기타">
         <menu>
             <item
                 android:id="@+id/our"
@@ -28,5 +28,5 @@
                 android:title="사용 방법" />
         </menu>
     </item>
-
+    </group>
 </menu>

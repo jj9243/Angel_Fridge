@@ -1,6 +1,9 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton main_fab, look_fab, non_fab, voice_fab;
     TextView lookFabText, nonFabText, voiceFabText;
 
+    NavigationView navigationView;
     //variable
     boolean openClose = false;
 
@@ -50,9 +54,21 @@ public class MainActivity extends AppCompatActivity
         } else {
             Fragment fg = getVisibleFragment();
             if (fg instanceof HomeFragment)
-                super.onBackPressed();
-            else
+                new AlertDialog.Builder(this)
+                        .setIcon(R.mipmap.ic_beta_round)
+                        .setTitle("냉장고의 요정")
+                        .setMessage("냉장고의 요정을 종료하시겠습니까?")
+                        .setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MainActivity.super.onBackPressed();
+                            }
+                        }).setNegativeButton("취소", null).show();
+            else {
+                main_fab.show();
+                navigationView.setCheckedItem(R.id.nav_home);
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
+            }
         }
     }
 
@@ -67,6 +83,23 @@ public class MainActivity extends AppCompatActivity
         return null;
     }
 
+    public void onStop() {
+        super.onStop();
+        if (openClose) {
+            non_fab.startAnimation(closeFab);
+            look_fab.startAnimation(closeFab);
+            voice_fab.startAnimation(closeFab);
+            voice_fab.setClickable(false);
+            look_fab.setClickable(false);
+            non_fab.setClickable(false);
+            openClose = false;
+
+            lookFabText.setVisibility(View.GONE);
+            nonFabText.setVisibility(View.GONE);
+            voiceFabText.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -77,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -146,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         look_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),CalendarViewer.class);
+                Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
                 startActivity(intent);
             }
         });
@@ -181,7 +214,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
             main_fab.show();
@@ -219,7 +251,21 @@ public class MainActivity extends AppCompatActivity
             }
             main_fab.hide();
         } else if (id == R.id.our) {
+            navigationView.setCheckedItem(R.id.our);
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new UsFragment()).commit();
+            if (openClose == true) {
+                non_fab.startAnimation(closeFab);
+                look_fab.startAnimation(closeFab);
+                voice_fab.startAnimation(closeFab);
+                voice_fab.setClickable(false);
+                look_fab.setClickable(false);
+                non_fab.setClickable(false);
+                openClose = false;
+
+                lookFabText.setVisibility(View.GONE);
+                nonFabText.setVisibility(View.GONE);
+                voiceFabText.setVisibility(View.GONE);
+            }
             main_fab.hide();
         } else if (id == R.id.license) {
 
