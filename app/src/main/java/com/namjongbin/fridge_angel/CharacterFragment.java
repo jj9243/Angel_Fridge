@@ -43,31 +43,27 @@ public class CharacterFragment extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_character,container,false);
         container.removeAllViews();
+        healthy=100;
         ImageView image =(ImageView)rootView.findViewById(R.id.imageView);
+        ProgressBar progress=rootView.findViewById(R.id.progressBar);
 
-
-        final GlideDrawableImageViewTarget cd=new GlideDrawableImageViewTarget(image);
         int expireCount = this.getExpiredCount(getContext());
-        if(expireCount == 0) {
-            Glide.with(this).load(R.drawable.cdhappy).into(cd);
-        }
-        else if(expireCount > 0 && expireCount <= 2){
+        progress.setProgress(expireCount*20);
+        if(expireCount <= 2){
             // 슈다 기분 좋음
-            Glide.with(this).load(R.drawable.cdmelt).into(cd);
         }
-        else if(expireCount > 2 && expireCount <= 4){
+        else if(expireCount > 2 && expireCount <= 5){
             // 슈다 기분 보통
-            Glide.with(this).load(R.drawable.cdnorm).into(cd);
-        }
-        else if(expireCount > 4 && expireCount <= 6){
-            // 슈다 기분 보통
-            Glide.with(this).load(R.drawable.cdangry).into(cd);
         }
         else{
             // 슈다 화남
-            Glide.with(this).load(R.drawable.cdtired).into(cd);
         }
 
+        final GlideDrawableImageViewTarget cd=new GlideDrawableImageViewTarget(image);
+
+        if(healthy>85) {
+            Glide.with(this).load(R.drawable.cdhappy).into(cd);
+        }
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
