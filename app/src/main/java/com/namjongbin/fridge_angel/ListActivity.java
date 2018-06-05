@@ -1,4 +1,5 @@
 package com.namjongbin.fridge_angel;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,14 +11,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
+    TextView currentInfoText,afterInfoText;
     private ListView listview ;
     private ListViewAdapter adapter = new ListViewAdapter();
     LinearLayout listItem;
@@ -45,6 +49,8 @@ public class ListActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         imgBtn=findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
+        currentInfoText = (TextView)findViewById(R.id.currentInfoText);
+        afterInfoText = (TextView)findViewById(R.id.afterInfoText);
         //imageView=findViewById(R.id.corner);
 
         //어뎁터 할당
@@ -117,6 +123,8 @@ public class ListActivity extends AppCompatActivity {
 
             }
         });
+        currentInfoText.setText("저장된 식품 "+adapter.getCount()+"개");
+        afterInfoText.setText("만료된 식품 "+this.getExpiredCount(getApplicationContext())+"개");
     }
 
     @Override
@@ -147,5 +155,32 @@ public class ListActivity extends AppCompatActivity {
         else
             day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
 
+    }
+    public int getExpiredCount(Context context) {
+        int count = 0;
+        Calendar cal = Calendar.getInstance();
+        int yearToday = cal.get(cal.YEAR);
+        int monthToday = cal.get(cal.MONTH) + 1;
+        int dayToday = cal.get(cal.DATE);
+        final DBHelper db = new DBHelper(context, "ITEM.db", null, 2);
+        String[] foodItem = db.getResult().split("\n");
+        String[] Title = new String[db.columnNum()];
+        String[] Context = new String[db.columnNum()];
+        for (int i = 0; i < db.columnNum(); i++) {
+            String[] str = new String[2];
+            str = foodItem[i].split(":");
+            Title[i] = str[0].replaceAll("[0-9]", "");
+            Context[i] = str[1];
+            parseItem(Context[i]);
+
+            if (year < yearToday)
+                count++;
+            else if (month < monthToday)
+                count++;
+            else if (day < dayToday)
+                count++;
+
+        }
+        return count;
     }
 }
