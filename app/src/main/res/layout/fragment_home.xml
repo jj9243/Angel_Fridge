@@ -27,7 +27,7 @@
                 android:text="Food"
                 android:fontFamily="@font/nanums"
                 android:textColor="@color/white"
-                android:textSize="36sp"
+                android:textSize="42sp"
                 android:textStyle="bold" />
         </TableRow>
 
