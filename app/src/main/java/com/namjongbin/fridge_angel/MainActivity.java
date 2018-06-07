@@ -267,8 +267,43 @@ public class MainActivity extends AppCompatActivity
                 voiceFabText.setVisibility(View.GONE);
             }
             main_fab.hide();
-        } else if (id == R.id.license) {
+        } else if (id == R.id.tutorial) {
 
+            if (openClose == true) {
+                non_fab.startAnimation(closeFab);
+                look_fab.startAnimation(closeFab);
+                voice_fab.startAnimation(closeFab);
+                voice_fab.setClickable(false);
+                look_fab.setClickable(false);
+                non_fab.setClickable(false);
+                openClose = false;
+
+                lookFabText.setVisibility(View.GONE);
+                nonFabText.setVisibility(View.GONE);
+                voiceFabText.setVisibility(View.GONE);
+            }
+            Intent intent = new Intent(getApplicationContext(), GuideActivity.class);
+            startActivity(intent);
+
+         //   main_fab.hide();
+        }
+        else if (id == R.id.what) {
+            navigationView.setCheckedItem(R.id.our);
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new ChoudaFragment()).commit();
+            if (openClose == true) {
+                non_fab.startAnimation(closeFab);
+                look_fab.startAnimation(closeFab);
+                voice_fab.startAnimation(closeFab);
+                voice_fab.setClickable(false);
+                look_fab.setClickable(false);
+                non_fab.setClickable(false);
+                openClose = false;
+
+                lookFabText.setVisibility(View.GONE);
+                nonFabText.setVisibility(View.GONE);
+                voiceFabText.setVisibility(View.GONE);
+            }
+            main_fab.hide();
         }
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

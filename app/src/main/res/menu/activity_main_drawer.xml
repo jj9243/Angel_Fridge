@@ -24,8 +24,11 @@
                 android:id="@+id/our"
                 android:title="개발자 정보" />
             <item
-                android:id="@+id/license"
+                android:id="@+id/tutorial"
                 android:title="사용 방법" />
+            <item
+                android:id="@+id/what"
+                android:title="슈다는?" />
         </menu>
     </item>
     </group>

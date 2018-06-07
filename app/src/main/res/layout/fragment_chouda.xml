@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/choudaFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="24dp"
+    tools:context=".ChoudaFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="슈다...넌 누구냐?"
+        android:textSize="24sp"
+        android:fontFamily="@font/nanums"/>
+
+    <ImageView
+        android:id="@+id/cd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="슈다는 다리가 없지만 공중에 부유하며\n자유로이 날아다닐 수 있는 판다!\n\n 슈다는 하나지만 분신술을 써서\n여러마리의 클론을 생성한다."
+        android:textSize="20sp"
+        android:fontFamily="@font/nanums"/>
+
+    <Button
+        android:id="@+id/blogBtn"
+        android:text="작가의 블로그"
+        android:fontFamily="@font/nanums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/borderlessButtonStyle"
+         />
+
+    <Button
+        android:id="@+id/kakaoBtn"
+        android:text="카카오샵에서 만나보기"
+        android:fontFamily="@font/nanums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</LinearLayout>
