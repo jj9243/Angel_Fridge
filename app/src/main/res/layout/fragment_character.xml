@@ -22,7 +22,6 @@
         android:layout_height="10dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:max="100"
         android:layout_marginTop="24dp"
         android:paddingLeft="52dp"
         android:paddingRight="52dp"

@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="619dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanums"
+        android:text="안녕하세요 냉장고의 요정입니다!"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+    <Button
+        android:id="@+id/btn1"
+        android:fontFamily="@font/nanums"
+        android:text="이전"
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:fontFamily="@font/nanums"
+        android:text="다음"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn1" />
+    </LinearLayout>
+
+</LinearLayout>

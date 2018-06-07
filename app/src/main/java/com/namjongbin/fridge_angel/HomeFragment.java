@@ -3,8 +3,10 @@ package com.namjongbin.fridge_angel;
 //import android.app.Fragment;
 
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,6 +48,7 @@ public class HomeFragment extends Fragment {
     int y = -1;
     int m = -1;
     int d = -1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,6 +79,25 @@ public class HomeFragment extends Fragment {
 //                d = date.getDay();
 //            }
 //        });
+        SharedPreferences prefs = rootView.getContext().getSharedPreferences("first", Activity.MODE_PRIVATE);
+
+        boolean first=prefs.getBoolean("first",true);
+
+        Log.i("First?","ready");
+        if(first)
+        {
+            Log.i("First?","first");
+
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putBoolean("first",false);
+            editor.commit();
+
+            Intent intent = new Intent(getActivity().getApplicationContext(), GuideActivity.class);
+            startActivity(intent);
+            //prefs.edit().putBoolean("First",false).apply();
+        }else{
+            Log.i("First?","no");
+        }
 
         table = (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button) rootView.findViewById(R.id.recipeBtn);

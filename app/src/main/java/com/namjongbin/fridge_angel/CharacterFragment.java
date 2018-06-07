@@ -1,12 +1,15 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +30,7 @@ public class CharacterFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public SharedPreferences prefs;
+
     int healthy;
     int year, month, day;
     int expiredCount = 0;
@@ -47,30 +50,39 @@ public class CharacterFragment extends Fragment {
         container.removeAllViews();
         healthy = 100;
         ImageView image = (ImageView) rootView.findViewById(R.id.imageView);
+
+        //character
         ProgressBar progress = rootView.findViewById(R.id.progressBar);
 
-        //prefs = getSharedPreferences("Pref", MODE_PRIVATE);
-
         final GlideDrawableImageViewTarget cd = new GlideDrawableImageViewTarget(image);
-        int expireCount = this.getExpiredCount(getContext());
 
+        int expireCount = this.getExpiredCount(getContext());
         if (expireCount == 0) {
+//            if(healthy<100)
+//            {
+//                healthy+=10;
+//            }
+//            else if(healthy>=90)
+//            {
+//                healthy=100;
+//            }
+            healthy=100;
             Glide.with(this).load(R.drawable.cdhappy).into(cd);
-            progress.setProgress(healthy);
         } else if (expireCount > 2 && expireCount <= 4) {
+            healthy=65;
             // 슈다 기분 보통
             Glide.with(this).load(R.drawable.cdnorm).into(cd);
         } else if (expireCount > 4 && expireCount <= 6) {
             // 슈다 기분 보통
+            healthy=40;
             Glide.with(this).load(R.drawable.cdangry).into(cd);
         } else {
             // 슈다 화남
+            healthy=10;
             Glide.with(this).load(R.drawable.cdtired).into(cd);
         }
 
-        if (healthy > 85) {
-            Glide.with(this).load(R.drawable.cdhappy).into(cd);
-        }
+        progress.setProgress(healthy);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
