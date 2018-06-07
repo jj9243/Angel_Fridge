@@ -42,7 +42,8 @@ public class Alarm{
 
         //알람 예약
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
-        //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, sender);
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),60*1000, sender);
+        //am.cancel(sender);
         Toast.makeText(context, "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
     }
 }

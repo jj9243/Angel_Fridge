@@ -57,7 +57,7 @@ public class CharacterFragment extends Fragment {
         final GlideDrawableImageViewTarget cd = new GlideDrawableImageViewTarget(image);
 
         int expireCount = this.getExpiredCount(getContext());
-        if (expireCount == 0) {
+        if (expireCount <= 1) {
 //            if(healthy<100)
 //            {
 //                healthy+=10;

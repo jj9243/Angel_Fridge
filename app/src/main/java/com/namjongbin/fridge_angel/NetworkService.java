@@ -54,7 +54,7 @@ public class NetworkService extends JobService {
                     AlarmManager am = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
                     Intent intent = new Intent(getApplicationContext(), AlarmBroadcast.class);
                     Log.d(TAG, "같아요 같아!");
-                    PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+                    PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 3, intent, 0);
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
                 }
                 else

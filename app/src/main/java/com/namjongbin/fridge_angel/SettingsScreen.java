@@ -85,7 +85,7 @@ public class SettingsScreen extends PreferenceFragment {
                     AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
                     Intent intent = new Intent(getActivity(), AlarmBroadcast.class);
 
-                    PendingIntent sender = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+                    PendingIntent sender = PendingIntent.getBroadcast(getActivity(), 2, intent, 0);
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
                     Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
 
