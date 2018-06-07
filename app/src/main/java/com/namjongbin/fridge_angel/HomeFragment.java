@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
 
         parseDate();
         if (dday < 0) {
-            ddayText.setText("D-DAY");
+            ddayText.setText("D+" + -dday);
             table.setBackgroundResource(R.drawable.cardr);
             eatButton.setText("버렸어요 :(");
         } else if (dday == 0) {
@@ -158,7 +158,10 @@ public class HomeFragment extends Fragment {
                     }
                 }, 4200);
 
+
                 Toast.makeText(getActivity(), "Eat: " + Title, Toast.LENGTH_LONG).show();
+
+
             }
         });
 
@@ -189,16 +192,22 @@ public class HomeFragment extends Fragment {
 
     public void parseDate() {
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
-        if (db.getResult().equals("") || db.getResult() == null)
+        if (db.getResult().equals("") || db.getResult() == null){
             return;
+        }
+
         String[] foodItem = db.getResult().split("\n");
         String[] str = new String[2];
+        System.out.println("*******************푸드어이템"+foodItem[0]);
         for (int i = 0; i < 1; i++) {
             String temp = "";
             str = foodItem[i].split(":");
             Title = str[0].replaceAll("[0-9]", "");
             Context = str[1];
+
         }
+
+
 
         int year = Integer.parseInt(Context.substring(Context.indexOf("년") - 4, Context.indexOf("년")));
         int month = Integer.parseInt(Context.substring(Context.indexOf("월") - 2, Context.indexOf("월")).trim());
@@ -231,16 +240,32 @@ public class HomeFragment extends Fragment {
 
     public void eatFood() {
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
-        if (db.getResult().equals("") || db.getResult() == null)
-            return;
 
-        String deleteItem = Title;
-        String deleteDate = Context;
+        String deleteItem = itemText.getText().toString();
+        String deleteDate = dateText.getText().toString();
         parseItem(deleteDate);
         db.delete(db.getId(deleteItem.trim(), year, month, day));
+        parseDate();
+        if (db.getResult().equals("") || db.getResult() == null) {
+            ddayText.setText("D-DAY");
+            itemText.setText("");
+            dateText.setText("까지");
+        }else {
+            if (dday < 0) {
+                ddayText.setText("D+" + -dday);
+                table.setBackgroundResource(R.drawable.cardr);
+            } else if (dday == 0) {
+                ddayText.setText("D-DAY");
+            } else {
+                ddayText.setText("D-" + dday);
+            }
+            itemText.setText(Title);
+            dateText.setText(Context + " 까지");
+        }
 
-        Intent intent = new Intent(getActivity(), ListActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+
     }
 
     public void parseItem(String item) {
