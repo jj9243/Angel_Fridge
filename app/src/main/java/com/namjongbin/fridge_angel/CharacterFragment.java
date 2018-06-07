@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,7 +35,9 @@ public class CharacterFragment extends Fragment {
 
     int healthy;
     int year, month, day;
-    int expiredCount = 0;
+
+    int drawable=R.drawable.cdhappy;
+
     Boolean touchflag = false;
     // TODO: Rename and change types of parameters
 
@@ -57,6 +61,8 @@ public class CharacterFragment extends Fragment {
         final GlideDrawableImageViewTarget cd = new GlideDrawableImageViewTarget(image);
 
         int expireCount = this.getExpiredCount(getContext());
+
+
         if (expireCount <= 1) {
 //            if(healthy<100)
 //            {
@@ -67,29 +73,40 @@ public class CharacterFragment extends Fragment {
 //                healthy=100;
 //            }
             healthy=100;
-            Glide.with(this).load(R.drawable.cdhappy).into(cd);
+            drawable=R.drawable.cdhappy;
         } else if (expireCount > 2 && expireCount <= 4) {
             //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             healthy=65;
             // 슈다 기분 보통
-            Glide.with(this).load(R.drawable.cdnorm).into(cd);
+            drawable=R.drawable.cdnorm;
         } else if (expireCount > 4 && expireCount <= 6) {
             // 슈다 기분 보통
             healthy=40;
-            Glide.with(this).load(R.drawable.cdangry).into(cd);
+            drawable=R.drawable.cdangry;
         } else {
             // 슈다 화남
             healthy=10;
             //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
-            Glide.with(this).load(R.drawable.cdtired).into(cd);
+            drawable=R.drawable.cdtired;
         }
-
+        Glide.with(this).load(drawable).into(cd);
         progress.setProgress(healthy);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Glide.with(getContext()).load(R.drawable.cdtouch).into(cd);
+                if(healthy>40)
+                {
+                    Glide.with(getContext()).load(R.drawable.cdtouch).into(cd);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // TODO
+                            Glide.with(getContext()).load(drawable).into(cd);
+                        }
+                    }, 3000);
+                }
+
             }
         });
         return rootView;

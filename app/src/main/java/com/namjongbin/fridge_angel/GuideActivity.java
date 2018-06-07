@@ -33,10 +33,10 @@ public class GuideActivity extends AppCompatActivity {
                     index = index-1;
                     viewPager.setCurrentItem(index);
                     if(index==0){
-                          textView.setText("왜 돌아오셨죠?\n슈다는 인공지능을 얻었어요");
+                          textView.setText("왜 돌아오셨죠?\n슈다가 지켜 보고 있어요");
                     }
                     else if(index==1){
-                        textView.setText("품목 추가 방식과 메뉴에요");
+                        textView.setText("품목 추가 방식과 메뉴에요\n");
                     }
                     else if(index==2){
                         textView.setText("음성인식과 달력을 이용해\n쉽게 입력하세요");
@@ -63,7 +63,7 @@ public class GuideActivity extends AppCompatActivity {
                 if(index != 5){
                     index = index+1;
                     if(index==1){
-                        textView.setText("품목 추가 방식과 메뉴에요");
+                        textView.setText("품목 추가 방식과 메뉴에요\n");
                     }
                     else if(index==2){
                         textView.setText("음성인식과 달력을 이용해\n쉽게 입력하세요");

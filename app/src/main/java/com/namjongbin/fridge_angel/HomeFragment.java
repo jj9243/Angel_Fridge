@@ -8,9 +8,12 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -147,7 +150,26 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 eatFood();
                 Glide.with(rootView.getContext()).load(R.drawable.cdeatw).into(charimg);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO
+                        Glide.with(getContext()).load(R.drawable.cdw).into(charimg);
+                    }
+                }, 4200);
+
                 Toast.makeText(getActivity(), "Eat: " + Title, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        character.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment2 = new CharacterFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_fragment, fragment2);
+                fragmentTransaction.commit();
             }
         });
 

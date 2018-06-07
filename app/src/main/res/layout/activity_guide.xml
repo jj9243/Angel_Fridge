@@ -4,7 +4,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:layout_marginTop="24dp"
-    android:layout_marginBottom="36dp">
+    android:layout_marginBottom="48dp">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -13,12 +13,12 @@
     <TextView
         android:id="@+id/guideText"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:textSize="24sp"
         android:fontFamily="@font/nanums"
         android:gravity="center"
         android:padding="16dp"
-        android:text="안녕하세요 냉장고의 요정입니다!"/>
+        android:text="안녕하세요 냉장고의 요정입니다!\n"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
