@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:text="음식 확인"
+            android:text="먹었어요 :("
             android:fontFamily="@font/nanums"
             android:textColor="@color/gray" />
     </LinearLayout>

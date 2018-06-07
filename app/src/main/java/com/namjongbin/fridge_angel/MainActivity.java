@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity
         closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
 
         main_fab.setClickable(true);
+        main_fab.show();
         main_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

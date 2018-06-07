@@ -69,6 +69,7 @@ public class CharacterFragment extends Fragment {
             healthy=100;
             Glide.with(this).load(R.drawable.cdhappy).into(cd);
         } else if (expireCount > 2 && expireCount <= 4) {
+            //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             healthy=65;
             // 슈다 기분 보통
             Glide.with(this).load(R.drawable.cdnorm).into(cd);
@@ -79,6 +80,7 @@ public class CharacterFragment extends Fragment {
         } else {
             // 슈다 화남
             healthy=10;
+            //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             Glide.with(this).load(R.drawable.cdtired).into(cd);
         }
 
