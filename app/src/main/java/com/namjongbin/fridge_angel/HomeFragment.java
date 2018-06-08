@@ -100,11 +100,20 @@ public class HomeFragment extends Fragment {
             ddayText.setText("D-DAY");
         } else {
             ddayText.setText("D-" + dday);
+            eatButton.setText("먹었어요 :)");
         }
 
-        itemText.setText(Title);
-        dateText.setText(Context + " 까지");
-
+        final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
+        if(db.columnNum()==0) {
+            itemText.setText("음식을 추가해주세요");
+            itemText.setTextSize(28);
+            dateText.setText("");
+            ddayText.setText("");
+        }
+        else {
+            itemText.setText(Title);
+            dateText.setText(Context + " 까지");
+        }
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -125,20 +134,30 @@ public class HomeFragment extends Fragment {
         eatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eatFood();
-                Glide.with(rootView.getContext()).load(R.drawable.cdeatw).into(charimg);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO
-                        Glide.with(rootView.getContext()).load(R.drawable.cdw).into(charimg);
-                    }
-                }, 2000);
+                if(db.columnNum()==0)
+                {
+                    Toast.makeText(getContext(),"음식이 없어요",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    eatFood();
+                    Glide.with(rootView.getContext()).load(R.drawable.cdeatw).into(charimg);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // TODO
+                            Glide.with(rootView.getContext()).load(R.drawable.cdw).into(charimg);
+                        }
+                    }, 2000);
 
 
-                Toast.makeText(getActivity(), "Eat: " + Title, Toast.LENGTH_LONG).show();
-
-
+                    Toast.makeText(getActivity(), Title+" 냠냠", Toast.LENGTH_LONG).show();
+                }
+                if(db.columnNum()==0) {
+                    itemText.setText("음식을 추가해주세요");
+                    itemText.setTextSize(28);
+                    dateText.setText("");
+                    ddayText.setText("");
+                }
             }
         });
 
@@ -217,29 +236,27 @@ public class HomeFragment extends Fragment {
     public void eatFood() {
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
 
-        String deleteItem = itemText.getText().toString();
-        String deleteDate = dateText.getText().toString();
-        parseItem(deleteDate);
-        db.delete(db.getId(deleteItem.trim(), year, month, day));
-        parseDate();
-        if (db.getResult().equals("") || db.getResult() == null) {
-            ddayText.setText("D-DAY");
-            itemText.setText("");
-            dateText.setText("까지");
-        } else {
-            if (dday < 0) {
-                ddayText.setText("D+" + -dday);
-                table.setBackgroundResource(R.drawable.cardr);
-            } else if (dday == 0) {
+            String deleteItem = itemText.getText().toString();
+            String deleteDate = dateText.getText().toString();
+            parseItem(deleteDate);
+            db.delete(db.getId(deleteItem.trim(), year, month, day));
+            parseDate();
+            if (db.getResult().equals("") || db.getResult() == null) {
                 ddayText.setText("D-DAY");
+                itemText.setText("");
+                dateText.setText("까지");
             } else {
-                ddayText.setText("D-" + dday);
+                if (dday < 0) {
+                    ddayText.setText("D+" + -dday);
+                    table.setBackgroundResource(R.drawable.cardr);
+                } else if (dday == 0) {
+                    ddayText.setText("D-DAY");
+                } else {
+                    ddayText.setText("D-" + dday);
+                }
+                itemText.setText(Title);
+                dateText.setText(Context + " 까지");
             }
-            itemText.setText(Title);
-            dateText.setText(Context + " 까지");
-        }
-
-
     }
 
     public void parseItem(String item) {
@@ -260,45 +277,5 @@ public class HomeFragment extends Fragment {
             day = Integer.parseInt(item.substring(item.indexOf('일') - 2, item.indexOf('일')).trim());
         else
             day = Integer.parseInt(d.substring(d.indexOf('일') - 2, d.indexOf('일')));
-    }
-
-    public class SaturdayDecorator implements DayViewDecorator {
-
-        private final Calendar calendar = Calendar.getInstance();
-
-        public SaturdayDecorator() {
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            day.copyTo(calendar);
-            int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-            return weekDay == Calendar.SATURDAY;
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(getResources().getColor(R.color.color5)));
-        }
-    }
-
-    public class SundayDecorator implements DayViewDecorator {
-
-        private final Calendar calendar = Calendar.getInstance();
-
-        public SundayDecorator() {
-        }
-
-        @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            day.copyTo(calendar);
-            int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-            return weekDay == Calendar.SUNDAY;
-        }
-
-        @Override
-        public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(getResources().getColor(R.color.highLight)));
-        }
     }
 }
