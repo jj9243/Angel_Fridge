@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -93,6 +95,9 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+        final Animation animation = AnimationUtils.loadAnimation(this,
+                R.anim.slide_out);
+
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -117,6 +122,7 @@ public class ListActivity extends AppCompatActivity {
                         listview.clearChoices();
 
                         // listview 갱신.
+
                         adapter.notifyDataSetChanged();
                     }
                 }
