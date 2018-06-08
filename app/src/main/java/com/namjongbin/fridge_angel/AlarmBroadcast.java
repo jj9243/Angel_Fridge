@@ -70,7 +70,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         }
         mbuilder.setSmallIcon(R.mipmap.ic_beta_round)
                 .setContentTitle("유통기한 알림")
-                .setContentText("돼라아아아")
+                .setContentText("유통기한이 얼마 남지 않은 품목이 있습니다. 확인해주세요!")
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
