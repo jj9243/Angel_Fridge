@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
     int m = -1;
     int d = -1;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,30 +62,29 @@ public class HomeFragment extends Fragment {
 
         SharedPreferences prefs = rootView.getContext().getSharedPreferences("first", Activity.MODE_PRIVATE);
 
-        boolean first=prefs.getBoolean("first",true);
+        boolean first = prefs.getBoolean("first", true);
 
-        Log.i("First?","ready");
-        if(first)
-        {
-            Log.i("First?","first");
+        Log.i("First?", "ready");
+        if (first) {
+            Log.i("First?", "first");
 
-            SharedPreferences.Editor editor=prefs.edit();
-            editor.putBoolean("first",false);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("first", false);
             editor.commit();
 
             Intent intent = new Intent(getActivity().getApplicationContext(), GuideActivity.class);
             startActivity(intent);
             //prefs.edit().putBoolean("First",false).apply();
-        }else{
-            Log.i("First?","no");
+        } else {
+            Log.i("First?", "no");
         }
 
         table = (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button) rootView.findViewById(R.id.recipeBtn);
         Button eatButton = rootView.findViewById(R.id.eatBtn);
 
-        character=rootView.findViewById(R.id.imageChar);
-        final GlideDrawableImageViewTarget charimg=new GlideDrawableImageViewTarget(character);
+        character = rootView.findViewById(R.id.imageChar);
+        final GlideDrawableImageViewTarget charimg = new GlideDrawableImageViewTarget(character);
 
 
         itemText = (TextView) rootView.findViewById(R.id.item);
@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         // TODO
-                        Glide.with(getContext()).load(R.drawable.cdw).into(charimg);
+                        Glide.with(rootView.getContext()).load(R.drawable.cdw).into(charimg);
                     }
                 }, 2000);
 
@@ -169,13 +169,13 @@ public class HomeFragment extends Fragment {
 
     public void parseDate() {
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
-        if (db.getResult().equals("") || db.getResult() == null){
+        if (db.getResult().equals("") || db.getResult() == null) {
             return;
         }
 
         String[] foodItem = db.getResult().split("\n");
         String[] str = new String[2];
-        System.out.println("*******************푸드어이템"+foodItem[0]);
+        System.out.println("*******************푸드어이템" + foodItem[0]);
         for (int i = 0; i < 1; i++) {
             String temp = "";
             str = foodItem[i].split(":");
@@ -183,7 +183,6 @@ public class HomeFragment extends Fragment {
             Context = str[1];
 
         }
-
 
 
         int year = Integer.parseInt(Context.substring(Context.indexOf("년") - 4, Context.indexOf("년")));
@@ -227,7 +226,7 @@ public class HomeFragment extends Fragment {
             ddayText.setText("D-DAY");
             itemText.setText("");
             dateText.setText("까지");
-        }else {
+        } else {
             if (dday < 0) {
                 ddayText.setText("D+" + -dday);
                 table.setBackgroundResource(R.drawable.cardr);
@@ -239,8 +238,6 @@ public class HomeFragment extends Fragment {
             itemText.setText(Title);
             dateText.setText(Context + " 까지");
         }
-
-
 
 
     }

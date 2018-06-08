@@ -40,7 +40,6 @@ public class CategoryActivity extends Activity {
         parentList.add("육류");
         parentList.add("기타");
 
-
         // 앞서 ParentList에 연결할 ChildList 항목을 선언 및 입력
         ChildListData apple = new ChildListData(getResources().getDrawable(R.mipmap.apple), "사과","3주");
         ChildListData pair = new ChildListData(getResources().getDrawable(R.mipmap.pear), "배","일주일");

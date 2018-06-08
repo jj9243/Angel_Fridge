@@ -38,6 +38,7 @@ public class CharacterFragment extends Fragment {
 
     int drawable=R.drawable.cdhappy;
 
+    ViewGroup root;
     Boolean touchflag = false;
     // TODO: Rename and change types of parameters
 
@@ -52,6 +53,7 @@ public class CharacterFragment extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_character, container, false);
         container.removeAllViews();
+        root=rootView;
         healthy = 100;
         ImageView image = (ImageView) rootView.findViewById(R.id.imageView);
 
@@ -102,7 +104,7 @@ public class CharacterFragment extends Fragment {
                         @Override
                         public void run() {
                             // TODO
-                            Glide.with(getContext()).load(drawable).into(cd);
+                            Glide.with(root.getContext()).load(drawable).into(cd);
                         }
                     }, 3000);
                 }
