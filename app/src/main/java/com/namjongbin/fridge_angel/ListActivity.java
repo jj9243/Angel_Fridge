@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
         currentInfoText = (TextView)findViewById(R.id.currentInfoText);
         afterInfoText = (TextView)findViewById(R.id.afterInfoText);
         //imageView=findViewById(R.id.corner);
-
+        listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         //어뎁터 할당
         listview.setAdapter(adapter);
 

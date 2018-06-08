@@ -90,7 +90,7 @@ public class CategoryActivity extends Activity {
         ChildListData kkong = new ChildListData(getResources().getDrawable(R.mipmap.fish), "꽁치","2개월");
         ChildListData bluefish = new ChildListData(getResources().getDrawable(R.mipmap.fish), "고등어","3개월");
         ChildListData yeonfish = new ChildListData(getResources().getDrawable(R.mipmap.salmon), "훈제연어", "한달");
-        ChildListData kalchi = new ChildListData(getResources().getDrawable(R.mipmap.fish), "갈치", "180일");
+        ChildListData kalchi = new ChildListData(getResources().getDrawable(R.mipmap.fish), "갈치", "3개월");
         ChildListData oging = new ChildListData(getResources().getDrawable(R.mipmap.octopus), "오징어", "한달");
         ChildListData jogae = new ChildListData(getResources().getDrawable(R.mipmap.clam), "조개류", "한달");
         ChildListData goll = new ChildListData(getResources().getDrawable(R.mipmap.clam), "굴", "4개월");
@@ -263,7 +263,7 @@ public class CategoryActivity extends Activity {
                 else if(groupPosition==2)
                 {
                     //ㅇㅓ패류
-                    Toast.makeText(getApplicationContext(),"어패류는 냉동보관을 권장합니다",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"어패류는 냉동보관 기준입니다",Toast.LENGTH_LONG).show();
                     if(childPosition==0)
                     {
                         day=60;

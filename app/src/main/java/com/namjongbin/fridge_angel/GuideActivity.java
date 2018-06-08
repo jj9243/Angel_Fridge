@@ -87,8 +87,6 @@ public class GuideActivity extends AppCompatActivity {
             }
         });
 
-
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override

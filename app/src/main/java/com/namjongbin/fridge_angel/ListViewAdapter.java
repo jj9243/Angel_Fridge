@@ -2,6 +2,7 @@ package com.namjongbin.fridge_angel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,25 +11,28 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.HashMap;
 
 public class ListViewAdapter extends BaseAdapter {
     CheckBox check;
     TextView title;
     TextView content;
+    ListView listView;
     private ArrayList<ListVO> listVO = new ArrayList<ListVO>() ;
     private boolean mClick = false;
     private ArrayList<Integer> checkArr = new ArrayList<>();
     int year,month,day;
-    public ListViewAdapter() {
 
+    public ListViewAdapter() {
     }
 
     @Override
@@ -43,21 +47,22 @@ public class ListViewAdapter extends BaseAdapter {
     // ** 이 부분에서 리스트뷰에 데이터를 넣어줌 **
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //postion = ListView의 위치      /   첫번째면 position = 0
+        //postion = Listew의 위치      /   첫번째면 position = 0
         final int pos = position;
         final Context context = parent.getContext();
         final DBHelper db = new DBHelper(parent.getContext(),"ITEM.db",null,2);
+
+        final ListVO listViewItem = listVO.get(position);
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
 
-        check=convertView.findViewById(R.id.checkbox);
-        title = (TextView) convertView.findViewById(R.id.title) ;
-        content = (TextView) convertView.findViewById(R.id.context) ;
 
-        final ListVO listViewItem = listVO.get(position);
+        check = convertView.findViewById(R.id.checkbox);
+        title = (TextView) convertView.findViewById(R.id.title);
+        content = (TextView) convertView.findViewById(R.id.context);
 
         // 아이템 내 각 위젯에 데이터 반영
         title.setText(listViewItem.getTitle());
@@ -102,7 +107,6 @@ public class ListViewAdapter extends BaseAdapter {
         }
         return convertView;
     }
-
 
     @Override
     public long getItemId(int position) {
