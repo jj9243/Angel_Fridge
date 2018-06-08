@@ -369,7 +369,6 @@ public class CategoryActivity extends Activity {
 //        Date date=new Date(now);
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-
         Calendar cal = Calendar.getInstance();
 
         cal.setTime(new Date());

@@ -3,12 +3,12 @@
     >
 
     <EditTextPreference
-        android:title="User"
+        android:title="사용자"
         android:key="user"
         />
 
     <SwitchPreference
-        android:title="Alarm On/Off"
+        android:title="알림"
         android:key="switch"
         android:defaultValue="true"
         android:switchTextOff="OFF"
@@ -19,17 +19,17 @@
         android:entries="@array/notify"
         android:entryValues="@array/notify"
         android:key="location"
-        android:title="Location"
-        android:defaultValue="Anywhere"
+        android:title="알림 위치"
+        android:defaultValue="어디서나"
         />
 
     <com.namjongbin.fridge_angel.TimePreference
-        android:title="Time"
+        android:title="시간"
         android:key="time"
         />
 
     <com.namjongbin.fridge_angel.WifiDialog
-        android:title="Wi-Fi Setting"
+        android:title="Wi-Fi 설정"
         android:dialogMessage="집의 WiFi를 연결한 후 설정 버튼을 눌러주세요"
         android:key="wifi"
         android:summary=""
