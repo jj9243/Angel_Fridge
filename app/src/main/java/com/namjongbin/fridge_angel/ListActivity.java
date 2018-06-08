@@ -190,7 +190,7 @@ public class ListActivity extends AppCompatActivity {
                 count++;
             else if (month < monthToday)
                 count++;
-            else if (day < dayToday)
+            else if (day < dayToday && month == monthToday)
                 count++;
 
         }
