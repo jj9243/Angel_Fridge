@@ -1,28 +1,23 @@
 package com.namjongbin.fridge_angel;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapter extends ArrayAdapter {
     CheckBox check;
     TextView title;
     TextView content;
@@ -31,8 +26,11 @@ public class ListViewAdapter extends BaseAdapter {
     private boolean mClick = false;
     private ArrayList<Integer> checkArr = new ArrayList<>();
     int year,month,day;
+    private ArrayList<Integer> listItem;
 
-    public ListViewAdapter() {
+    public ListViewAdapter(Context context, int textViewResourceId, String[] items){
+        super(context, textViewResourceId, items);
+        listItem = new ArrayList();
     }
 
     @Override
@@ -41,7 +39,7 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     public ArrayList<Integer> getCheckArr(){
-        return checkArr;
+        return listItem;
     }
 
     // ** 이 부분에서 리스트뷰에 데이터를 넣어줌 **
@@ -51,7 +49,6 @@ public class ListViewAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
         final DBHelper db = new DBHelper(parent.getContext(),"ITEM.db",null,2);
-
         final ListVO listViewItem = listVO.get(position);
 
         if (convertView == null) {
@@ -90,16 +87,55 @@ public class ListViewAdapter extends BaseAdapter {
             }
         });
 
-        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked && !(checkArr.contains(pos))){
-                    checkArr.add(pos);
+        //http://chan180.tistory.com/102
+        if (check != null) { // 체크박스의 상태 변화를 체크한다.
+            check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    // 체크를 할 때 if (isChecked)
+                    {
+                        if (isChecked) {
+                            for (int i = 0; i < listItem.size(); i++) {
+                                if (listItem.get(i) == pos) {
+                                    return;
+                                }
+                            }
+                            listItem.add(pos);
+                            // 체크가 해제될 때
+                        } else {
+                            for (int i = 0; i < listItem.size(); i++) {
+                                if (listItem.get(i) == pos) {
+                                    listItem.remove(i);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
-                else if(!isChecked)
-                    checkArr.remove(pos);
+            });
+            // 체크된 아이템인지 판단할 boolean변수
+            boolean isChecked = false;
+            for (int i = 0; i < listItem.size(); i++)
+            { // 만약 체크되었던 아이템이라면
+                if (listItem.get(i) == pos) { // 체크를 한다.
+                    check.setChecked(true);
+                    isChecked = true;
+                    break; }
+            } // 아니라면 체크 안함!
+             if (!isChecked) {
+                check.setChecked(false);
             }
-        });
+        }
+//        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked && !(checkArr.contains(pos))){
+//                    checkArr.add(pos);
+//                }
+//                else if(!isChecked)
+//                    checkArr.remove(pos);
+//            }
+//        });
+
         if(mClick) {
             check.setVisibility(View.VISIBLE);
         } else {

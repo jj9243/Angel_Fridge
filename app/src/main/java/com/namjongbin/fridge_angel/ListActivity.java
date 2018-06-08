@@ -3,7 +3,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,14 +17,14 @@ import android.widget.Toast;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
     TextView currentInfoText,afterInfoText;
     private ListView listview ;
-    private ListViewAdapter adapter = new ListViewAdapter();
+    private String[] testStringArray;
+    private ListViewAdapter adapter;
     LinearLayout listItem;
     ImageButton imgBtn;
     ImageView imageView;
@@ -39,10 +38,18 @@ public class ListActivity extends AppCompatActivity {
 
         final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
 
+
+        testStringArray = new String[100];
+        for (int i = 0; i < testStringArray.length; i++)
+        {
+            testStringArray[i] = "test No. = " + i;
+        }
+
+        adapter = new ListViewAdapter(this,0,testStringArray);
         db.columnNum();
         String[] Title = new String[db.columnNum()];
         String[] Context = new String[db.columnNum()];
-        System.out.println("************************************결과 출력***********************\n"+db.getResult());
+        System.out.println("***********************결과 출력***********************\n"+db.getResult());
         String[] foodItem = db.getResult().split("\n");
 
         //변수 초기화
@@ -54,7 +61,7 @@ public class ListActivity extends AppCompatActivity {
         currentInfoText = (TextView)findViewById(R.id.currentInfoText);
         afterInfoText = (TextView)findViewById(R.id.afterInfoText);
         //imageView=findViewById(R.id.corner);
-        listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    //listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         //어뎁터 할당
         listview.setAdapter(adapter);
 
