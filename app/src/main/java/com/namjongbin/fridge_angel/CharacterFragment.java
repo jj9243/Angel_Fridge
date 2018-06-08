@@ -76,7 +76,7 @@ public class CharacterFragment extends Fragment {
 //            }
             healthy=100;
             drawable=R.drawable.cdhappy;
-        } else if (expireCount > 2 && expireCount <= 4) {
+        } else if (expireCount >= 2 && expireCount <= 4) {
             //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             healthy=65;
             // 슈다 기분 보통

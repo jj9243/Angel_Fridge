@@ -72,7 +72,7 @@ public class CalendarViewer extends Activity {
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                Toast.makeText(getApplicationContext(), "" + date.getYear() + "년 " + (date.getMonth() + 1) + "월 " + date.getDay() + "일 입니다.", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getApplicationContext(), "" + date.getYear() + "년 " + (date.getMonth() + 1) + "월 " + date.getDay() + "일 입니다.", Toast.LENGTH_LONG).show();
                 y = date.getYear();
                 m = date.getMonth();
                 d = date.getDay();

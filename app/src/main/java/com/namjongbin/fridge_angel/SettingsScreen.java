@@ -87,7 +87,7 @@ public class SettingsScreen extends PreferenceFragment {
 
                     PendingIntent sender = PendingIntent.getBroadcast(getActivity(), 2, intent, 0);
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
-                    Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
 
                     Log.d("TAGTAG", "" + notyLocation.getSummary());
                     if (notyLocation.getSummary().equals("In home")) {
@@ -108,10 +108,10 @@ public class SettingsScreen extends PreferenceFragment {
                 preference.setDefaultValue(newValue);
                 if (where.equals("In home")) {
                     scheduleJob();
-                    Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 시작!", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 시작!", Toast.LENGTH_LONG).show();
                 } else {
                     cancelJob();
-                    Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 종료!", Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 종료!", Toast.LENGTH_LONG).show();
                 }
                 return true;
             }

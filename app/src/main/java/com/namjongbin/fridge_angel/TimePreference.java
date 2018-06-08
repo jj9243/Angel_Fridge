@@ -25,7 +25,7 @@ public class TimePreference extends DialogPreference {
     public TimePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         c = context;
-        Log.d("asd","ssssss");
+        Log.d("asd", "ssssss");
         setPositiveButtonText("설정");
         setNegativeButtonText("취소");
     }
@@ -45,7 +45,7 @@ public class TimePreference extends DialogPreference {
     protected View onCreateDialogView() {
         picker = new TimePicker(getContext());
         return (picker);
-       // Log.d("asdasd","크라리잇다이얼로그뷰");
+        // Log.d("asdasd","크라리잇다이얼로그뷰");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class TimePreference extends DialogPreference {
         super.onBindDialogView(v);
         picker.setCurrentHour(lastHour);
         picker.setCurrentMinute(lastMinute);
-        Log.d("asdasd","바인드다이얼로그뷰");
+        Log.d("asdasd", "바인드다이얼로그뷰");
     }
 
     @Override
@@ -89,7 +89,7 @@ public class TimePreference extends DialogPreference {
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         String time = null;
-Log.d("asdasd","이니셜밸류");
+        Log.d("asdasd", "이니셜밸류");
         if (restoreValue) {
             if (defaultValue == null) {
                 time = getPersistedString("00:00");
@@ -105,11 +105,10 @@ Log.d("asdasd","이니셜밸류");
 
     }
 
-    public String getTime()
-    {
-        if(lastMinute<10)
-        return ""+Integer.toString(lastHour)+":0"+Integer.toString(lastMinute);
+    public String getTime() {
+        if (lastMinute < 10)
+            return "" + Integer.toString(lastHour) + ":0" + Integer.toString(lastMinute);
         else
-            return ""+Integer.toString(lastHour)+":"+Integer.toString(lastMinute);
+            return "" + Integer.toString(lastHour) + ":" + Integer.toString(lastMinute);
     }
 }
