@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="notify">
-        <item>Anywhere</item>
-        <item>In home</item>
+        <item>어디서나</item>
+        <item>집에서만</item>
     </string-array>
 </resources>

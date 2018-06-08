@@ -18,7 +18,8 @@ public class ImageAdapter extends PagerAdapter {
             R.drawable.tu3,
             R.drawable.tu4,
             R.drawable.tu5,
-            R.drawable.tu6
+            R.drawable.tu6,
+            R.drawable.tu7
     };
 
     ImageAdapter(Context context) {
