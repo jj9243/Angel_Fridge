@@ -93,6 +93,8 @@ public class TimePreference extends DialogPreference {
         if (restoreValue) {
             if (defaultValue == null) {
                 time = getPersistedString("00:00");
+              //  Toast.makeText(getContext(), "알람 시간 설정 완료  " + time, Toast.LENGTH_LONG).show();
+               // new Alarm(getContext(), lastHour, lastMinute).Alarm();
             } else {
                 time = getPersistedString(defaultValue.toString());
             }
