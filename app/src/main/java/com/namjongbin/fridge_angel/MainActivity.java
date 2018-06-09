@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
             Fragment fg = getVisibleFragment();
             if (fg instanceof HomeFragment)
                 new AlertDialog.Builder(this)
-                        .setIcon(R.mipmap.ic_beta_round)
+                        .setIcon(R.mipmap.ic_launcher_round)
                         .setTitle("냉장고의 요정")
                         .setMessage("냉장고의 요정을 종료하시겠습니까?")
                         .setPositiveButton("종료", new DialogInterface.OnClickListener() {

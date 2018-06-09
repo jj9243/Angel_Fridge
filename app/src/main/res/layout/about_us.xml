@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="김종건"
+            android:text="종건"
             android:textSize="32sp"
             android:fontFamily="@font/nanums"
             />
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="빛"
+        android:text="강우"
         android:textSize="32sp"
         android:fontFamily="@font/nanums"
         />
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="잠만보"
+            android:text="석빈"
             android:fontFamily="@font/nanums"
             android:textSize="32sp"
             />

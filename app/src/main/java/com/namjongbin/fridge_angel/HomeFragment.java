@@ -117,6 +117,11 @@ public class HomeFragment extends Fragment {
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
+                if(db.columnNum()==0)
+                {
+                    Toast.makeText(getContext(),"음식이 없어요",Toast.LENGTH_LONG).show();
+                }
+                else {
                 String fname = itemText.getText().toString() + " " + "레시피";
 
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
@@ -127,6 +132,7 @@ public class HomeFragment extends Fragment {
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
+                }
                 }
             }
         });

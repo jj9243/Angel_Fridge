@@ -68,7 +68,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         } else {
             mbuilder = new NotificationCompat.Builder(context);
         }
-        mbuilder.setSmallIcon(R.mipmap.ic_beta_round)
+        mbuilder.setSmallIcon(R.drawable.fridgeicon)
                 .setContentTitle("유통기한 알림")
                 .setContentText("유통기한이 얼마 남지 않은 품목이 있습니다. 확인해주세요!")
                 .setDefaults(Notification.DEFAULT_SOUND)
