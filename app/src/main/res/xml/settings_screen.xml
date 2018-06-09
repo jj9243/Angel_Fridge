@@ -10,7 +10,7 @@
     <SwitchPreference
         android:title="알림"
         android:key="switch"
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:switchTextOff="OFF"
         android:switchTextOn="ON"
         />

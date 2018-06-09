@@ -90,7 +90,7 @@ public class SettingsScreen extends PreferenceFragment {
                    // Toast.makeText(getActivity().getApplicationContext(), "켜졌어요" + notyOnOff.isChecked(), Toast.LENGTH_LONG).show();
 
                     Log.d("TAGTAG", "" + notyLocation.getSummary());
-                    if (notyLocation.getSummary().equals("In home")) {
+                    if (notyLocation.getSummary().equals("집에서만")) {
 
                         scheduleJob();
                     }
@@ -106,7 +106,7 @@ public class SettingsScreen extends PreferenceFragment {
                 String where = newValue.toString();
                 preference.setSummary(where);
                 preference.setDefaultValue(newValue);
-                if (where.equals("In home")) {
+                if (where.equals("집에서만")) {
                     scheduleJob();
                    // Toast.makeText(getActivity().getApplicationContext(), "와이파이 체킹 시작!", Toast.LENGTH_LONG).show();
                 } else {
@@ -127,9 +127,9 @@ public class SettingsScreen extends PreferenceFragment {
         JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
         int resultCode = scheduler.schedule(info);
         if (resultCode == JobScheduler.RESULT_SUCCESS) {
-            // Log.d(TAG, "Job scheduled");
+             Log.d("TAG", "Job scheduled");
         } else {
-            // Log.d(TAG, "Job scheduling failed");
+             Log.d("TAG", "Job scheduling failed");
         }
     }
 

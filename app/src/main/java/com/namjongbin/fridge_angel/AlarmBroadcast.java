@@ -55,6 +55,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
             */
         final DBHelper db = new DBHelper(context, "ITEM.db", null, 2);
          parseDate(context);
+
         NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notiIntent = new Intent(context, MainActivity.class);
         notiIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -79,7 +80,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         Log.d("TAGTAG","확인"+isChecked);
         Log.d("TAGTAG","확인"+location);
         if (isChecked||(isChecked==false&&location.isEmpty())) {
-            if (location.equals("Anywhere"))
+            if (location.equals("어디서나"))
                 notificationmanager.notify(1, mbuilder.build());
             else {
                 WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

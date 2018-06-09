@@ -50,8 +50,7 @@ public class WifiDialog extends DialogPreference {
                     Toast.makeText(c, "연결된 와이파이가 없습니다. 다시 한번 확인해 주세요", Toast.LENGTH_LONG).show();
             } else
                 Toast.makeText(c, "네트워크에 연결되지 않았습니다. ", Toast.LENGTH_LONG).show();
-        } else
-            Toast.makeText(c, "취소누름", Toast.LENGTH_LONG).show();
+        }
     }
 }
 

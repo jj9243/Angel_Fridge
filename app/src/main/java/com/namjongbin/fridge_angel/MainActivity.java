@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), GuideActivity.class);
             startActivity(intent);
 
-         //   main_fab.hide();
+            //   main_fab.hide();
         }
         else if (id == R.id.what) {
             navigationView.setCheckedItem(R.id.our);
