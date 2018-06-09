@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,11 +40,14 @@
         </activity>
         <activity
             android:name=".RecognizerFragment"
-            android:theme="@style/NewDialogTheme" />
-        <activity android:name=".ListActivity" />
+            android:theme="@style/NewDialogTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ListActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CalendarViewer"
-            android:theme="@style/NewDialogTheme" />
+            android:theme="@style/NewDialogTheme"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".AlarmBroadcast"
@@ -56,14 +60,17 @@
 
         <activity
             android:name=".AddActivity"
-            android:theme="@style/NewDialogTheme" />
+            android:theme="@style/NewDialogTheme"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".NetworkService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".GuideActivity"></activity>
+        <activity android:name=".CategoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GuideActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
