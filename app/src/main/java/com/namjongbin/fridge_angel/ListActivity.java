@@ -1,11 +1,18 @@
 package com.namjongbin.fridge_angel;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -30,6 +37,7 @@ public class ListActivity extends AppCompatActivity {
     ImageView imageView;
     Button deleteBtn;
     Boolean opendelete =false;
+    Boolean  animationsLocked;
     int checked,year,month,day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,6 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         final DBHelper db = new DBHelper(getApplicationContext(),"ITEM.db",null,2);
-
 
         testStringArray = new String[100];
         for (int i = 0; i < testStringArray.length; i++)
@@ -52,10 +59,31 @@ public class ListActivity extends AppCompatActivity {
         System.out.println("***********************결과 출력***********************\n"+db.getResult());
         String[] foodItem = db.getResult().split("\n");
 
+        AnimationSet set = new AnimationSet(true);
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+
+        animation.setDuration(50);
+
+        set.addAnimation(animation);
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, -1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
+
+        animation.setDuration(200);
+
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller =
+                new LayoutAnimationController(set, 1.0f);
+
         //변수 초기화
         //adapter = new ListViewAdapter();
         listItem=findViewById(R.id.listItem);
         listview = findViewById(R.id.listview);
+        listview.setLayoutAnimation(controller);
         trashBtn =findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
         currentInfoText = (TextView)findViewById(R.id.currentInfoText);
@@ -101,12 +129,10 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        final Animation animation = AnimationUtils.loadAnimation(this,
-                R.anim.slide_out);
-
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 int count ;
                 count = adapter.getCount() ;
 
@@ -127,12 +153,11 @@ public class ListActivity extends AppCompatActivity {
                         // listview 선택 초기화.
                         listview.clearChoices();
 
+                        //애니메이션
                         // listview 갱신.
-
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
                     }
                 }
-
             }
         });
         currentInfoText.setText("저장된 식품 "+adapter.getCount()+"개");

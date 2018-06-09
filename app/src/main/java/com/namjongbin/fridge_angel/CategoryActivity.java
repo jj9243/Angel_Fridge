@@ -42,9 +42,9 @@ public class CategoryActivity extends Activity {
 
         // 앞서 ParentList에 연결할 ChildList 항목을 선언 및 입력
         ChildListData apple = new ChildListData(getResources().getDrawable(R.mipmap.apple), "사과","3주");
-        ChildListData pair = new ChildListData(getResources().getDrawable(R.mipmap.pear), "배","일주일");
+        ChildListData pair = new ChildListData(getResources().getDrawable(R.mipmap.pear), "배","1주");
         ChildListData banana = new ChildListData(getResources().getDrawable(R.mipmap.banana), "바나나","6일");
-        ChildListData blueberry = new ChildListData(getResources().getDrawable(R.mipmap.blueberries), "블루베리","일주일");
+        ChildListData blueberry = new ChildListData(getResources().getDrawable(R.mipmap.blueberries), "블루베리","1주");
         ChildListData grape = new ChildListData(getResources().getDrawable(R.mipmap.grapes), "포도","4일");
         ChildListData peach = new ChildListData(getResources().getDrawable(R.mipmap.peach), "복숭아","5일");
         ChildListData arbo = new ChildListData(getResources().getDrawable(R.mipmap.avocado), "아보카도","5일");
@@ -73,7 +73,7 @@ public class CategoryActivity extends Activity {
         ChildListData mu = new ChildListData(getResources().getDrawable(R.mipmap.radish), "무", "일주일");
         ChildListData ssam = new ChildListData(getResources().getDrawable(R.mipmap.salad1), "쌈 채소", "4일");
         ChildListData pimang = new ChildListData(getResources().getDrawable(R.mipmap.pepper), "피망", "4일");
-        ChildListData cucumber = new ChildListData(getResources().getDrawable(R.mipmap.cucumber), "오이", "일주일");
+        ChildListData cucumber = new ChildListData(getResources().getDrawable(R.mipmap.cucumber), "오이", "1주");
 
         vegetables = new ArrayList<ChildListData>();
         vegetables.add(onion);
@@ -88,10 +88,10 @@ public class CategoryActivity extends Activity {
 
         ChildListData kkong = new ChildListData(getResources().getDrawable(R.mipmap.fish), "꽁치","2개월");
         ChildListData bluefish = new ChildListData(getResources().getDrawable(R.mipmap.fish), "고등어","3개월");
-        ChildListData yeonfish = new ChildListData(getResources().getDrawable(R.mipmap.salmon), "훈제연어", "한달");
+        ChildListData yeonfish = new ChildListData(getResources().getDrawable(R.mipmap.salmon), "훈제연어", "1개월");
         ChildListData kalchi = new ChildListData(getResources().getDrawable(R.mipmap.fish), "갈치", "3개월");
-        ChildListData oging = new ChildListData(getResources().getDrawable(R.mipmap.octopus), "오징어", "한달");
-        ChildListData jogae = new ChildListData(getResources().getDrawable(R.mipmap.clam), "조개류", "한달");
+        ChildListData oging = new ChildListData(getResources().getDrawable(R.mipmap.octopus), "오징어", "1개월");
+        ChildListData jogae = new ChildListData(getResources().getDrawable(R.mipmap.clam), "조개류", "1개월");
         ChildListData goll = new ChildListData(getResources().getDrawable(R.mipmap.clam), "굴", "4개월");
         ChildListData shrimp = new ChildListData(getResources().getDrawable(R.mipmap.shrimp), "새우", "6개월");
 
@@ -121,9 +121,9 @@ public class CategoryActivity extends Activity {
         meat.add(cowI);
         meat.add(chickenI);
 
-        ChildListData yo = new ChildListData(getResources().getDrawable(R.mipmap.dairy), "요거트", "일주일");
-        ChildListData egg = new ChildListData(getResources().getDrawable(R.mipmap.egg), "달걀", "한달");
-        ChildListData coffee = new ChildListData(getResources().getDrawable(R.mipmap.coffee), "액상커피", "한달");
+        ChildListData yo = new ChildListData(getResources().getDrawable(R.mipmap.dairy), "요거트", "1주");
+        ChildListData egg = new ChildListData(getResources().getDrawable(R.mipmap.egg), "달걀", "1개월");
+        ChildListData coffee = new ChildListData(getResources().getDrawable(R.mipmap.coffee), "액상커피", "1개월");
         etc = new ArrayList<ChildListData>();
         etc.add(yo);
         etc.add(egg);

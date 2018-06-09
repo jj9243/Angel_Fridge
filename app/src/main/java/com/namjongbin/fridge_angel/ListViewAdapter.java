@@ -148,8 +148,10 @@ public class ListViewAdapter extends ArrayAdapter {
 
         if(mClick) {
             check.setVisibility(View.VISIBLE);
+            ytBtn.setVisibility(View.GONE);
         } else {
             check.setVisibility(View.GONE);
+            ytBtn.setVisibility(View.VISIBLE);
         }
         return convertView;
     }
