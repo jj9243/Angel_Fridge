@@ -42,6 +42,7 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
     TextView itemText, ddayText, dateText;
     ImageView character;
+    Button eatButton;
     TableLayout table;
     String Title = "";
     String Context = "";
@@ -81,7 +82,7 @@ public class HomeFragment extends Fragment {
 
         table = (TableLayout) rootView.findViewById(R.id.table);
         Button youtubeButton = (Button) rootView.findViewById(R.id.recipeBtn);
-        Button eatButton = rootView.findViewById(R.id.eatBtn);
+        eatButton = rootView.findViewById(R.id.eatBtn);
 
         character = rootView.findViewById(R.id.imageChar);
         final GlideDrawableImageViewTarget charimg = new GlideDrawableImageViewTarget(character);
@@ -105,11 +106,11 @@ public class HomeFragment extends Fragment {
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
         if(db.columnNum()==0) {
             itemText.setText("냉장고가 비어 있습니다");
-            itemText.setTextSize(28);
+            itemText.setTextSize(24);
             dateText.setText("");
             ddayText.setText("");
             table.setBackgroundResource(R.drawable.card);
-            eatButton.setText("먹었어요 :)");
+            eatButton.setText("비었어요 :)");
         }
         else {
             itemText.setText(Title);
@@ -160,10 +161,12 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getActivity(), Title+" 냠냠", Toast.LENGTH_LONG).show();
                 }
                 if(db.columnNum()==0) {
-                    itemText.setText("음식을 추가해주세요");
-                    itemText.setTextSize(28);
+                    itemText.setText("냉장고가 비어 있습니다");
+                    itemText.setTextSize(24);
                     dateText.setText("");
                     ddayText.setText("");
+                    table.setBackgroundResource(R.drawable.card);
+                    eatButton.setText("비었어요 :)");
                 }
             }
         });
