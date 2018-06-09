@@ -1,10 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     //variable
     boolean openClose = false;
+
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,80 +122,105 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //if (savedInstanceState == null) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
-        navigationView.setCheckedItem(R.id.nav_home);
-        // }
-        //nav bar
+        prefs = getSharedPreferences("first", Activity.MODE_PRIVATE);
+        boolean first = prefs.getBoolean("first", true);
+        boolean check = prefs.getBoolean("check", false);
 
-        //fab
-        main_fab = (FloatingActionButton) findViewById(R.id.fab);
-        look_fab = (FloatingActionButton) findViewById(R.id.fab_cal);
-        voice_fab = (FloatingActionButton) findViewById(R.id.fab_voice);
-        non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
-        lookFabText = findViewById(R.id.calFabText);
-        voiceFabText = findViewById(R.id.voiceFabText);
-        nonFabText = findViewById(R.id.nonFabText);
+        if (check == true) {
+            getFragmentManager().beginTransaction().replace(R.id.frame_fragment, new SettingsScreen()).commit();
+            if (openClose == true) {
+                non_fab.startAnimation(closeFab);
+                look_fab.startAnimation(closeFab);
+                voice_fab.startAnimation(closeFab);
+                voice_fab.setClickable(false);
+                look_fab.setClickable(false);
+                non_fab.setClickable(false);
+                openClose = false;
 
-        openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
-        closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
+                lookFabText.setVisibility(View.GONE);
+                nonFabText.setVisibility(View.GONE);
+                voiceFabText.setVisibility(View.GONE);
+            }
+            main_fab.hide();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("check", false);
+            editor.commit();
+        } else {
+            //if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+            // }
+            //nav bar
 
-        main_fab.setClickable(true);
-        main_fab.show();
-        main_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (openClose) {
-                    non_fab.startAnimation(closeFab);
-                    look_fab.startAnimation(closeFab);
-                    voice_fab.startAnimation(closeFab);
-                    voice_fab.setClickable(false);
-                    look_fab.setClickable(false);
-                    non_fab.setClickable(false);
-                    openClose = false;
+            //fab
+            main_fab = (FloatingActionButton) findViewById(R.id.fab);
+            look_fab = (FloatingActionButton) findViewById(R.id.fab_cal);
+            voice_fab = (FloatingActionButton) findViewById(R.id.fab_voice);
+            non_fab = (FloatingActionButton) findViewById(R.id.fab_non);
+            lookFabText = findViewById(R.id.calFabText);
+            voiceFabText = findViewById(R.id.voiceFabText);
+            nonFabText = findViewById(R.id.nonFabText);
 
-                    lookFabText.setVisibility(View.GONE);
-                    nonFabText.setVisibility(View.GONE);
-                    voiceFabText.setVisibility(View.GONE);
-                } else//open
-                {
-                    voice_fab.startAnimation(openFab);
-                    look_fab.startAnimation(openFab);
-                    non_fab.startAnimation(openFab);
-                    look_fab.setClickable(true);
-                    voice_fab.setClickable(true);
-                    non_fab.setClickable(true);
-                    openClose = true;
+            openFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.open_fab);
+            closeFab = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.close_fab);
 
-                    lookFabText.setVisibility(View.VISIBLE);
-                    nonFabText.setVisibility(View.VISIBLE);
-                    voiceFabText.setVisibility(View.VISIBLE);
+            main_fab.setClickable(true);
+            main_fab.show();
+            main_fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (openClose) {
+                        non_fab.startAnimation(closeFab);
+                        look_fab.startAnimation(closeFab);
+                        voice_fab.startAnimation(closeFab);
+                        voice_fab.setClickable(false);
+                        look_fab.setClickable(false);
+                        non_fab.setClickable(false);
+                        openClose = false;
+
+                        lookFabText.setVisibility(View.GONE);
+                        nonFabText.setVisibility(View.GONE);
+                        voiceFabText.setVisibility(View.GONE);
+                    } else//open
+                    {
+                        voice_fab.startAnimation(openFab);
+                        look_fab.startAnimation(openFab);
+                        non_fab.startAnimation(openFab);
+                        look_fab.setClickable(true);
+                        voice_fab.setClickable(true);
+                        non_fab.setClickable(true);
+                        openClose = true;
+
+                        lookFabText.setVisibility(View.VISIBLE);
+                        nonFabText.setVisibility(View.VISIBLE);
+                        voiceFabText.setVisibility(View.VISIBLE);
+                    }
                 }
-            }
-        });
-        voice_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RecognizerFragment.class);
-                startActivity(intent);
-            }
-        });
+            });
+            voice_fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), RecognizerFragment.class);
+                    startActivity(intent);
+                }
+            });
 
-        look_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
-                startActivity(intent);
-            }
-        });
+            look_fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
+                    startActivity(intent);
+                }
+            });
 
-        non_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
-                startActivity(intent);
-            }
-        });
+            non_fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -287,8 +316,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
             //   main_fab.hide();
-        }
-        else if (id == R.id.what) {
+        } else if (id == R.id.what) {
             navigationView.setCheckedItem(R.id.our);
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_fragment, new ChoudaFragment()).commit();
             if (openClose == true) {

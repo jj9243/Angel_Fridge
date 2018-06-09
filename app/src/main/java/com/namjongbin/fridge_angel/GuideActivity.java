@@ -1,5 +1,7 @@
 package com.namjongbin.fridge_angel;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,9 +50,12 @@ public class GuideActivity extends AppCompatActivity {
                 Log.e("test", "viewPager : " + index);
 
                 if (index == 6 && button.getText().toString().equals("설정창으로 이동")) {
-                    finish();
-                    button.setText("완료");
-                } else if (index == 6 && button.getText().toString().equals("완료")) {
+                    SharedPreferences prefs =getSharedPreferences("first", Activity.MODE_PRIVATE);
+                    //boolean test = prefs.getBoolean("first", true);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("check", true);
+                    editor.commit();
+                    //Log.d("test","먹니?"+test);
                     finish();
                 } else if (index < 6) {
                     index++;
@@ -65,12 +70,12 @@ public class GuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("asd", "" + position);
+              //  Log.d("asd", "" + position);
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("asdasdasd", "" + position);
+               // Log.d("asdasdasd", "" + position);
                 index = position;
                 update(viewPager, index, 2);
             }
