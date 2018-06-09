@@ -41,13 +41,13 @@
         <activity
             android:name=".RecognizerFragment"
             android:theme="@style/NewDialogTheme"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name=".ListActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".CalendarViewer"
             android:theme="@style/NewDialogTheme"
-            android:screenOrientation="portrait"/>
+            />
 
         <receiver
             android:name=".AlarmBroadcast"
@@ -60,8 +60,7 @@
 
         <activity
             android:name=".AddActivity"
-            android:theme="@style/NewDialogTheme"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/NewDialogTheme" />
 
         <service
             android:name=".NetworkService"
