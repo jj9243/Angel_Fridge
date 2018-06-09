@@ -216,7 +216,7 @@ public class RecognizerFragment extends Activity{
             if (voice.contains("년")) {
                 year = Integer.parseInt(voice.substring(voice.indexOf('년') - 4, voice.indexOf('년')));
                 item = voice.substring(0, voice.indexOf("년") - 4);
-                if (!(year > 2018 && year <= 2050)) {
+                if (!(year >= 2018 && year <= 2050)) {
                     textView.setText("연도를 정확하게 말 하셨나요?");
                     return;
                 }
