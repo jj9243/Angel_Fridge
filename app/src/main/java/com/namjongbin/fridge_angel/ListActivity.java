@@ -77,7 +77,7 @@ public class ListActivity extends AppCompatActivity {
         set.addAnimation(animation);
 
         LayoutAnimationController controller =
-                new LayoutAnimationController(set, 1.0f);
+                new LayoutAnimationController(set, 0.7f);
 
         //변수 초기화
         //adapter = new ListViewAdapter();

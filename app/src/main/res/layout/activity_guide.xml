@@ -1,16 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/grad"
     android:orientation="vertical"
     android:layout_marginTop="24dp"
     android:layout_marginBottom="48dp">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/guideback"
+    android:layout_weight="36"
+    android:padding="16dp">
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"/>
+        />
+</LinearLayout>
     <TextView
         android:id="@+id/guideText"
         android:layout_width="match_parent"
@@ -19,20 +25,22 @@
         android:textSize="24sp"
         android:fontFamily="@font/nanums"
         android:gravity="center"
+        android:textColor="@color/white"
         android:padding="16dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:layout_gravity="bottom">
     <Button
         android:id="@+id/guideBtn1"
         android:fontFamily="@font/nanums"
         android:text="이전"
         style="?android:attr/borderlessButtonStyle"
-        android:background="@color/white"
+        android:background="#00FFFFFF"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="50dp" />
 
@@ -41,7 +49,8 @@
         android:fontFamily="@font/nanums"
         android:text="다음"
         style="?android:attr/borderlessButtonStyle"
-        android:background="@color/white"
+        android:background="#00FFFFFF"
+        android:textColor="@color/white"
         android:layout_width="100dp"
         android:layout_height="50dp" />
     </LinearLayout>

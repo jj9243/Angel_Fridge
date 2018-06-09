@@ -94,6 +94,5 @@ public class GuideActivity extends AppCompatActivity {
         else
             button.setText("다음");
         v.setCurrentItem(index);
-
     }
 }
