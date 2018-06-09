@@ -100,15 +100,16 @@ public class HomeFragment extends Fragment {
             ddayText.setText("D-DAY");
         } else {
             ddayText.setText("D-" + dday);
-            eatButton.setText("먹었어요 :)");
         }
 
         final DBHelper db = new DBHelper(getActivity(), "ITEM.db", null, 2);
         if(db.columnNum()==0) {
-            itemText.setText("음식을 추가해주세요");
+            itemText.setText("냉장고가 비어 있습니다");
             itemText.setTextSize(28);
             dateText.setText("");
             ddayText.setText("");
+            table.setBackgroundResource(R.drawable.card);
+            eatButton.setText("먹었어요 :)");
         }
         else {
             itemText.setText(Title);
