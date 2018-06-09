@@ -163,14 +163,6 @@ public class RecognizerFragment extends Activity{
             mResult.toArray(rs);
             if(rs[0].contains("년") && rs[0].contains("월") && rs[0].contains("일")) {
                 parseVoice(rs[0]);
-                textView.setText("아이템: " + item + year + "년 " + month + "월 " + day + "일 ");
-                Intent intent = new Intent(getApplicationContext(),AddActivity.class);
-                intent.putExtra("item",item.trim());
-                intent.putExtra("year",year);
-                intent.putExtra("month",month);
-                intent.putExtra("day",day);
-                startActivity(intent);
-                finish();
             }
             else {
                 textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
@@ -214,26 +206,95 @@ public class RecognizerFragment extends Activity{
         }
     };
     int num;
-    public void parseVoice(String voice){
 
+    public void parseVoice(String voice){
+        String[] s = voice.split(" ");
         Date today = new Date();
         SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월dd일");
         String d = date.format(today).toString();
-
-        if(voice.contains("년")) {
-            year = Integer.parseInt(voice.substring(voice.indexOf('년') - 4, voice.indexOf('년')));
-            item = voice.substring(0,voice.indexOf("년")-4);
+        try {
+            if (voice.contains("년")) {
+                year = Integer.parseInt(voice.substring(voice.indexOf('년') - 4, voice.indexOf('년')));
+                item = voice.substring(0, voice.indexOf("년") - 4);
+                if (!(year > 2018 && year <= 2050)) {
+                    textView.setText("연도를 정확하게 말 하셨나요?");
+                    return;
+                }
+            } else
+                year = Integer.parseInt(d.substring(d.indexOf('년') - 4, d.indexOf('년')));
+            if (voice.contains("월")) {
+                month = Integer.parseInt(voice.substring(voice.indexOf('월') - 2, voice.indexOf('월')).trim());
+                if (month > 12 || month < 1) {
+                    textView.setText("1월에서 12월 사이로 말 하셨나요?");
+                    return;
+                }
+            } else
+                month = Integer.parseInt(d.substring(d.indexOf('월') - 2, d.indexOf('월')));
+            if (voice.contains("일")) {
+                day = Integer.parseInt(voice.substring(voice.indexOf('일') - 2, voice.indexOf('일')).trim());
+                if(day > 31 || day < 1) {
+                    textView.setText("1일에서 30일 사이로 말 하셨나요?");
+                    return;
+                }
+            } else
+                day = Integer.parseInt(d.substring(d.indexOf('일') - 2, d.indexOf('일')));
+        }catch(Exception e){
+            textView.setText("품목과 날짜를 정확하게 입력해 주세요");
+            return;
         }
-        else
-            year = Integer.parseInt(d.substring(d.indexOf('년')-4,d.indexOf('년')));
-        if(voice.contains("월"))
-            month = Integer.parseInt(voice.substring(voice.indexOf('월')-2,voice.indexOf('월')).trim());
-        else
-            month = Integer.parseInt(d.substring(d.indexOf('월')-2,d.indexOf('월')));
-        if(voice.contains("일"))
-            day = Integer.parseInt(voice.substring(voice.indexOf('일')-2,voice.indexOf('일')).trim());
-        else
-            day = Integer.parseInt(d.substring(d.indexOf('일')-2,d.indexOf('일')));
+        textView.setText("아이템: " + item + year + "년 " + month + "월 " + day + "일 ");
+        Intent intent = new Intent(getApplicationContext(),AddActivity.class);
+        intent.putExtra("item",item.trim());
+        intent.putExtra("year",year);
+        intent.putExtra("month",month);
+        intent.putExtra("day",day);
+        startActivity(intent);
+        finish();
 
     }
+
+    /*
+    public void parseVoice(String voice){
+        if(!(voice.contains("년") || voice.contains("월") || voice.contains("일"))){
+            textView.setText("유통기한을 정확하게 말해주세요");
+            return;
+        }
+
+        String[] temp = voice.split(" ");
+        for(int i = 0 ; i < temp.length ; i++){
+            System.out.println("&***************" + temp[i]);
+        }
+        /*
+        item = temp[0].trim();
+        year = Integer.parseInt(temp[1].substring(0,temp[1].length()-1));
+        if(year > 2050 || year <=2017){
+            textView.setText("연도를 정확하게 말하셨나요?");
+            return;
+        }
+        month = Integer.parseInt(temp[2].substring(0,temp[2].length()-1));
+        if(month < 1 || month > 12){
+            textView.setText("정확한 달을 말 하셨나요?");
+            return;
+        }
+        day = Integer.parseInt(temp[3].substring(0,temp[3].length()-1));
+        if(month % 2 == 1 || month == 8)
+            if(day > 31 || day < 1){
+                textView.setText("일을 정확하게 말 하셨나요?");
+                return;
+            }
+        else if(month % 2 == 0 && month != 2){
+                if(day > 31 || day < 1){
+                    textView.setText("일을 정확하게 말 하셨나요?");
+                    return;
+                }
+        }
+        else if(month == 2)
+            if(day > 28 || day < 1){
+                textView.setText("일을 정확하게 말 하셨나요?");
+                return;
+            }
+
+    }
+    */
+
 }
