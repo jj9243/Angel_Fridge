@@ -1,5 +1,6 @@
 package com.namjongbin.fridge_angel;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +59,7 @@ public class ListViewAdapter extends ArrayAdapter {
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
 
-
+        ImageButton ytBtn=convertView.findViewById(R.id.ytButton);
         check = convertView.findViewById(R.id.checkbox);
         title = (TextView) convertView.findViewById(R.id.title);
         content = (TextView) convertView.findViewById(R.id.context);
@@ -125,16 +128,23 @@ public class ListViewAdapter extends ArrayAdapter {
                 check.setChecked(false);
             }
         }
-//        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked && !(checkArr.contains(pos))){
-//                    checkArr.add(pos);
-//                }
-//                else if(!isChecked)
-//                    checkArr.remove(pos);
-//            }
-//        });
+
+        ytBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fname = listVO.get(pos).getTitle().trim().toString() + " " + "레시피";
+
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.setPackage("com.google.android.youtube");
+
+                intent.putExtra("query", fname);
+
+                try {
+                    context.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                }
+            }
+        });
 
         if(mClick) {
             check.setVisibility(View.VISIBLE);

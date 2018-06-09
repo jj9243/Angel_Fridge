@@ -80,7 +80,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
+            android:paddingRight="36dp"
             android:text="레시피 찾기"
+            android:drawableRight="@drawable/youtube"
             android:fontFamily="@font/nanums"
             android:gravity="center"
             android:textColor="@color/gray" />

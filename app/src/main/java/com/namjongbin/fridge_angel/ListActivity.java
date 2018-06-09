@@ -26,7 +26,7 @@ public class ListActivity extends AppCompatActivity {
     private String[] testStringArray;
     private ListViewAdapter adapter;
     LinearLayout listItem;
-    ImageButton imgBtn;
+    ImageButton trashBtn,ytBtn;
     ImageView imageView;
     Button deleteBtn;
     Boolean opendelete =false;
@@ -56,12 +56,11 @@ public class ListActivity extends AppCompatActivity {
         //adapter = new ListViewAdapter();
         listItem=findViewById(R.id.listItem);
         listview = findViewById(R.id.listview);
-        imgBtn=findViewById(R.id.deleteBtn);
+        trashBtn =findViewById(R.id.deleteBtn);
         deleteBtn=findViewById(R.id.popDeleteBtn);
         currentInfoText = (TextView)findViewById(R.id.currentInfoText);
         afterInfoText = (TextView)findViewById(R.id.afterInfoText);
         //imageView=findViewById(R.id.corner);
-    //listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         //어뎁터 할당
         listview.setAdapter(adapter);
 
@@ -87,7 +86,7 @@ public class ListActivity extends AppCompatActivity {
 
         }
 
-        imgBtn.setOnClickListener(new View.OnClickListener() {
+        trashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!opendelete) {
