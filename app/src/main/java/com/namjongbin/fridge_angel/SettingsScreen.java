@@ -122,7 +122,7 @@ public class SettingsScreen extends PreferenceFragment {
     public void scheduleJob() {
         ComponentName cm = new ComponentName(getActivity(), NetworkService.class);
         JobInfo info = new JobInfo.Builder(123, cm).setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPersisted(true).setPeriodic(60 * 1000 * 15).build();
+                .setPersisted(true).setPeriodic(60 * 1000 * 60*24).build();
 
         JobScheduler scheduler = (JobScheduler) getActivity().getSystemService(Context.JOB_SCHEDULER_SERVICE);
         int resultCode = scheduler.schedule(info);
