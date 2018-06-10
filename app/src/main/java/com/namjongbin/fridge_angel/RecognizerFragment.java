@@ -175,6 +175,12 @@ public class RecognizerFragment extends Activity{
                     finish();
                 }
             }
+            failCount++;
+            if(failCount == 2){
+                Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
+                startActivity(intent);
+                finish();
+            }
 
 //            recognitionProgressView.stop();
             //textView.setText(rs[0]);
