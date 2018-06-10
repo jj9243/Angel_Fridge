@@ -28,8 +28,8 @@ public class GuideActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         textView = findViewById(R.id.guideText);
 
-        text = new String[]{"안녕하세요 냉장고의 요정입니다!", "품목 추가 방식과 메뉴에요\n", "음성인식과 달력을 이용해\n쉽게 입력하세요"
-                , "채소, 과일, 고기 등의\n유통기한은 제공해줘요", "홈에서 카드를 터치해서\n품목을 확인하고 수정하세요", "귀여운 슈다와 함께\n냉장고를 관리하세요", "어플을 시작하면 세팅을 맞춰주세요!!!\n"};
+        text = new String[]{"안녕하세요\n냉장고의 요정입니다:)", "음식 등록 방식과\n메뉴는 다음과 같아요", "음성인식과 달력을 이용해서\n쉽게 입력하세요"
+                , "채소, 과일, 고기 등의\n유통기한은 제공해줘요", "홈에서 카드를 터치해서\n품목을 확인하고 수정하세요", "귀여운 슈다와 함께\n냉장고를 관리하세요", "어플을 시작하면\n세팅을 맞춰주세요!"};
 
         textView.setText(text[0]);
         findViewById(R.id.guideBtn1).setOnClickListener(new View.OnClickListener() {
@@ -49,7 +49,7 @@ public class GuideActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.e("test", "viewPager : " + index);
 
-                if (index == 6 && button.getText().toString().equals("설정창으로 이동")) {
+                if (index == 6 && button.getText().toString().equals("설정")) {
                     SharedPreferences prefs =getSharedPreferences("first", Activity.MODE_PRIVATE);
                     //boolean test = prefs.getBoolean("first", true);
                     SharedPreferences.Editor editor = prefs.edit();
@@ -90,7 +90,7 @@ public class GuideActivity extends AppCompatActivity {
 
         textView.setText(text[index]);
         if (index == 6)
-            button.setText("설정창으로 이동");
+            button.setText("설정");
         else
             button.setText("다음");
         v.setCurrentItem(index);

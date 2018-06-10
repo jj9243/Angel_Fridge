@@ -42,6 +42,8 @@ public class ImageAdapter extends PagerAdapter {
         Bitmap drawImg = BitmapFactory.decodeResource(context.getResources(), drawableImgs[position]);
 
         imageView.setImageBitmap(drawImg);
+       // imageView.(16,16,16,16);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
         container.addView(imageView, 0);
         return imageView;
     }

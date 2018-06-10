@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         prefs = getSharedPreferences("first", Activity.MODE_PRIVATE);
-        boolean first = prefs.getBoolean("first", true);
+       // boolean first = prefs.getBoolean("first", true);
         boolean check = prefs.getBoolean("check", false);
 
         if (check == true) {

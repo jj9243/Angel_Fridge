@@ -3,36 +3,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/grad"
     android:orientation="vertical"
-    android:layout_marginTop="24dp"
-    android:layout_marginBottom="48dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/guideback"
-    android:layout_weight="36"
-    android:padding="16dp">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-</LinearLayout>
-    <TextView
-        android:id="@+id/guideText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="24sp"
-        android:fontFamily="@font/nanums"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:padding="16dp"
-        />
+    android:layout_marginTop="23dp">
+
+        <com.namjongbin.fridge_angel.CustomViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_weight="3"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
         android:layout_gravity="bottom">
     <Button
         android:id="@+id/guideBtn1"
@@ -41,9 +25,20 @@
         style="?android:attr/borderlessButtonStyle"
         android:background="#00FFFFFF"
         android:textColor="@color/white"
-        android:layout_width="100dp"
-        android:layout_height="50dp" />
-
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center"
+        android:layout_weight="3"/>
+        <TextView
+            android:id="@+id/guideText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanums"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="1"/>
     <Button
         android:id="@+id/guideBtn2"
         android:fontFamily="@font/nanums"
@@ -51,8 +46,9 @@
         style="?android:attr/borderlessButtonStyle"
         android:background="#00FFFFFF"
         android:textColor="@color/white"
-        android:layout_width="100dp"
-        android:layout_height="50dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center"
+        android:layout_weight="3"/>
     </LinearLayout>
-
 </LinearLayout>
