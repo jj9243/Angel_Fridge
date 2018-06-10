@@ -169,18 +169,18 @@ public class RecognizerFragment extends Activity{
                 textView.setText("품목 이름과 날짜 형식을 제대로 말해 주세요");
                 failCount++;
                 System.out.println("오류 카운트" + failCount);
-                if(failCount == 2){
-                    Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
+                if (failCount == 2) {
+                    Intent intent = new Intent(getApplicationContext(), CalendarViewer.class);
                     startActivity(intent);
                     finish();
                 }
             }
-            failCount++;
             if(failCount == 2){
                 Intent intent = new Intent(getApplicationContext(),CalendarViewer.class);
                 startActivity(intent);
                 finish();
             }
+
 
 //            recognitionProgressView.stop();
             //textView.setText(rs[0]);
@@ -225,6 +225,7 @@ public class RecognizerFragment extends Activity{
                 item = voice.substring(0, voice.indexOf("년") - 4);
                 if (!(year >= 2018 && year <= 2050)) {
                     textView.setText("연도를 정확하게 말 하셨나요?");
+                    failCount++;
                     return;
                 }
             } else
@@ -233,6 +234,7 @@ public class RecognizerFragment extends Activity{
                 month = Integer.parseInt(voice.substring(voice.indexOf('월') - 2, voice.indexOf('월')).trim());
                 if (month > 12 || month < 1) {
                     textView.setText("1월에서 12월 사이로 말 하셨나요?");
+                    failCount++;
                     return;
                 }
             } else
@@ -241,6 +243,7 @@ public class RecognizerFragment extends Activity{
                 day = Integer.parseInt(voice.substring(voice.indexOf('일') - 2, voice.indexOf('일')).trim());
                 if(day > 31 || day < 1) {
                     textView.setText("1일에서 30일 사이로 말 하셨나요?");
+                    failCount++;
                     return;
                 }
             } else
@@ -253,6 +256,7 @@ public class RecognizerFragment extends Activity{
 
             if(year <= yearToday && month <= monthToday && day < dayToday){
                textView.setText("유통기한이 이미 지난 날짜 입니다");
+                failCount++;
                 return;
             }
         }catch(Exception e){
