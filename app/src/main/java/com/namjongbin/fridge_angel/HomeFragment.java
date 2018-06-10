@@ -147,6 +147,7 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(),"음식이 없어요",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    Toast.makeText(getActivity(), Title+" 냠냠", Toast.LENGTH_LONG).show();
                     eatFood();
                     Glide.with(rootView.getContext()).load(R.drawable.cdeatw).into(charimg);
                     new Handler().postDelayed(new Runnable() {
@@ -157,8 +158,6 @@ public class HomeFragment extends Fragment {
                         }
                     }, 2000);
 
-
-                    Toast.makeText(getActivity(), Title+" 냠냠", Toast.LENGTH_LONG).show();
                 }
                 if(db.columnNum()==0) {
                     itemText.setText("냉장고가 비어 있습니다");
