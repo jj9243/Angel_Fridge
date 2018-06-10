@@ -21,6 +21,7 @@ import com.github.zagum.speechrecognitionview.RecognitionProgressView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -238,6 +239,16 @@ public class RecognizerFragment extends Activity{
                 }
             } else
                 day = Integer.parseInt(d.substring(d.indexOf('일') - 2, d.indexOf('일')));
+            Calendar cal = Calendar.getInstance();
+
+            int yearToday = cal.get(cal.YEAR);
+            int monthToday = cal.get(cal.MONTH) + 1;
+            int dayToday = cal.get(cal.DATE);
+
+            if(year <= yearToday && month <= monthToday && day < dayToday){
+               textView.setText("유통기한이 이미 지난 날짜 입니다");
+                return;
+            }
         }catch(Exception e){
             textView.setText("품목과 날짜를 정확하게 입력해 주세요");
             return;
