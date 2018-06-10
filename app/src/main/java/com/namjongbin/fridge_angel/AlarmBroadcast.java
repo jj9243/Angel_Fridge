@@ -32,8 +32,9 @@ public class AlarmBroadcast extends BroadcastReceiver {
     String INTENT_ACTION = Intent.ACTION_BOOT_COMPLETED;
     String[] item ;
     String[] date ;
-    int expireFlag = 0;
+    int ddayFlag = 0;
     int threeDayFlag = 0;
+    int expireFlag = 0;
     int year,month,day;
     String title,message;
     boolean isAlarm = false;
@@ -61,26 +62,30 @@ public class AlarmBroadcast extends BroadcastReceiver {
         else
             name = "안됐어ㅠ";
             */
-        parseDate(context);
+         parseDate(context);
 
-        if(expireFlag == 1 && threeDayFlag == 1){
-            title = "유통기한 알림";
-            message = "오늘 유통기한이 만료되는 품목과 3일뒤 만료될 품목이 있습니다 확인해 주세요!";
-            isAlarm = true;
-        }
-        else if(expireFlag == 1 && threeDayFlag == 0){
-            title = "유통기한 알림";
-            message = "오늘 유통기한이 만료되는 품목이 있습니다 확인해 주세요!";
-            isAlarm = true;
-        }
-        else if(expireFlag == 0 && threeDayFlag == 1){
-            title = "유통기한 알림";
-            message = "3일뒤 유통기한이 만료될 품목이 있습니다 확인해 주세요!";
-            isAlarm = true;
-        }
+         if(ddayFlag == 1 && threeDayFlag == 1){
+           title = "유통기한 알림";
+             message = "오늘 유통기한이 만료되는 품목과 3일뒤 만료될 품목이 있습니다 확인해 주세요!";
+             isAlarm = true;
+         }
+         else if(ddayFlag == 1 && threeDayFlag == 0){
+              title = "유통기한 알림";
+              message = "오늘 유통기한이 만료되는 품목이 있습니다 확인해 주세요!";
+              isAlarm = true;
+         }
+         else if(ddayFlag == 0 && threeDayFlag == 1){
+             title = "유통기한 알림";
+             message = "3일뒤 유통기한이 만료될 품목이 있습니다 확인해 주세요!";
+             isAlarm = true;
+         }
+         else if(expireFlag == 1){
+             title ="유통기한 알림";
+             message = "냉장고에 유통기한이 지난 음식이 있습니다 확인해 주세요!";
+         }
 
-        System.out.println("*********************************"+expireFlag +" "+ threeDayFlag);
-        if(isAlarm){
+         System.out.println("*********************************"+expireFlag +" "+ threeDayFlag);
+        if(isAlarm || expireFlag == 1){
             NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Intent notiIntent = new Intent(context, MainActivity.class);
             notiIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -151,7 +156,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
         final DBHelper db = new DBHelper(context, "ITEM.db", null, 2);
         String[] foodItem = new String[db.columnNum()];
         if(!(db.getResult().equals("") || db.getResult() == null))
-            foodItem = db.getResult().split("\n");
+             foodItem = db.getResult().split("\n");
 
         date = new String[foodItem.length];
         item = new String[foodItem.length];
@@ -160,16 +165,20 @@ public class AlarmBroadcast extends BroadcastReceiver {
             item[i] = str[0].replaceAll("[0-9]", "");
             date[i] = str[1];
             parseItem(date[i]);
+            /*
             if(year < yearToday)
                 expireFlag = 1;
             else if(month < monthToday)
                 expireFlag = 1;
             else if(month == monthToday && day < dayToday)
                 expireFlag = 1;
+                */
             if(year ==yearToday && month == monthToday && day == dayToday){
-                expireFlag = 1;
+                ddayFlag = 1;
             }if(year ==yearToday && month == monthToday && day == dayToday + 3){
                 threeDayFlag = 1;
+            }else if(year <= yearToday && month <= monthToday && day < dayToday){
+                expireFlag = 1;
             }
 
         }
