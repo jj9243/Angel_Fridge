@@ -6,7 +6,7 @@
 
     <TableRow
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profileImg"
@@ -38,7 +38,7 @@
 
     <TableRow
     android:orientation="horizontal"
-    android:padding="16dp"
+    android:padding="8dp"
     >
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_width="100dp"
@@ -69,7 +69,7 @@
 
     <TableRow
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="8dp"
         >
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profileImg3"
@@ -97,5 +97,57 @@
             android:visibility="invisible"
             />
     </TableRow>
+
+    <TableRow
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nanums"
+            android:paddingTop="16dp"
+            android:text="Thanks To"
+            android:textSize="24sp" />
+    </TableRow>
+    <TableRow
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nanums"
+            android:text="슈다 제작자: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nanums"
+            android:text="김서형 작가님"
+            android:textSize="18sp" />
+    </TableRow>
+    <TableRow
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nanums"
+            android:text="버그 보고: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nanums"
+            android:text="선*연, 신*섭, 조*형, 한*연"
+            android:textSize="18sp" />
+    </TableRow>
+
 
 </TableLayout>
