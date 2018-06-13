@@ -1,6 +1,8 @@
 package com.namjongbin.fridge_angel;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,6 +14,13 @@ import static org.junit.Assert.assertEquals;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        
+        AlarmBroadcast alarm = new AlarmBroadcast();
+        alarm.parseItem("과자 2018년 7월 14일");
+        assertEquals("과자",alarm.name);
+        assertEquals(2018,alarm.year);
+        assertEquals(7,alarm.month);
+        assertEquals(14,alarm.day);
+
     }
 }
