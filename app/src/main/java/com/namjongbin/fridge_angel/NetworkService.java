@@ -14,7 +14,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Created by USER on 2018-06-01.
+ * @brief  Checking Network
+ * @details Stored in SharedPreference Networking Data. Check Network between set Network and new network
+ * @author Kang woo Nam
  */
 
 public class NetworkService extends JobService {

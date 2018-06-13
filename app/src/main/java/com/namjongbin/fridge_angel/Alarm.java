@@ -1,16 +1,22 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * Created by USER on 2018-05-22.
+ *
+ * @brief   Notification
+ * @details Set Notification, time
+ * @author Kang woo Nam
+ *
+ */
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
-/**
- * Created by USER on 2018-05-22.
- */
+
 
 public class Alarm {
     private Context context;
@@ -31,8 +37,7 @@ public class Alarm {
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
 
-        //알람시간 calendar에 set해주기
-//calendar.get(calendar.get(calendar.HOUR_OF_DAY))
+        //Notification set to calendar
         if((hour<calendar.get(calendar.HOUR_OF_DAY))||(hour==calendar.get(calendar.HOUR_OF_DAY)&&minute<calendar.get(calendar.MINUTE))) {
             //Toast.makeText(context, "" + calendar.get(calendar.HOUR_OF_DAY) + calendar.get(calendar.MINUTE), Toast.LENGTH_LONG).show();
             calendar.set(Calendar.YEAR, calendar.get(calendar.YEAR));
@@ -51,10 +56,7 @@ public class Alarm {
             calendar.set(Calendar.MINUTE, minute);
             calendar.set(Calendar.SECOND, 0);
         }
-        //알람 예약
+        //Notification reservation
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
-        //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),60*1000, sender);
-        //am.cancel(sender);
-        // Toast.makeText(context, "알람 설정 완료 : " + calendar.getTime(), Toast.LENGTH_LONG).show();
     }
 }

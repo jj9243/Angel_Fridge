@@ -1,5 +1,10 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief   View data to Category List child
+ * @author  Jong Keon Kim
+ */
+
 import android.widget.ImageView;
 import android.widget.TextView;
 

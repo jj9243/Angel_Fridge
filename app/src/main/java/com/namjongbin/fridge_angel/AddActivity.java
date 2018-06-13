@@ -1,17 +1,19 @@
 package com.namjongbin.fridge_angel;
+/**
+ * @brief   Add new item or Change Item information
+ * @details When user add new Item for Calender Interface, AddActivity can be that user insert new item or change item
+ * @author Seok bin Im
+ */
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class AddActivity extends Activity {
 
@@ -97,7 +99,6 @@ public class AddActivity extends Activity {
 
     public void onStop() {
         super.onStop();
-        Log.d("asdf", "zzzzz");
         finish();
     }
 }

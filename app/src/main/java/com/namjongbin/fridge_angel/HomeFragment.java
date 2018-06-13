@@ -1,7 +1,10 @@
 package com.namjongbin.fridge_angel;
 
-//import android.app.Fragment;
-
+/**
+ * @brief  Control all of Home(first screen to user)
+ * @details check application First run, Set Card view(one of Item) and Character
+ * @author Jong keon Kim, Seok bin Im, Kang woo Nam
+ */
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;

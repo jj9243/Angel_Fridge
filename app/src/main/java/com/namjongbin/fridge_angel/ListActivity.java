@@ -1,6 +1,11 @@
 package com.namjongbin.fridge_angel;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+
+/**
+ * @brief  Show all of item
+ * @details Show Item in Database. So load to Database and Can be able to change Database. and Set animation
+ * @author Jong keon Kim, Seok bin Im, Kang woo Nam
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +14,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
@@ -21,8 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -79,8 +80,7 @@ public class ListActivity extends AppCompatActivity {
         LayoutAnimationController controller =
                 new LayoutAnimationController(set, 0.7f);
 
-        //변수 초기화
-        //adapter = new ListViewAdapter();
+        //initialization
         listItem=findViewById(R.id.listItem);
         listview = findViewById(R.id.listview);
         listview.setLayoutAnimation(controller);
@@ -88,8 +88,8 @@ public class ListActivity extends AppCompatActivity {
         deleteBtn=findViewById(R.id.popDeleteBtn);
         currentInfoText = (TextView)findViewById(R.id.currentInfoText);
         afterInfoText = (TextView)findViewById(R.id.afterInfoText);
-        //imageView=findViewById(R.id.corner);
-        //어뎁터 할당
+
+        //set Adapter
         listview.setAdapter(adapter);
 
 
@@ -153,7 +153,6 @@ public class ListActivity extends AppCompatActivity {
                         // listview 선택 초기화.
                         listview.clearChoices();
 
-                        //애니메이션
                         // listview 갱신.
                         //adapter.notifyDataSetChanged();
                     }
@@ -167,7 +166,6 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-
 
     }
 

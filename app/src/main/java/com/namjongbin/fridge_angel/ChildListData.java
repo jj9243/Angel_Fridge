@@ -1,5 +1,10 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief   Data, Category List child
+ * @author  Jong Keon Kim
+ */
+
 import android.graphics.drawable.Drawable;
 
 class ChildListData {

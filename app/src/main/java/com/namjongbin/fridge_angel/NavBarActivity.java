@@ -1,13 +1,19 @@
 package com.namjongbin.fridge_angel;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
+/**
+ * @brief  navigation Bar customizing
+ * @author Jong keon Kim
+ */
+
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+/**
+ * \todo add customizing to user
+ *
+ */
 
 public class NavBarActivity extends PreferenceActivity {
 

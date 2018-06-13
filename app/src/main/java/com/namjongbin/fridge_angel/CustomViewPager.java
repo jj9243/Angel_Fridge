@@ -1,5 +1,11 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief   View pager for tutorial (custom XML)
+ * @details this class need to customizer view Pager
+ * @author Jong Keon Kim
+ */
+
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;

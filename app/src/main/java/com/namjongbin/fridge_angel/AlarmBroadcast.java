@@ -1,6 +1,11 @@
 package com.namjongbin.fridge_angel;
 
-import android.app.Activity;
+/**
+ * @brief   Notify application message
+ * @details Call service for notification message to status bar. and check user setting for notification
+ * @author Kang woo Nam
+ */
+
 import android.content.BroadcastReceiver;
 
 
@@ -8,23 +13,19 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 
 
 public class AlarmBroadcast extends BroadcastReceiver {
@@ -41,27 +42,15 @@ public class AlarmBroadcast extends BroadcastReceiver {
 
 
     @Override
-    public void onReceive(Context context, Intent intent) {//알람 시간이 되었을때 onReceive를 호출함
-        //NotificationManager 안드로이드 상태바에 메세지를 던지기위한 서비스 불러오고
-        // Bitmap mLargeIconForNoti=BitmapFactory.decodeResource(getResources(),R.drawable.sb);
-
-        //SwitchPreference notyOnOff = (SwitchPreference) findPreference("switch");
-        //String name;
+    public void onReceive(Context context, Intent intent) {//Call onReceive method, when setting time
+        //NotificationManager, Call service for message to status bar
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean isChecked = sharedPreferences.getBoolean("switch", false);
         String location = sharedPreferences.getString("location", "");
 
         SharedPreferences wifiInfo = context.getSharedPreferences("WifiInformation", context.MODE_PRIVATE);
-        //String wifiName=wifiInfo.getString("wifiName","");
         String macAdd = wifiInfo.getString("macAdd", "");
 
-        //String
-        /*
-        if (isChecked)
-            name = "됐어!";
-        else
-            name = "안됐어ㅠ";
-            */
          parseDate(context);
 
          if(ddayFlag == 1 && threeDayFlag == 1){
@@ -165,14 +154,7 @@ public class AlarmBroadcast extends BroadcastReceiver {
             item[i] = str[0].replaceAll("[0-9]", "");
             date[i] = str[1];
             parseItem(date[i]);
-            /*
-            if(year < yearToday)
-                expireFlag = 1;
-            else if(month < monthToday)
-                expireFlag = 1;
-            else if(month == monthToday && day < dayToday)
-                expireFlag = 1;
-                */
+
             if(year ==yearToday && month == monthToday && day == dayToday){
                 ddayFlag = 1;
             }if(year ==yearToday && month == monthToday && day == dayToday + 3){

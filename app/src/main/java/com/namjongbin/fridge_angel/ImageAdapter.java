@@ -1,5 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief  tutorial image
+ * @details Set in View pager image
+ * @author Jong keon Kim
+ */
+
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

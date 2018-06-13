@@ -1,5 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+
+/**
+ * @brief  tutorial
+ * @details Using View pager, Check page's id change string(scroll or button)
+ * @author Jong keon Kim
+ */
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
@@ -55,7 +62,6 @@ public class GuideActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("check", true);
                     editor.commit();
-                    //Log.d("test","먹니?"+test);
                     finish();
                 } else if (index < 6) {
                     index++;

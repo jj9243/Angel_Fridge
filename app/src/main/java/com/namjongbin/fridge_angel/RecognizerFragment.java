@@ -1,5 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief  Checking Network
+ * @details Stored in SharedPreference Networking Data. Check Network between set Network and new network
+ * @author Seok bin Im, Jong keon Kim
+ */
+
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;

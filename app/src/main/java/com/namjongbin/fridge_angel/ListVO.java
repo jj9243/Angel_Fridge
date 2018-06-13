@@ -4,7 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 /**
- * Created by YooJongHyeok on 2017-08-07.
+ * @details initialization list item
+ * @author Jong keon Kim
  */
 
 public class ListVO {

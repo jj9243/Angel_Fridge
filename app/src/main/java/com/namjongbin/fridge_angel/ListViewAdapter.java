@@ -1,5 +1,12 @@
 package com.namjongbin.fridge_angel;
-import android.app.Activity;
+
+/**
+ *
+ * @brief  Can be able to manage item for user
+ * @details In Listview, add data and delete data and Set checkbox event
+ * @author Jong keon Kim, Seok bin Im
+ */
+
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +28,6 @@ public class ListViewAdapter extends ArrayAdapter {
     CheckBox check;
     TextView title;
     TextView content;
-    ListView listView;
     private ArrayList<ListVO> listVO = new ArrayList<ListVO>() ;
     private boolean mClick = false;
     private ArrayList<Integer> checkArr = new ArrayList<>();
@@ -64,11 +67,11 @@ public class ListViewAdapter extends ArrayAdapter {
         title = (TextView) convertView.findViewById(R.id.title);
         content = (TextView) convertView.findViewById(R.id.context);
 
-        // 아이템 내 각 위젯에 데이터 반영
+        // update item and widget
         title.setText(listViewItem.getTitle());
         content.setText(listViewItem.getContext());
 
-        //리스트뷰 클릭 이벤트
+        //Click event
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -90,7 +93,6 @@ public class ListViewAdapter extends ArrayAdapter {
             }
         });
 
-        //http://chan180.tistory.com/102
         if (check != null) { // 체크박스의 상태 변화를 체크한다.
             check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

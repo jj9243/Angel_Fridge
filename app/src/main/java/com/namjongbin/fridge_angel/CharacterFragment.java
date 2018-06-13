@@ -1,17 +1,16 @@
 package com.namjongbin.fridge_angel;
 
-import android.app.Activity;
+
+/**
+ * @brief   Interface to character
+ * @details Set Character interface in Fragment
+ * @author  Jong Keon Kim
+ */
+
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +19,15 @@ import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+/**
+ * \todo Leveling Charcter
+ *
+ */
 
 public class CharacterFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -79,14 +82,14 @@ public class CharacterFragment extends Fragment {
         } else if (expireCount >= 2 && expireCount <= 4) {
             //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             healthy=65;
-            // 슈다 기분 보통
+            // normal
             drawable=R.drawable.cdnorm;
         } else if (expireCount > 4 && expireCount <= 6) {
-            // 슈다 기분 보통
+            //angry
             healthy=40;
             drawable=R.drawable.cdangry;
         } else {
-            // 슈다 화남
+            // tired
             healthy=10;
             //progress.getProgressDrawable().setColorFilter(Color.RED,PorterDuff.Mode.SRC_IN);
             drawable=R.drawable.cdtired;

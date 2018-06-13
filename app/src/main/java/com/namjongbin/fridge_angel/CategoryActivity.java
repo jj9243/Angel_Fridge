@@ -1,38 +1,47 @@
 package com.namjongbin.fridge_angel;
 
+
+/**
+ * @brief   Category
+ * @details Stored Category and Set Each category's data interface
+ * @author  Jong Keon Kim
+ */
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+
+/**
+ * \todo alter to DB
+ *
+ */
 public class CategoryActivity extends Activity {
-    public ExpandableListView expandableListView; // ExpandableListView 변수 선언
+    public ExpandableListView expandableListView; // Declare ExpandableListView
     public CustomExpandableListViewAdapter mCustomExpListViewAdapter; // 위 ExpandableListView를 받을 CustomAdapter(2번 class에 해당)를 선언
-    public ArrayList<String> parentList; // ExpandableListView의 Parent 항목이 될 List 변수 선언
-    public ArrayList<ChildListData> fruit; // ExpandableListView의 Child 항목이 될 List를 각각 선언
+    public ArrayList<String> parentList; //Declare ExpandableListView of Parent's List
+    public ArrayList<ChildListData> fruit; //Declare ExpandableListView of Child's List
     public ArrayList<ChildListData> vegetables;
     public ArrayList<ChildListData> meat;
     public ArrayList<ChildListData> fish;
     public ArrayList<ChildListData> etc;
-    public HashMap<String, ArrayList<ChildListData>> childList; // 위 ParentList와 ChildList를 연결할 HashMap 변수 선언
+    public HashMap<String, ArrayList<ChildListData>> childList; //Declare that Connect to ParentList and ChildList.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categry); // activity_main.xml을 MainActivity에 연결
+        setContentView(R.layout.activity_categry); //Connection
 
-        // ExpandableListView의 ParentList에 해당할 항목을 입력
+        // Insert to ExpandableListView of ParentList's item
         parentList = new ArrayList<String>();
         parentList.add("과일");
         parentList.add("채소");
@@ -40,7 +49,7 @@ public class CategoryActivity extends Activity {
         parentList.add("육류");
         parentList.add("기타");
 
-        // 앞서 ParentList에 연결할 ChildList 항목을 선언 및 입력
+        //  Declare, Connect to ParentList to ChildList
         ChildListData apple = new ChildListData(getResources().getDrawable(R.mipmap.apple), "사과","3주");
         ChildListData pair = new ChildListData(getResources().getDrawable(R.mipmap.pear), "배","1주");
         ChildListData banana = new ChildListData(getResources().getDrawable(R.mipmap.banana), "바나나","6일");
@@ -129,7 +138,7 @@ public class CategoryActivity extends Activity {
         etc.add(egg);
         etc.add(coffee);
 
-        // 위에서 선언한 ParentList와 ChildList를 HashMap을 통해
+        // Above declare to ParentList and ChildList connect HashMap
         childList = new HashMap<String, ArrayList<ChildListData>>();
         childList.put(parentList.get(0), fruit);
         childList.put(parentList.get(1), vegetables);
@@ -137,8 +146,8 @@ public class CategoryActivity extends Activity {
         childList.put(parentList.get(3), meat);
         childList.put(parentList.get(4), etc);
 
-        // 앞서 정의해 놓은 ExpandableListView와 그 CustomAdapter를 선언 및 연결한 후
-        // ExpandableListView에 대한 OnClickListener 등을 선언
+        // Above declare to ExpandableListView and Connection declared these CustomAdapter
+        // Declare OnClickListener of ExpandableListView...
         expandableListView = (ExpandableListView)findViewById(R.id.expandablelist);
         mCustomExpListViewAdapter = new CustomExpandableListViewAdapter(this, parentList, childList);
         expandableListView.setAdapter(mCustomExpListViewAdapter);

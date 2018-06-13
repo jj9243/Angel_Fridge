@@ -1,6 +1,10 @@
 package com.namjongbin.fridge_angel;
 
-import android.content.Context;
+/**
+ * @brief   Character's Information
+ * @author  Jong Keon Kim
+ */
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

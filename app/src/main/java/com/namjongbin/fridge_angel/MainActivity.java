@@ -1,9 +1,13 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief  main, including Floating Action Button, tool Bar, Fragment
+ * @details Set each Floating Action Button's event (call each input way) and Process each fragment's operation
+ * @author Jong keon Kim, Seok bin Im, Kang woo Nam
+ */
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,7 +27,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

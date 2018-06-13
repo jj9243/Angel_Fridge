@@ -1,12 +1,14 @@
 package com.namjongbin.fridge_angel;
 
+
+/**
+ * @brief   calender Viewer
+ * @details Set Calendar Viewer's Color, interface. Processing data information
+ * @author Kang woo Nam
+ */
+
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.style.ForegroundColorSpan;
@@ -15,7 +17,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-//import com.example.user.termproject.BroadcastD;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -24,7 +25,6 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class CalendarViewer extends Activity {
     private static int ONE_MINUTE = 5626;
@@ -49,16 +49,10 @@ public class CalendarViewer extends Activity {
         Intent intent = getIntent();
         item = intent.getStringExtra("tempItem");
         id = intent.getIntExtra("item_id",id);
-//쉐어드프리퍼런스 테스트
-        //SharedPreferences sf=getSharedPreferences(sfName,0);
-        //Toast.makeText(getApplicationContext(),"저장되있던 것"+sf.getString("name",""),Toast.LENGTH_LONG).show();
-        //long now = System.currentTimeMillis();
-        //Date date = new Date(now);
 
         MaterialCalendarView materialCalendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
 
-        //Toast.makeText(getApplicationContext(),""+calendar.get(Calendar.YEAR)+" "+calendar.get(Calendar.MONTH)+" "+calendar.get(Calendar.DAY_OF_MONTH),Toast.LENGTH_LONG).show();
-        materialCalendarView.state().edit()
+         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
                 .setMinimumDate(CalendarDay.from(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
                 .setMaximumDate(CalendarDay.from(2019, 12, 31))
@@ -72,7 +66,6 @@ public class CalendarViewer extends Activity {
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-             //   Toast.makeText(getApplicationContext(), "" + date.getYear() + "년 " + (date.getMonth() + 1) + "월 " + date.getDay() + "일 입니다.", Toast.LENGTH_LONG).show();
                 y = date.getYear();
                 m = date.getMonth();
                 d = date.getDay();
@@ -110,7 +103,7 @@ public class CalendarViewer extends Activity {
         });
     }
 
-    //쉐어드프리퍼런스 테스트
+    //testing
     protected void onStop() {
         super.onStop();
 

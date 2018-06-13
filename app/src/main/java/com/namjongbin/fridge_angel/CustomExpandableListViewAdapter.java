@@ -1,7 +1,12 @@
 package com.namjongbin.fridge_angel;
 
+/**
+ * @brief   Custom category list
+ * @details Set color and match parent and child and category's main
+ * @author  Jong Keon Kim
+ */
+
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +86,7 @@ public class CustomExpandableListViewAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    /* 여기서부터 ChildListView에 대한 method */
+    /* ChildListView's method */
     @Override
     public ChildListData getChild(int groupPosition, int childPosition) { // groupPostion과 childPosition을 통해 childList의 원소를 얻어옴
         return this.mChildHashMap.get(this.mParentList.get(groupPosition)).get(childPosition);
@@ -89,7 +94,7 @@ public class CustomExpandableListViewAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public int getChildrenCount(int groupPosition) { // ChildList의 크기를 int 형으로 반환
+    public int getChildrenCount(int groupPosition) { // Convert to ChildList's size int type
         return this.mChildHashMap.get(this.mParentList.get(groupPosition)).size();
 
     }
@@ -101,7 +106,7 @@ public class CustomExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        // ChildList의 View. 위 ParentList의 View를 얻을 때와 비슷하게 Layout 연결 후, layout 내 TextView, ImageView를 연결
+        // ChildList's View. Above ParentList's View connect to Layout, Connection in layout to TextView, ImageView
         ChildListData childData = (ChildListData)getChild(groupPosition, childPosition);
         if(convertView == null){
             LayoutInflater childInfla = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -124,9 +129,9 @@ public class CustomExpandableListViewAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean hasStableIds() { return true; } // stable ID인지 boolean 값으로 반환
+    public boolean hasStableIds() { return true; } // Convert to stable ID boolean value
 
     @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) { return true; } // 선택여부를 boolean 값으로 반환
+    public boolean isChildSelectable(int groupPosition, int childPosition) { return true; } // Change boolean
 
 }
