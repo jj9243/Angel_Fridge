@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @brief   Splash Activity
+ * @details This activity is showed when the user starts this application.
+ * @author Jong Keon Kim
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override

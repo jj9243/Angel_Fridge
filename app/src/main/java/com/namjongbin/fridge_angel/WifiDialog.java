@@ -16,7 +16,9 @@ import android.widget.Toast;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by USER on 2018-05-30.
+ * @brief   Wifi Dialog
+ * @details There is an dialog screen in setting screen. When User click's 'OK' Button, System check's the phone's network information. If Wifi is connected, store the Wifi's macaddress and If not, Toast the proper message.
+ * @author KANG WOO NAM
  */
 
 public class WifiDialog extends DialogPreference {

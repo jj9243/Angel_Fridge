@@ -17,7 +17,7 @@ public class ExampleUnitTest {
         
         AlarmBroadcast alarm = new AlarmBroadcast();
         alarm.parseItem("과자 2018년 7월 14일");
-        assertEquals("과자",alarm.name);
+        assertEquals("과자",alarm.title);
         assertEquals(2018,alarm.year);
         assertEquals(7,alarm.month);
         assertEquals(14,alarm.day);

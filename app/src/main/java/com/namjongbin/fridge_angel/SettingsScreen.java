@@ -27,6 +27,11 @@ import android.widget.Toast;
 import java.net.InetAddress;
 import java.util.Set;
 
+/**
+ * @brief   SettingScreen fragment
+ * @details This fragment shows setting sceen. User can set user's inforamtion, alarm on/off, location to notify alarm, wifi information about location.
+ * @author KANG WOO NAM
+ */
 public class SettingsScreen extends PreferenceFragment {
 
     EditTextPreference user;

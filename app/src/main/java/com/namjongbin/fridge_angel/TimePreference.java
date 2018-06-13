@@ -12,7 +12,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 /**
- * Created by USER on 2018-06-02.
+ * @brief   TimePreference Dialog
+ * @details There is an dialog screen in setting screen. User can set the time to notify alarm.
+ * @author KANG WOO NAM
  */
 
 public class TimePreference extends DialogPreference {
